@@ -30,13 +30,21 @@ Consider the possibility to use real maps, extracted from OpenStreetMaps (www.op
 
 ## The project
 
-Let's assume that walking distance has more weight than than the driving distance. Walking distance weight = driving distance weight * C.
+Let's assume that walking distance has more weight than than the driving distance. 
+Walking distance weight = driving distance weight * C.
 
-Let's assume that we have weighted, directed graph G. Nodes of the graph are labeled as none(n), parking spot(p) and gas_station(s).
+Let's assume that we have weighted, directed graph G. Nodes of the graph are labeled as none(n), parking spot(p) and gas_station(s). Edges are weighted by distance, nodes labeled as p contains parking spots cost information.
+
+Nodes of graph G are named: G1, G2 ... Gn
+n - number of nodes.
+
 
 ### Situation A: no need for visit the gas station. 
 
+For x,y <= n:
+
 We are searching for the shortest path from Gx to Gy where one of nodes labeled as p has to be visited.
+
 
 Let's assume two copies of graph G: A and B.
 
@@ -45,20 +53,28 @@ Graph B has nodes B1, B2 ... Bn and weights multiplied by the coefficient C.
 
 Each node of graph A with the label p has 0 weight edge to corresponding graph B node.
 
-Now we can find the shortest path from Ax to By.
+Now we can find the shortest path from Ax to By by any shortest path alhorithm.
 
 ### Situation B: gas station has to be visited.
 
 Observation: gas station has to be visited first.
+
 Now let's assume three copies of graph G: A, B and C.
+
+Graph C has nodes C1, C2 ... Cn and weights multiplied by the coefficient C.
 
 Each node of graph A with the label s has 0 weight edge to coresponding graph B node.
 Each node of graph B with the label p has 0 weight edge to coresponding graph C node.
 
-Now we can find the shortest path from Ax to Cy.
+Now we can find the shortest path from Ax to Cy by any shortest path alhorithm.
 
-### Situation C: cost and minimal distance.
+### Situation C: cost and maximum distance.
 
-Note: Each edge weight has to be greater than 0 (beside A, B, C connectors).
+Two options:
 
-TODO 
+1.(simple one) Different problem. We don't care about distance. The cost is specified by the price of the parking spot.   
+Run Dijkstra to find nodes with max distance and choose the cheapest parking spot.
+
+2. (to consider) Metro stations, buses, fuel cost etc.
+a) Run modified Dijkstra on the highest level graph (look situation A or B) to find all nodes with max distance (include public transport edges with the distance 0) and replace weights by cost of parking spots and public transport. Replace all other edges (in highest level graph) weights by infinite cost(MAX_INT).
+b) Change each distance (lower level graphs) to the fuel price cost.
