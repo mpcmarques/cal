@@ -72,7 +72,7 @@ Now we can find the shortest path from Ax to Cy by any shortest path alhorithm.
 
 Two options:
 
-1.(simple one) Different problem. We don't care about distance. The cost is specified by the price of the parking spot.   
+1. (simple one) Different problem. We don't care about distance. The cost is specified by the price of the parking spot.   
 Run Dijkstra to find nodes with max distance and choose the cheapest parking spot.
 
 2. (to consider) Metro stations, buses, fuel cost etc.
