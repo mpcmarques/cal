@@ -56,3 +56,9 @@ Each node of graph A with the label s has 0 weight edge to coresponding graph B 
 Each node of graph B with the label p has 0 weight edge to coresponding graph C node.
 
 Now we can find the shortest path from Ax to Cy.
+
+### Situation C: cost and minimal distance.
+
+Note: Each edge weight has to be greater than 0 (beside A, B, C connectors).
+
+TODO 
