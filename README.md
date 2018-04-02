@@ -30,29 +30,27 @@ Consider the possibility to use real maps, extracted from OpenStreetMaps (www.op
 
 ## The project
 
-Lets assume that walking distance has more weight than than the driving distance. 
-Walking distance weight = driving distance weight * C.
+Let's assume that walking distance has more weight than than the driving distance. Walking distance weight = driving distance weight * C.
 
-Lets assume that we have weighted, directed graph G.
-Nodes of the graph are labeled as none(n), parking spot(p) and gas_station(s).
+Let's assume that we have weighted, directed graph G. Nodes of the graph are labeled as none(n), parking spot(p) and gas_station(s).
 
 ### Situation A: no need for visit the gas station. 
 
 We are searching for the shortest path from Gx to Gy where one of nodes labeled as p has to be visited.
 
-Lets assume two copies of graph G: A and B.
+Let's assume two copies of graph G: A and B.
 
 Graph A has nodes A1, A2 ... An.
 Graph B has nodes B1, B2 ... Bn and weights multiplied by the coefficient C.
 
-Each node of graph A with the label p has 0 weight edge to coresponding graph B node.
+Each node of graph A with the label p has 0 weight edge to corresponding graph B node.
 
 Now we can find the shortest path from Ax to By.
 
 ### Situation B: gas station has to be visited.
 
 Observation: gas station has to be visited first.
-Now lets assume three copies of graph G: A, B and C.
+Now let's assume three copies of graph G: A, B and C.
 
 Each node of graph A with the label s has 0 weight edge to coresponding graph B node.
 Each node of graph B with the label p has 0 weight edge to coresponding graph C node.
