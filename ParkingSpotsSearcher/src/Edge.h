@@ -16,7 +16,9 @@ class Edge {
 	Vertex *dest;
 public:
 	Edge(Vertex *dest, double weight, double cost): dest{dest}, weight{weight}, cost{cost} {}
+	Vertex *getDest() const {return dest;}
 	friend class Vertex;
+	friend class Graph;
 	friend class Dijkstra;
 };
 

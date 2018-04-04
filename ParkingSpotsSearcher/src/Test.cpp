@@ -43,8 +43,9 @@ void test_graphTest() {
 Graph CreateTestGraph() {
 	Graph myGraph;
 
-	for(int i = 1; i <= 7; i++)
+	for(int i = 1; i <= 6; i++)
 		myGraph.addVertex(i, VertexType::NONE);
+	myGraph.addVertex(7, VertexType::PARKING_SPOT);
 
 	myGraph.addEdge(1, 2, 2);
 	myGraph.addEdge(1, 4, 7);
@@ -63,10 +64,10 @@ Graph CreateTestGraph() {
 	return myGraph;
 }
 
-void checkSinglePath(Dijkstra &g, std::vector<int> path, std::string expected) {
+void checkSinglePath(Dijkstra &g, std::vector<Vertex *> path, std::string expected) {
 	std::stringstream ss;
 	for(unsigned int i = 0; i < path.size(); i++)
-		ss << path[i] << " ";
+		ss << path[i]->getInfo() << " ";
 	ASSERT_EQUAL(expected, ss.str());
 }
 
@@ -75,9 +76,9 @@ void checkAllPaths(Dijkstra &g, std::string expected) {
 	std::vector<Vertex* > vs = g.getVertexSet();
 
 	for(unsigned int i = 0; i < vs.size(); i++) {
-		ss << vs[i]->getId() << "<-";
+		ss << vs[i]->getInfo() << "<-";
 		if ( vs[i]->getPath() != nullptr )
-			ss << vs[i]->getPath()->getId();
+			ss << vs[i]->getPath()->getInfo();
 		ss << "|";
 	}
 	ASSERT_EQUAL(expected, ss.str());
@@ -86,14 +87,23 @@ void checkAllPaths(Dijkstra &g, std::string expected) {
 void test_dijkstra() {
 	Graph myGraph = CreateTestGraph();
 
-	Dijkstra dijkstra{myGraph.getVertexSet()};
+	for(auto n : myGraph.getTwoLayeredVertexSet()) {
+		std::cout << n->getId() << "(";
+		for(auto e : n->getEdges())
+			std::cout << e->getDest()->getId() << ",";
+		std::cout << ")" << endl;
+	}
 
-	dijkstra.compute(3);
+	Dijkstra dijkstra{myGraph.getTwoLayeredVertexSet()};
+
+	//dijkstra.compute(3);
 	//checkAllPaths(dijkstra, "1<-3|2<-1|3<-|4<-2|5<-4|6<-3|7<-5|");
 
 	dijkstra.compute(1);
 	//checkAllPaths(dijkstra, "1<-|2<-1|3<-4|4<-2|5<-4|6<-4|7<-5|");
 	checkSinglePath(dijkstra, dijkstra.getPath(1, 7), "1 2 4 5 7 ");
+
+	checkSinglePath(dijkstra, dijkstra.getPath(1, myGraph.calculateSecondLayerId(1)), "1 2 4 5 7 7 6 4 3 1 ");
 
 	dijkstra.compute(5);
 	checkSinglePath(dijkstra, dijkstra.getPath(5, 6), "5 7 6 ");
@@ -116,7 +126,7 @@ bool runAllTests(int argc, char const *argv[]) {
 	return success;
 }
 
-//int main(int argc, char const *argv[]) {
-//    return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
-//}
+int main(int argc, char const *argv[]) {
+    return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
+}
 
