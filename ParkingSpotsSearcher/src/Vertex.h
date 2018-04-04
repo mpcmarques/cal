@@ -18,28 +18,47 @@ enum class VertexType {
 class Vertex {
 	std::vector<Edge *> edges;
 	int id;
+	int info;
 	VertexType type;
 	int queueIndex = 0; 		// required by MutablePriorityQueue
 	double dist = 0;
 	Vertex *path = nullptr;
 
-
-
 public:
-	Vertex(int id, VertexType type) : id { id }, type { type } {}
-	bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
+	Vertex(int id, VertexType type, int info ) :
+			id { id }, type { type }, info { info } {
+	}
+	Vertex(Vertex *vertex) :
+			id { vertex->id }, type { vertex->type }, info { vertex->info } {
+	}
 
+	bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
 
 	void addEdge(Vertex *destination, double weight, double cost);
 
-	Vertex *getPath() const {return path;};
-	int getId() const { return id; };
-	VertexType getType() const { return type; };
-	std::vector<Edge *> getEdges() const {return edges;};
+	Vertex *getPath() const {
+		return path;
+	}
+
+	int getId() const {
+		return id;
+	}
+
+	int getInfo() const {
+			return info;
+		}
+
+	VertexType getType() const {
+		return type;
+	}
+
+	std::vector<Edge *> getEdges() const {
+		return edges;
+	}
 
 	friend class Dijkstra;
-	friend class MutablePriorityQueue<Vertex>;
-
+	friend class Graph;
+	friend class MutablePriorityQueue<Vertex> ;
 
 };
 #endif /* SRC_VERTEX_H_ */

@@ -55,13 +55,13 @@ Vertex * Dijkstra::findVertex(int in) const {
 	return nullptr;
 }
 
-std::vector<int> Dijkstra::getPath(int origin, int dest) {
-	std::vector<int> res;
+std::vector<Vertex *> Dijkstra::getPath(int origin, int dest) {
+	std::vector<Vertex *> res;
 	auto v = findVertex(dest);
 	if (v == nullptr || v->dist == INF) // missing or disconnected
 	return res;
 	for (; v != nullptr; v = v->path)
-		res.push_back(v->id);
+		res.push_back(findVertex(v->id));
 	std::reverse(res.begin(), res.end());
 	return res;
 }

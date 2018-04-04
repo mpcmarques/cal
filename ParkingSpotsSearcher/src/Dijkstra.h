@@ -22,7 +22,7 @@ public:
 	bool relax(Vertex *v, Vertex *w, double weight);
 	void compute(int origin);
 	Vertex * findVertex(int in) const;
-	std::vector<int> getPath(int origin, int dest);
+	std::vector<Vertex *> getPath(int origin, int dest);
 	std::vector<Vertex *> getVertexSet() const {return vertexSet;};
 };
 
