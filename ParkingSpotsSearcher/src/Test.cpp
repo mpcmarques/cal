@@ -7,10 +7,11 @@
 #include <random>
 #include <time.h>
 #include <chrono>
-
+#include <stdlib.h>
 
 #include "Graph.h"
 #include "Dijkstra.h"
+#include "graphviewer.h"
 
 
 #include <unordered_map>
@@ -104,7 +105,7 @@ void test_dijkstra() {
 
 bool runAllTests(int argc, char const *argv[]) {
 	cute::suite s { };
-	//TODO add your test here
+
 
 	s.push_back(CUTE(test_graphTest));
 	s.push_back(CUTE(test_dijkstra));
@@ -115,7 +116,7 @@ bool runAllTests(int argc, char const *argv[]) {
 	return success;
 }
 
-int main(int argc, char const *argv[]) {
-    return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
-}
+//int main(int argc, char const *argv[]) {
+//    return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
+//}
 
