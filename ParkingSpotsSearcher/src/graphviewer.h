@@ -1,9 +1,9 @@
 ﻿#ifndef _GRAPH_VIEWER_H_
 #define _GRAPH_VIEWER_H_
 
-#ifdef linux
+#ifdef __linux__
 	#include <unistd.h>
-#else
+#elif __WIN32
 	#include <winsock2.h>
 	#include <winsock.h>
 	#include <Windows.h>

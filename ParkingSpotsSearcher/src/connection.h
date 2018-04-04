@@ -5,13 +5,13 @@
 #include <cstdlib>
 #include <cstring>
 
-#ifdef linux
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netdb.h>
-#else
-#include <winsock2.h>
+#ifdef __linux__
+	#include <arpa/inet.h>
+	#include <sys/socket.h>
+	#include <sys/types.h>
+	#include <netdb.h>
+#elif __WIN32
+	#include <winsock2.h>
 
 #endif
 
