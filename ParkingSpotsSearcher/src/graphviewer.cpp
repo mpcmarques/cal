@@ -27,7 +27,7 @@ void GraphViewer::initialize(int width, int height, bool dynamic, int port_n) {
   command += " --port ";
   command += port_string;
 
-#ifdef linux
+#ifdef __linux__
   if (!(procId = fork())) {
     system(command.c_str());
     kill(getppid(), SIGINT);

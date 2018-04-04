@@ -27,7 +27,7 @@ class Connection {
   bool sendMsg(string msg);
   string readLine();
  private: 
-#ifdef linux
+#ifdef __linux__
   int sock;
 #else
   SOCKET sock;
