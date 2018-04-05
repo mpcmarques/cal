@@ -55,5 +55,5 @@ add_executable(ParkingSpotsSearcher
         src/Vertex.h
         GraphViewerController.jar
         ParkingSpotsSearcher.exe.xml
-        )
+        src/api-reader/ApiReader.cpp src/api-reader/ApiReader.h src/utils/StringSplitter.cpp src/utils/StringSplitter.h)
 

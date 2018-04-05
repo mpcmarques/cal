@@ -11,15 +11,19 @@
 class Vertex;
 
 class Edge {
-	double weight;
-	double cost;
-	Vertex *dest;
+    double weight;
+    double cost;
+    Vertex *dest;
 public:
-	Edge(Vertex *dest, double weight, double cost): dest{dest}, weight{weight}, cost{cost} {}
-	Vertex *getDest() const {return dest;}
-	friend class Vertex;
-	friend class Graph;
-	friend class Dijkstra;
+    Edge(Vertex *dest, double weight, double cost) : dest{dest}, weight{weight}, cost{cost} {}
+
+    Vertex *getDest() const { return dest; }
+
+    friend class Vertex;
+
+    friend class Graph;
+
+    friend class Dijkstra;
 };
 
 #endif /* SRC_EDGE_H_ */

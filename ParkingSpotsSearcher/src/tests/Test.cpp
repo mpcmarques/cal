@@ -17,113 +17,113 @@
 #include <unordered_map>
 
 void thisIsATest() {
-	ASSERTM("start writing tests", false);	
+    ASSERTM("start writing tests", false);
 }
 
 void test_graphTest() {
-	Graph graph { };
+    Graph graph{};
 
-	ASSERTM("addVertex1", graph.addVertex(1, VertexType::NONE));
-	ASSERTM("addVertex2", graph.addVertex(2, VertexType::NONE));
-	ASSERTM("addVertex3", graph.addVertex(2, VertexType::NONE) == false);
+    ASSERTM("addVertex1", graph.addVertex(1, VertexType::NONE));
+    ASSERTM("addVertex2", graph.addVertex(2, VertexType::NONE));
+    ASSERTM("addVertex3", graph.addVertex(2, VertexType::NONE) == false);
 
-	ASSERTM("getVertex1", graph.getVertex(1)->getType() == VertexType::NONE);
-	ASSERTM("getVertex2", graph.getVertex(0) == nullptr);
+    ASSERTM("getVertex1", graph.getVertex(1)->getType() == VertexType::NONE);
+    ASSERTM("getVertex2", graph.getVertex(0) == nullptr);
 
-	ASSERTM("addEdge1", graph.addEdge(1, 2, 10));
-	ASSERTM("addEdge2", graph.addEdge(1, 2, 20));
-	ASSERTM("addEdge3", graph.addEdge(1, 0, 10) == false);
+    ASSERTM("addEdge1", graph.addEdge(1, 2, 10));
+    ASSERTM("addEdge2", graph.addEdge(1, 2, 20));
+    ASSERTM("addEdge3", graph.addEdge(1, 0, 10) == false);
 
-	graph.addEdge(2, 1, 10);
+    graph.addEdge(2, 1, 10);
 
-	ASSERTM("getVertex2", graph.getVertex(1)->getEdges().size() == 2);
-	ASSERTM("getVertex2", graph.getVertex(2)->getEdges().size() == 1);
+    ASSERTM("getVertex2", graph.getVertex(1)->getEdges().size() == 2);
+    ASSERTM("getVertex2", graph.getVertex(2)->getEdges().size() == 1);
 }
 
 Graph CreateTestGraph() {
-	Graph myGraph;
+    Graph myGraph;
 
-	for(int i = 1; i <= 6; i++)
-		myGraph.addVertex(i, VertexType::NONE);
-	myGraph.addVertex(7, VertexType::PARKING_SPOT);
+    for (int i = 1; i <= 6; i++)
+        myGraph.addVertex(i, VertexType::NONE);
+    myGraph.addVertex(7, VertexType::PARKING_SPOT);
 
-	myGraph.addEdge(1, 2, 2);
-	myGraph.addEdge(1, 4, 7);
-	myGraph.addEdge(2, 4, 3);
-	myGraph.addEdge(2, 5, 5);
-	myGraph.addEdge(3, 1, 2);
-	myGraph.addEdge(3, 6, 5);
-	myGraph.addEdge(4, 3, 1);
-	myGraph.addEdge(4, 5, 1);
-	myGraph.addEdge(4, 6, 6);
-	myGraph.addEdge(4, 7, 4);
-	myGraph.addEdge(5, 7, 2);
-	myGraph.addEdge(6, 4, 3);
-	myGraph.addEdge(7, 6, 4);
+    myGraph.addEdge(1, 2, 2);
+    myGraph.addEdge(1, 4, 7);
+    myGraph.addEdge(2, 4, 3);
+    myGraph.addEdge(2, 5, 5);
+    myGraph.addEdge(3, 1, 2);
+    myGraph.addEdge(3, 6, 5);
+    myGraph.addEdge(4, 3, 1);
+    myGraph.addEdge(4, 5, 1);
+    myGraph.addEdge(4, 6, 6);
+    myGraph.addEdge(4, 7, 4);
+    myGraph.addEdge(5, 7, 2);
+    myGraph.addEdge(6, 4, 3);
+    myGraph.addEdge(7, 6, 4);
 
-	return myGraph;
+    return myGraph;
 }
 
 void checkSinglePath(Dijkstra &g, std::vector<Vertex *> path, std::string expected) {
-	std::stringstream ss;
-	for(unsigned int i = 0; i < path.size(); i++)
-		ss << path[i]->getInfo() << " ";
-	ASSERT_EQUAL(expected, ss.str());
+    std::stringstream ss;
+    for (unsigned int i = 0; i < path.size(); i++)
+        ss << path[i]->getInfo() << " ";
+    ASSERT_EQUAL(expected, ss.str());
 }
 
 void checkAllPaths(Dijkstra &g, std::string expected) {
-	std::stringstream ss { };
-	std::vector<Vertex* > vs = g.getVertexSet();
+    std::stringstream ss{};
+    std::vector<Vertex *> vs = g.getVertexSet();
 
-	for(unsigned int i = 0; i < vs.size(); i++) {
-		ss << vs[i]->getInfo() << "<-";
-		if ( vs[i]->getPath() != nullptr )
-			ss << vs[i]->getPath()->getInfo();
-		ss << "|";
-	}
-	ASSERT_EQUAL(expected, ss.str());
+    for (unsigned int i = 0; i < vs.size(); i++) {
+        ss << vs[i]->getInfo() << "<-";
+        if (vs[i]->getPath() != nullptr)
+            ss << vs[i]->getPath()->getInfo();
+        ss << "|";
+    }
+    ASSERT_EQUAL(expected, ss.str());
 }
 
 void test_dijkstra() {
-	Graph myGraph = CreateTestGraph();
+    Graph myGraph = CreateTestGraph();
 
-	for(auto n : myGraph.getTwoLayeredVertexSet()) {
-		std::cout << n->getId() << "(";
-		for(auto e : n->getEdges())
-			std::cout << e->getDest()->getId() << ",";
-		std::cout << ")" << endl;
-	}
+    for (auto n : myGraph.getTwoLayeredVertexSet()) {
+        std::cout << n->getId() << "(";
+        for (auto e : n->getEdges())
+            std::cout << e->getDest()->getId() << ",";
+        std::cout << ")" << endl;
+    }
 
-	Dijkstra dijkstra{myGraph.getTwoLayeredVertexSet()};
+    Dijkstra dijkstra{myGraph.getTwoLayeredVertexSet()};
 
-	//dijkstra.compute(3);
-	//checkAllPaths(dijkstra, "1<-3|2<-1|3<-|4<-2|5<-4|6<-3|7<-5|");
+    //dijkstra.compute(3);
+    //checkAllPaths(dijkstra, "1<-3|2<-1|3<-|4<-2|5<-4|6<-3|7<-5|");
 
-	dijkstra.compute(1);
-	//checkAllPaths(dijkstra, "1<-|2<-1|3<-4|4<-2|5<-4|6<-4|7<-5|");
-	checkSinglePath(dijkstra, dijkstra.getPath(1, 7), "1 2 4 5 7 ");
+    dijkstra.compute(1);
+    //checkAllPaths(dijkstra, "1<-|2<-1|3<-4|4<-2|5<-4|6<-4|7<-5|");
+    checkSinglePath(dijkstra, dijkstra.getPath(1, 7), "1 2 4 5 7 ");
 
-	checkSinglePath(dijkstra, dijkstra.getPath(1, myGraph.calculateSecondLayerId(1)), "1 2 4 5 7 7 6 4 3 1 ");
+    checkSinglePath(dijkstra, dijkstra.getPath(1, myGraph.calculateSecondLayerId(1)), "1 2 4 5 7 7 6 4 3 1 ");
 
-	dijkstra.compute(5);
-	checkSinglePath(dijkstra, dijkstra.getPath(5, 6), "5 7 6 ");
+    dijkstra.compute(5);
+    checkSinglePath(dijkstra, dijkstra.getPath(5, 6), "5 7 6 ");
 
-	dijkstra.compute(7);
-	checkSinglePath(dijkstra, dijkstra.getPath(7, 1), "7 6 4 3 1 ");
+    dijkstra.compute(7);
+    checkSinglePath(dijkstra, dijkstra.getPath(7, 1), "7 6 4 3 1 ");
 }
 
 
 bool runAllTests(int argc, char const *argv[]) {
-	cute::suite s { };
+    cute::suite s{};
 
 
-	s.push_back(CUTE(test_graphTest));
-	s.push_back(CUTE(test_dijkstra));
-	cute::xml_file_opener xmlfile(argc, argv);
-	cute::xml_listener<cute::ide_listener<>> lis(xmlfile.out);
-	auto runner = cute::makeRunner(lis, argc, argv);
-	bool success = runner(s, "AllTests");
-	return success;
+    s.push_back(CUTE(test_graphTest));
+    s.push_back(CUTE(test_dijkstra));
+    cute::xml_file_opener xmlfile(argc, argv);
+    cute::xml_listener<cute::ide_listener<>> lis(xmlfile.out);
+    auto runner = cute::makeRunner(lis, argc, argv);
+    bool success = runner(s, "AllTests");
+    return success;
 }
 
 /*int main(int argc, char const *argv[]) {

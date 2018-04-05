@@ -6,12 +6,14 @@
 #include <cstring>
 
 #ifdef __linux__
-	#include <arpa/inet.h>
-	#include <sys/socket.h>
-	#include <sys/types.h>
-	#include <netdb.h>
+
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netdb.h>
+
 #elif __WIN32
-	#include <winsock2.h>
+#include <winsock2.h>
 
 #endif
 
@@ -21,16 +23,18 @@
 using namespace std;
 
 class Connection {
- public:
-  Connection(short port);
+public:
+    Connection(short port);
 
-  bool sendMsg(string msg);
-  string readLine();
- private: 
+    bool sendMsg(string msg);
+
+    string readLine();
+
+private:
 #ifdef __linux__
-  int sock;
+    int sock;
 #else
-  SOCKET sock;
+    SOCKET sock;
 #endif
 };
 

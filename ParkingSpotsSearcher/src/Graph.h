@@ -14,18 +14,26 @@
 
 
 class Graph {
-	std::unordered_map<int, Vertex *> vertices;
+    std::unordered_map<int, Vertex *> vertices;
 
-	public:
-		Vertex *getVertex(int id);
-		bool addVertex(int id, VertexType type, int info=0);
-		bool addEdge(int sourceId, int destId, double weight, double cost = 0);
-		bool vertexExists(int id);
-		std::vector<Vertex *> getVertexSet() const;
-		std::vector<Vertex *> getTwoLayeredVertexSet() const;
-		int calculateSecondLayerId(int id);
-		int calculateFirstLayerId(int id);
-		std::vector<Vertex *> getThreeLayeredVertexSet() const;
+public:
+    Vertex *getVertex(int id);
+
+    bool addVertex(int id, VertexType type, int info = 0);
+
+    bool addEdge(int sourceId, int destId, double weight, double cost = 0);
+
+    bool vertexExists(int id);
+
+    std::vector<Vertex *> getVertexSet() const;
+
+    std::vector<Vertex *> getTwoLayeredVertexSet() const;
+
+    int calculateSecondLayerId(int id);
+
+    int calculateFirstLayerId(int id);
+
+    std::vector<Vertex *> getThreeLayeredVertexSet() const;
 };
 
 #endif /* SRC_GRAPH_H_ */
