@@ -9,11 +9,11 @@
 #include <model/Node.h>
 #include <model/Road.h>
 #include <model/Link.h>
-#include "ApiReader.h"
+#include "ApiParser.h"
 
 using namespace std;
 
-vector<Node> ApiReader::readNodes(string nodeFilePath) {
+vector<Node> ApiParser::readNodes(string nodeFilePath) {
     vector<Node> nodes;
 
     ifstream nodeFile(nodeFilePath);
@@ -33,11 +33,11 @@ vector<Node> ApiReader::readNodes(string nodeFilePath) {
                 return nodes;
             }
 
-            id = (int) split[0];
-            latitude_in_degrees = (int) split[1];
-            longitude_in_degrees = (int) split[2];
-            longitude_in_radians = (int) split[3];
-            latitude_in_radians = (int) split[4];
+            id = stoi(split[0]);
+            latitude_in_degrees = stoi(split[1]);
+            longitude_in_degrees = stoi(split[2]);
+            longitude_in_radians = stoi(split[3]);
+            latitude_in_radians = stoi(split[4]);
 
             //  return the vector<nodes> with the parsed attributes
             Node node = Node(id, latitude_in_degrees, longitude_in_degrees, latitude_in_radians, longitude_in_radians);
@@ -52,7 +52,7 @@ vector<Node> ApiReader::readNodes(string nodeFilePath) {
     }
 }
 
-vector<Road> ApiReader::readRoads(const string roadsFilePath) {
+vector<Road> ApiParser::readRoads(const string roadsFilePath) {
 
     ifstream nodeFile(roadsFilePath);
 
@@ -75,9 +75,12 @@ vector<Road> ApiReader::readRoads(const string roadsFilePath) {
                 return roads;
             }
 
-            road_id = split[0];
+            road_id = stoi(split[0]);
             road_name = split[1];
-            is_two_way = split[2];
+            if (split[2] == "true")
+                is_two_way = true;
+            else if (split[2] == "false")
+                is_two_way = false;
 
             // return the vector<edges> with the parsed attributes
             Road road = Road(road_id, road_name, is_two_way);
@@ -93,7 +96,7 @@ vector<Road> ApiReader::readRoads(const string roadsFilePath) {
     }
 }
 
-vector<Link> ApiReader::readNodeLinks(const string nodesLinksPath) {
+vector<Link> ApiParser::readNodeLinks(const string nodesLinksPath) {
 
     ifstream nodeFile(nodesLinksPath);
 
@@ -114,9 +117,9 @@ vector<Link> ApiReader::readNodeLinks(const string nodesLinksPath) {
                 return links;
             }
 
-            road_id = (int) split[0];
-            node1_id = (int) split[1];
-            node2_id = (int) split[2];
+            road_id = stoi(split[0]);
+            node1_id = stoi(split[1]);
+            node2_id = stoi(split[2]);
 
             // return the vector<links> with the parsed attributes
             Link link = Link(road_id, node1_id, node2_id);

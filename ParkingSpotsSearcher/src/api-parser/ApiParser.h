@@ -10,7 +10,7 @@
 /**
  * Class is responsible for parsing api data.
  */
-class ApiReader {
+class ApiParser {
 
 public:
     /**

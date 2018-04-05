@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(cute)
 include_directories(src)
-include_directories(src/api-reader)
+include_directories(src/api-parser)
 include_directories(src/graph-viewer)
 include_directories(src/utils)
 
@@ -39,8 +39,8 @@ add_executable(ParkingSpotsSearcher
         cute/ide_listener.h
         cute/ostream_listener.h
         cute/xml_listener.h
-        src/api-reader/ApiReader.cpp
-        src/api-reader/ApiReader.h
+        src/api-parser/ApiParser.cpp
+        src/api-parser/ApiParser.h
         src/graph-viewer/connection.cpp
         src/graph-viewer/connection.h
         src/graph-viewer/edgetype.h
