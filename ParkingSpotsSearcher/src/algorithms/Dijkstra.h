@@ -1,17 +1,41 @@
 /*
- * Dijkstra.cpp
+ * Dijkstra.h
  *
  *  Created on: 04.04.2018
  *      Author: Adam
  */
 
-#include "Dijkstra.h"
+#ifndef SRC_DIJKSTRA_H_
+#define SRC_DIJKSTRA_H_
+
+#include "Vertex.h"
+#include <vector>
 #include <limits>
 #include <algorithm>
-
+//#include "MutablePriorityQueue.h"
 #define INF std::numeric_limits<double>::max()
 
-Vertex *Dijkstra::initSingleSource(int origin) {
+template <class T> class Dijkstra {
+
+    std::vector<Vertex<T> *> vertexSet;
+
+public:
+    Dijkstra<T>(std::vector<Vertex<T> *> vertexSet) : vertexSet{vertexSet} {};
+
+    Vertex<T> *initSingleSource(int origin);
+
+    bool relax(Vertex<T> *v, Vertex<T> *w, double weight);
+
+    void compute(int origin);
+
+    Vertex<T> *findVertex(int in) const;
+
+    std::vector<T> getPath(int origin, int dest);
+    std::vector<Vertex<T> *> getVertexSet() const { return vertexSet; };
+};
+
+template <class T>
+Vertex<T> *Dijkstra<T>::initSingleSource(int origin) {
     for (auto v : vertexSet) {
         v->dist = INF;
         v->path = nullptr;
@@ -21,7 +45,8 @@ Vertex *Dijkstra::initSingleSource(int origin) {
     return s;
 }
 
-bool Dijkstra::relax(Vertex *v, Vertex *w, double weight) {
+template <class T>
+bool Dijkstra<T>::relax(Vertex<T> *v, Vertex<T> *w, double weight) {
     if (v->dist + weight < w->dist) {
         w->dist = v->dist + weight;
         w->path = v;
@@ -30,9 +55,10 @@ bool Dijkstra::relax(Vertex *v, Vertex *w, double weight) {
         return false;
 }
 
-void Dijkstra::compute(int origin) {
+template <class T>
+void Dijkstra<T>::compute(int origin) {
     auto s = initSingleSource(origin);
-    MutablePriorityQueue<Vertex> q{};
+    MutablePriorityQueue<Vertex<T>> q{};
     q.insert(s);
     while (!q.empty()) {
         auto v = q.extractMin();
@@ -48,20 +74,25 @@ void Dijkstra::compute(int origin) {
     }
 }
 
-Vertex *Dijkstra::findVertex(int in) const {
+template <class T>
+Vertex<T> *Dijkstra<T>::findVertex(int in) const {
     for (auto v : vertexSet)
         if (v->id == in)
             return v;
     return nullptr;
 }
 
-std::vector<Vertex *> Dijkstra::getPath(int origin, int dest) {
-    std::vector<Vertex *> res;
+template <class T>
+std::vector<T> Dijkstra<T>::getPath(int origin, int dest) {
+    std::vector<T> res;
     auto v = findVertex(dest);
     if (v == nullptr || v->dist == INF) // missing or disconnected
         return res;
     for (; v != nullptr; v = v->path)
-        res.push_back(findVertex(v->id));
+        res.push_back(v->info);
     std::reverse(res.begin(), res.end());
     return res;
 }
+
+
+#endif /* SRC_DIJKSTRA_H_ */
