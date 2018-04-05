@@ -6,83 +6,103 @@
 #include <iostream>
 #include <utils/StringSplitter.h>
 #include <vector>
+#include <model/Node.h>
+#include <model/Road.h>
+#include <model/Link.h>
 #include "ApiReader.h"
 
 using namespace std;
 
-void ApiReader::readNodes(string nodeFilePath) {
+vector<Node> ApiReader::readNodes(string nodeFilePath) {
+    vector<Node> nodes;
+
     ifstream nodeFile(nodeFilePath);
 
     if (nodeFile.is_open()) {
         string line;
 
         while (getline(nodeFile, line)) {
-            string id, latitude_in_degrees, longitude_in_degrees, longitude_in_radians, latitude_in_radians;
+            int id, latitude_in_degrees, longitude_in_degrees, longitude_in_radians, latitude_in_radians;
 
             vector<string> split = StringSplitter::split(line, ';');
 
             // check line attributes
             if (split.size() != 5) {
                 cout << "Nodes reading parse error: invalid line: \n\t" << line << endl;
-                return;
+                nodeFile.close();
+                return nodes;
             }
 
-            id = split[0];
-            latitude_in_degrees = split[1];
-            longitude_in_degrees = split[2];
-            longitude_in_radians = split[3];
-            latitude_in_radians = split[4];
+            id = (int) split[0];
+            latitude_in_degrees = (int) split[1];
+            longitude_in_degrees = (int) split[2];
+            longitude_in_radians = (int) split[3];
+            latitude_in_radians = (int) split[4];
 
-            // TODO: return the vector<nodes> with the parsed attributes
+            //  return the vector<nodes> with the parsed attributes
+            Node node = Node(id, latitude_in_degrees, longitude_in_degrees, latitude_in_radians, longitude_in_radians);
+            nodes.push_back(node);
         }
 
         nodeFile.close();
+        return nodes;
 
     } else {
         cout << "Unable to load nodes file " << nodeFilePath << endl;
     }
 }
 
-void ApiReader::readRoads(const string roadsFilePath) {
+vector<Road> ApiReader::readRoads(const string roadsFilePath) {
 
     ifstream nodeFile(roadsFilePath);
+
+    vector<Road> roads;
 
     if (nodeFile.is_open()) {
         string line;
 
         while (getline(nodeFile, line)) {
-            string road_id, road_name, is_two_way;
+            string road_name;
+            int road_id;
+            bool is_two_way;
 
             vector<string> split = StringSplitter::split(line, ';');
 
             // check line attributes
             if (split.size() != 3) {
                 cout << "Roads file parsing error: invalid line: \n\t" << line << endl;
-                return;
+                nodeFile.close();
+                return roads;
             }
 
             road_id = split[0];
             road_name = split[1];
             is_two_way = split[2];
 
-            // TODO: return the vector<edges> with the parsed attributes
+            // return the vector<edges> with the parsed attributes
+            Road road = Road(road_id, road_name, is_two_way);
+            roads.push_back(road);
         }
 
         nodeFile.close();
+
+        return roads;
 
     } else {
         cout << "Unable to load roads file " << roadsFilePath << endl;
     }
 }
 
-void ApiReader::readNodeLinks(const string nodesLinksPath) {
+vector<Link> ApiReader::readNodeLinks(const string nodesLinksPath) {
 
     ifstream nodeFile(nodesLinksPath);
+
+    vector<Link> links;
 
     if (nodeFile.is_open()) {
         string line;
 
-        string road_id, node1_id, node2_id;
+        int road_id, node1_id, node2_id;
 
         vector<string> split = StringSplitter::split(line, ';');
 
@@ -90,17 +110,22 @@ void ApiReader::readNodeLinks(const string nodesLinksPath) {
         while (getline(nodeFile, line)) {
             if (split.size() != 3) {
                 cout << "Node links file parsing error: invalid line: \n\t" << line << endl;
-                return;
+                nodeFile.close();
+                return links;
             }
 
-            road_id = split[0];
-            node1_id = split[1];
-            node2_id = split[2];
+            road_id = (int) split[0];
+            node1_id = (int) split[1];
+            node2_id = (int) split[2];
 
-            // TODO: return the vector<links> with the parsed attributes
+            // return the vector<links> with the parsed attributes
+            Link link = Link(road_id, node1_id, node2_id);
+            links.push_back(link);
         }
 
         nodeFile.close();
+
+        return links;
 
     } else {
         cout << "Unable to load nodes links file " << nodesLinksPath << endl;

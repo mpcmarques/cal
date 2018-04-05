@@ -17,19 +17,19 @@ public:
      * Read nodes from a node file(A).
      * @param nodesFilePath File full path.
      */
-    static void readNodes(std::string nodesFilePath);
+    static std::vector<Node> readNodes(std::string nodesFilePath);
 
     /**
      * Read roads from a roads file (B).
      * @param roadsFilePath File full path.
      */
-    static void readRoads(std::string roadsFilePath);
+    static std::vector<Road> readRoads(std::string roadsFilePath);
 
     /**
      * Read the file with links between nodes (C):
      * @param nodesLinksPath File full path.
      */
-    static void readNodeLinks(std::string nodesLinksPath);
+    static std::vector<Link> readNodeLinks(std::string nodesLinksPath);
 };
 
 

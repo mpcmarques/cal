@@ -5,6 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(cute)
 include_directories(src)
+include_directories(src/api-reader)
+include_directories(src/graph-viewer)
+include_directories(src/utils)
 
 add_executable(ParkingSpotsSearcher
         cute/cute.h
@@ -36,24 +39,26 @@ add_executable(ParkingSpotsSearcher
         cute/ide_listener.h
         cute/ostream_listener.h
         cute/xml_listener.h
+        src/api-reader/ApiReader.cpp
+        src/api-reader/ApiReader.h
         src/graph-viewer/connection.cpp
         src/graph-viewer/connection.h
+        src/graph-viewer/edgetype.h
+        src/graph-viewer/graphviewer.cpp
+        src/graph-viewer/graphviewer.h
+        src/tests/Test.cpp
+        src/utils/MutablePriorityQueue.h
+        src/utils/StringSplitter.cpp
+        src/utils/StringSplitter.h
         src/Dijkstra.cpp
         src/Dijkstra.h
         src/Edge.cpp
         src/Edge.h
-        src/edgetype.h
         src/Graph.cpp
         src/Graph.h
-        src/graph-viewer/graphviewer.cpp
-        src/graph-viewer/graphviewer.h
-        src/utils/MutablePriorityQueue.h
         src/ParkingSpotSearcher.cpp
         src/ParkingSpotSearcher.h
-        src/tests/Test.cpp
         src/Vertex.cpp
         src/Vertex.h
         GraphViewerController.jar
-        ParkingSpotsSearcher.exe.xml
-        src/api-reader/ApiReader.cpp src/api-reader/ApiReader.h src/utils/StringSplitter.cpp src/utils/StringSplitter.h)
-
+        ParkingSpotsSearcher.exe.xml src/model/Node.cpp src/model/Node.h src/model/Road.cpp src/model/Road.h src/model/Link.cpp src/model/Link.h)
