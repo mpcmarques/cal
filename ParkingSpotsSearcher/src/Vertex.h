@@ -10,55 +10,60 @@
 
 #include "Edge.h"
 #include <vector>
-#include "MutablePriorityQueue.h"
+#include "utils/MutablePriorityQueue.h"
 
 enum class VertexType {
-	NONE, PARKING_SPOT, GASS_STATION
+    NONE, PARKING_SPOT, GAS_STATION
 };
+
 class Vertex {
-	std::vector<Edge *> edges;
-	int id;
-	int info;
-	VertexType type;
-	int queueIndex = 0; 		// required by MutablePriorityQueue
-	double dist = 0;
-	Vertex *path = nullptr;
+    std::vector<Edge *> edges;
+    int id;
+    int info;
+    VertexType type;
+    int queueIndex = 0;        // required by MutablePriorityQueue
+    double dist = 0;
+    Vertex *path = nullptr;
 
 public:
-	Vertex(int id, VertexType type, int info ) :
-			id { id }, type { type }, info { info } {
-	}
-	Vertex(Vertex *vertex) :
-			id { vertex->id }, type { vertex->type }, info { vertex->info } {
-	}
+    Vertex(int id, VertexType type, int info) :
+            id{id}, type{type}, info{info} {
+    }
 
-	bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
+    Vertex(Vertex *vertex) :
+            id{vertex->id}, type{vertex->type}, info{vertex->info} {
+    }
 
-	void addEdge(Vertex *destination, double weight, double cost);
+    bool operator<(Vertex &vertex) const; // // required by MutablePriorityQueue
 
-	Vertex *getPath() const {
-		return path;
-	}
+    void addEdge(Vertex *destination, double weight, double cost);
 
-	int getId() const {
-		return id;
-	}
+    Vertex *getPath() const {
+        return path;
+    }
 
-	int getInfo() const {
-			return info;
-		}
+    int getId() const {
+        return id;
+    }
 
-	VertexType getType() const {
-		return type;
-	}
+    int getInfo() const {
+        return info;
+    }
 
-	std::vector<Edge *> getEdges() const {
-		return edges;
-	}
+    VertexType getType() const {
+        return type;
+    }
 
-	friend class Dijkstra;
-	friend class Graph;
-	friend class MutablePriorityQueue<Vertex> ;
+    std::vector<Edge *> getEdges() const {
+        return edges;
+    }
+
+    friend class Dijkstra;
+
+    friend class Graph;
+
+    friend class MutablePriorityQueue<Vertex>;
 
 };
+
 #endif /* SRC_VERTEX_H_ */

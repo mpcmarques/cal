@@ -36,8 +36,8 @@ add_executable(ParkingSpotsSearcher
         cute/ide_listener.h
         cute/ostream_listener.h
         cute/xml_listener.h
-        src/connection.cpp
-        src/connection.h
+        src/graph-viewer/connection.cpp
+        src/graph-viewer/connection.h
         src/Dijkstra.cpp
         src/Dijkstra.h
         src/Edge.cpp
@@ -45,12 +45,12 @@ add_executable(ParkingSpotsSearcher
         src/edgetype.h
         src/Graph.cpp
         src/Graph.h
-        src/graphviewer.cpp
-        src/graphviewer.h
-        src/MutablePriorityQueue.h
+        src/graph-viewer/graphviewer.cpp
+        src/graph-viewer/graphviewer.h
+        src/utils/MutablePriorityQueue.h
         src/ParkingSpotSearcher.cpp
         src/ParkingSpotSearcher.h
-        src/Test.cpp
+        src/tests/Test.cpp
         src/Vertex.cpp
         src/Vertex.h
         GraphViewerController.jar

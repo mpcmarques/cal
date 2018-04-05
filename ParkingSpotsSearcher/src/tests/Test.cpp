@@ -11,7 +11,7 @@
 
 #include "Graph.h"
 #include "Dijkstra.h"
-#include "graphviewer.h"
+#include "graph-viewer/graphviewer.h"
 
 
 #include <unordered_map>
