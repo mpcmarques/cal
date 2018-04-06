@@ -28,7 +28,8 @@ public:
 
     void compute(int origin);
 
-    Vertex<T> *findVertex(int in) const;
+    Vertex<T> *findVertex(int id) const;
+    Vertex<T> *findHighestVertex(int id) const;
 
     std::vector<T> getPath(int origin, int dest);
     std::vector<Vertex<T> *> getVertexSet() const { return vertexSet; };
@@ -74,10 +75,20 @@ void Dijkstra<T>::compute(int origin) {
     }
 }
 
+//possible improvement
 template <class T>
-Vertex<T> *Dijkstra<T>::findVertex(int in) const {
+Vertex<T> *Dijkstra<T>::findVertex(int id) const {
     for (auto v : vertexSet)
-        if (v->id == in)
+        if (v->id == id)
+            return v;
+    return nullptr;
+}
+
+//possible improvement
+template <class T>
+Vertex<T> *Dijkstra<T>::findHighestVertex(int id) const {
+    for (auto v : vertexSet)
+        if (v->id == id and v->highest == true)
             return v;
     return nullptr;
 }
@@ -85,7 +96,7 @@ Vertex<T> *Dijkstra<T>::findVertex(int in) const {
 template <class T>
 std::vector<T> Dijkstra<T>::getPath(int origin, int dest) {
     std::vector<T> res;
-    auto v = findVertex(dest);
+    auto v = findHighestVertex(dest);
     if (v == nullptr || v->dist == INF) // missing or disconnected
         return res;
     for (; v != nullptr; v = v->path)

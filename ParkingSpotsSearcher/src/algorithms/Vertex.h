@@ -20,6 +20,7 @@ template <class T> class Graph;
 template <class T> class Dijkstra;
 
 template<class T> class Vertex {
+	bool highest = false;
 	std::vector<Edge<T> *> edges;
 	int id;
 	T info;

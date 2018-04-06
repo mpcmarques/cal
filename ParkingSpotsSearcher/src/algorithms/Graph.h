@@ -9,122 +9,141 @@
 #define SRC_GRAPH_H_
 
 #include "Vertex.h"
-#include <unordered_map>
+#include <map>
 #include <vector>
+#include <stdlib.h>
+#include <iostream>
 
-template <class T> class Vertex;
-template <class T> class Dijkstra;
+template<class T> class Vertex;
+template<class T> class Dijkstra;
 
-
-template <class T> class Graph {
-    std::unordered_map<int, Vertex<T> *> vertices;
-
+template<class T> class Graph {
+	std::map<int, Vertex<T> *> vertices; //do not change to unordered_map
 public:
-    Vertex<T> *getVertex(int id);
+	Vertex<T> *getVertex(int id);
 
-    bool addVertex(int id, VertexType type, int info = 0);
+	bool addVertex(int id, VertexType type, int info = 0);
 
-    bool addEdge(int sourceId, int destId, double weight, double cost = 0);
+	bool addEdge(int sourceId, int destId, double weight, double cost = 0);
 
-    bool vertexExists(int id);
+	bool vertexExists(int id);
 
-    std::vector<Vertex<T> *> getVertexSet() const;
+	std::vector<Vertex<T> *> getVertexSet() const;
 
-    std::vector<Vertex<T> *> getTwoLayeredVertexSet() const;
+	Graph<T> copyGraphWithOffset(int offset) const;
+	std::vector<Vertex<T> *> copyVertexSet() const;
 
-    int calculateSecondLayerId(int id);
+	std::vector<Vertex<T> *> getTwoLayeredVertexSet() const;
 
-    int calculateFirstLayerId(int id);
 
-    std::vector<Vertex<T> *> getThreeLayeredVertexSet() const;
+	std::vector<Vertex<T> *> getThreeLayeredVertexSet() const;
 };
 
-template <class T>
+template<class T>
 Vertex<T> *Graph<T>::getVertex(int id) {
-    if (!vertexExists(id))
-        return nullptr;
-    return vertices[id];
+	if (!vertexExists(id))
+		return nullptr;
+	return vertices[id];
 }
 
-template <class T>
+template<class T>
 bool Graph<T>::addVertex(int id, VertexType type, int info) {
-    if (vertexExists(id))
-        return false;
+	if (vertexExists(id))
+		return false;
 
-    if (info == 0)
-        info = id;
-    vertices[id] = new Vertex<T>{id, type, info};
-    return true;
+	if (info == 0)
+		info = id;
+	vertices[id] = new Vertex<T> { id, type, info };
+	return true;
 }
 
-template <class T>
+template<class T>
 bool Graph<T>::addEdge(int sourceId, int destId, double weight, double cost) {
-    if (!vertexExists(sourceId) || !vertexExists(destId))
-        return false;
-    vertices[sourceId]->addEdge(vertices[destId], weight, cost);
-    return true;
+	if (!vertexExists(sourceId) || !vertexExists(destId))
+		return false;
+	vertices[sourceId]->addEdge(vertices[destId], weight, cost);
+	return true;
 }
 
-template <class T>
+template<class T>
 bool Graph<T>::vertexExists(int id) {
-    return vertices.find(id) != vertices.end();
+	return vertices.find(id) != vertices.end();
 }
 
-template <class T>
+template<class T>
 std::vector<Vertex<T> *> Graph<T>::getVertexSet() const {
-    std::vector<Vertex<T> *> vertexSet;
-    for (auto it = vertices.begin(); it != vertices.end(); ++it) {
-        vertexSet.push_back(it->second);
-    }
+	std::vector<Vertex<T> *> vertexSet;
+	for (auto it = vertices.begin(); it != vertices.end(); ++it) {
+		vertexSet.push_back(it->second);
+	}
 
-    return vertexSet;
+	return vertexSet;
 }
 
-template <class T>
+template<class T>
 std::vector<Vertex<T> *> Graph<T>::getTwoLayeredVertexSet() const {
-    Graph newGraph{};
+	int size = vertices.size();
 
-    int vertexNum = vertices.size();
+		std::vector<Vertex<T> *> setA = getVertexSet();
+		std::vector<Vertex<T> *> setB = copyVertexSet();
 
-    for (auto it = vertices.begin(); it != vertices.end(); ++it) {
-        int newId{it->second->getId() + vertexNum};
-        VertexType type = it->second->getType();
-        newGraph.addVertex(newId, type, it->second->info);
-    }
-    for (auto it = vertices.begin(); it != vertices.end(); ++it) {
-        VertexType type = it->second->getType();
-        int newId{it->second->getId() + vertexNum};
-        if (type == VertexType::PARKING_SPOT) {
-            it->second->addEdge(newGraph.getVertex(newId), 0, 0);
-        }
+		std::vector<Vertex<T> *> setC;
 
-        for (auto edge : it->second->edges) {
-            int newDestId{edge->dest->id + vertexNum};
-            newGraph.addEdge(newId, newDestId, edge->weight, edge->cost);
-        }
-    }
-    std::vector<Vertex<T> *> vertexSet = newGraph.getVertexSet();
-    for (auto it = vertices.begin(); it != vertices.end(); ++it) {
-        vertexSet.push_back(it->second);
-    }
-    return vertexSet;
+		for(int i = 0; i < size; ++i ){
+			setB[i]->highest = true;
+			if(setB[i]->type == VertexType::PARKING_SPOT)
+				setA[i]->addEdge(setB[i], 0, 0);
+			setC.push_back(setA[i]);
+			setC.push_back(setB[i]);
+		}
+
+		return setC;
 }
 
-template <class T>
-int Graph<T>::calculateSecondLayerId(int id) {
-    return id + vertices.size();
+
+
+template<class T>
+std::vector<Vertex<T> *> Graph<T>::copyVertexSet() const {
+	Graph newGraph { };
+	for (auto it = vertices.begin(); it != vertices.end(); ++it)
+		newGraph.addVertex(it->second->getId(), it->second->getType(),
+				it->second->info);
+
+	for (auto it = vertices.begin(); it != vertices.end(); ++it) {
+		int newId { it->second->getId() };
+		for (auto edge : it->second->edges)
+			newGraph.addEdge(newId, edge->dest->id, edge->weight,
+					edge->cost);
+	}
+	return newGraph.getVertexSet();
 }
 
-template <class T>
-int Graph<T>::calculateFirstLayerId(int id) {
-    return id % vertices.size();
+
+
+template<class T>
+std::vector<Vertex<T> *> Graph<T>::getThreeLayeredVertexSet() const {
+	int size = vertices.size();
+
+	std::vector<Vertex<T> *> setA = getVertexSet();
+	std::vector<Vertex<T> *> setB = copyVertexSet();
+	std::vector<Vertex<T> *> setC = copyVertexSet();
+
+	std::vector<Vertex<T> *> setD;
+
+	for(int i = 0; i < size; ++i ){
+		setC[i]->highest = true;
+		if(setB[i]->type == VertexType::GAS_STATION)
+			setA[i]->addEdge(setB[i], 0, 0);
+		if(setA[i]->type == VertexType::PARKING_SPOT)
+			setB[i]->addEdge(setC[i], 0, 0);
+
+		setD.push_back(setA[i]);
+		setD.push_back(setB[i]);
+		setD.push_back(setC[i]);
+	}
+
+	return setD;
 }
-
-//template <class T>
-//std::vector<Vertex<int> *> Graph<T>::getThreeLayeredVertexSet() const {
-
-//}
 
 #endif /* SRC_GRAPH_H_ */
-
 

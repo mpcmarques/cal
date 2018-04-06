@@ -65,10 +65,17 @@ void checkSinglePath(Dijkstra<T> &g, std::vector<Vertex<T> *> path, std::string 
 ParkingSpotSearcher createTestSearcher() {
 	ParkingSpotSearcher searcher{};
 
-    for (int i = 1; i <= 6; i++)
-    	searcher.addVertex(i, VertexType::NONE);
+	searcher.addVertex(0, VertexType::GAS_STATION);
+	searcher.addVertex(1, VertexType::NONE);
+	searcher.addVertex(2, VertexType::NONE);
+	searcher.addVertex(3, VertexType::NONE);
+	searcher.addVertex(4, VertexType::NONE);
+	searcher.addVertex(5, VertexType::NONE);
+	searcher.addVertex(6, VertexType::NONE);
     searcher.addVertex(7, VertexType::PARKING_SPOT);
 
+    searcher.addEdge(1, 0, 10);
+    searcher.addEdge(0, 1, 10);
     searcher.addEdge(1, 2, 2);
     searcher.addEdge(1, 4, 7);
     searcher.addEdge(2, 4, 3);
@@ -89,6 +96,7 @@ ParkingSpotSearcher createTestSearcher() {
 void test_algorithms(){
 	ParkingSpotSearcher searcher = createTestSearcher();
 	ASSERT_EQUAL("1 2 4 5 7 7 6 4 3 1 ", searcher.printShortestPath(1,1));
+	ASSERT_EQUAL("1 0 0 1 2 4 5 7 7 6 4 3 1 ", searcher.printShortestPathWithGasStation(1,1));
 }
 
 
