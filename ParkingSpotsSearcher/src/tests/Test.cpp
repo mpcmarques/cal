@@ -9,10 +9,10 @@
 #include <chrono>
 #include <stdlib.h>
 
-#include "algorithms/Graph.h"
-#include "algorithms/Dijkstra.h"
-#include "graph-viewer/graphviewer.h"
-#include "algorithms/ParkingSpotSearcher.h"
+#include <Graph.h>
+#include <Dijkstra.h>
+#include <graphviewer.h>
+#include <ParkingSpotSearcher.h>
 
 #include <unordered_map>
 

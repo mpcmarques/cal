@@ -4,11 +4,11 @@
 
 #include <fstream>
 #include <iostream>
-#include <utils/StringSplitter.h>
+#include <StringSplitter.h>
 #include <vector>
-#include <model/Node.h>
-#include <model/Road.h>
-#include <model/Link.h>
+#include <Road.h>
+#include <Link.h>
+#include <Node.h>
 #include "ApiParser.h"
 
 using namespace std;

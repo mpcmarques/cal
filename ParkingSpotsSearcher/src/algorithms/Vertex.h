@@ -10,7 +10,7 @@
 
 #include "Edge.h"
 #include <vector>
-#include "utils/MutablePriorityQueue.h"
+#include "../utils/MutablePriorityQueue.h"
 
 enum class VertexType {
 	NONE, PARKING_SPOT, GAS_STATION
