@@ -5,9 +5,9 @@
 
 #include <sstream>
 #include <random>
-#include <time.h>
+#include <ctime>
 #include <chrono>
-#include <stdlib.h>
+#include <iostream>
 
 #include <Graph.h>
 #include <Dijkstra.h>
@@ -15,6 +15,8 @@
 #include <ParkingSpotSearcher.h>
 
 #include <unordered_map>
+#include <ApiParser.h>
+#include "../model/Node.h"
 
 
 Graph<int> CreateTestGraph() {
@@ -41,7 +43,7 @@ Graph<int> CreateTestGraph() {
     return myGraph;
 }
 
-template <class T>
+template<class T>
 void checkSinglePath(Dijkstra<T> &g, std::vector<Vertex<T> *> path, std::string expected) {
     std::stringstream ss;
     for (unsigned int i = 0; i < path.size(); i++)
@@ -63,15 +65,15 @@ void checkSinglePath(Dijkstra<T> &g, std::vector<Vertex<T> *> path, std::string 
 //}
 
 ParkingSpotSearcher createTestSearcher() {
-	ParkingSpotSearcher searcher{};
+    ParkingSpotSearcher searcher{};
 
-	searcher.addVertex(0, VertexType::GAS_STATION);
-	searcher.addVertex(1, VertexType::NONE);
-	searcher.addVertex(2, VertexType::NONE);
-	searcher.addVertex(3, VertexType::NONE);
-	searcher.addVertex(4, VertexType::NONE);
-	searcher.addVertex(5, VertexType::NONE);
-	searcher.addVertex(6, VertexType::NONE);
+    searcher.addVertex(0, VertexType::GAS_STATION);
+    searcher.addVertex(1, VertexType::NONE);
+    searcher.addVertex(2, VertexType::NONE);
+    searcher.addVertex(3, VertexType::NONE);
+    searcher.addVertex(4, VertexType::NONE);
+    searcher.addVertex(5, VertexType::NONE);
+    searcher.addVertex(6, VertexType::NONE);
     searcher.addVertex(7, VertexType::PARKING_SPOT);
 
     searcher.addEdge(1, 0, 10);
@@ -93,12 +95,31 @@ ParkingSpotSearcher createTestSearcher() {
     return searcher;
 }
 
-void test_algorithms(){
-	ParkingSpotSearcher searcher = createTestSearcher();
-	ASSERT_EQUAL("1 2 4 5 7 7 6 4 3 1 ", searcher.printShortestPath(1,1));
-	ASSERT_EQUAL("1 0 0 1 2 4 5 7 7 6 4 3 1 ", searcher.printShortestPathWithGasStation(1,1));
+void test_algorithms() {
+    ParkingSpotSearcher searcher = createTestSearcher();
+    ASSERT_EQUAL("1 2 4 5 7 7 6 4 3 1 ", searcher.printShortestPath(1, 1));
+    ASSERT_EQUAL("1 0 0 1 2 4 5 7 7 6 4 3 1 ", searcher.printShortestPathWithGasStation(1, 1));
 }
 
+
+void test_node_parser() {
+
+    // test node parser
+    vector<Node> nodes = ApiParser::readNodes("../maps/A.txt");
+    ASSERT(nodes.size() > 0);
+
+
+}
+
+void test_roads_parser() {
+    vector<Road> roads = ApiParser::readRoads("../maps/B.txt");
+    ASSERT(roads.size() > 0);
+}
+
+void test_links_parser() {
+    vector<Link> links = ApiParser::readNodeLinks("../maps/C.txt");
+    ASSERT(links.size() > 0);
+}
 
 bool runAllTests(int argc, char const *argv[]) {
     cute::suite s{};
@@ -106,6 +127,13 @@ bool runAllTests(int argc, char const *argv[]) {
 
     //s.push_back(CUTE(test_graphTest));
     s.push_back(CUTE(test_algorithms));
+
+    /* parser tests */
+    s.push_back(CUTE(test_node_parser));
+    s.push_back(CUTE(test_roads_parser));
+    s.push_back(CUTE(test_links_parser));
+
+    /* init cute */
     cute::xml_file_opener xmlfile(argc, argv);
     cute::xml_listener<cute::ide_listener<>> lis(xmlfile.out);
     auto runner = cute::makeRunner(lis, argc, argv);

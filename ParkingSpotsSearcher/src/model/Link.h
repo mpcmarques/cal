@@ -7,11 +7,11 @@
 
 
 class Link {
-    int id;
-    int node1_id;
-    int node2_id;
+    long id;
+    long node1_id;
+    long node2_id;
 public:
-    Link(int id, int node1_id, int node2_id);
+    Link(long id, long node1_id, long node2_id);
 };
 
 

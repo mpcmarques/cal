@@ -6,6 +6,9 @@
 #define PARKINGSPOTSSEARCHER_APIREADER_H
 
 #include <string>
+#include "../model/Node.h"
+#include "../model/Road.h"
+#include "../model/Link.h"
 
 /**
  * Class is responsible for parsing api data.

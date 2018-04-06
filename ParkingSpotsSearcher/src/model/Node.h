@@ -7,15 +7,16 @@
 
 
 class Node {
-    int id;
-    int latitude_degrees;
-    int longitute_degrees;
-    int latitude_radians;
-    int longitude_radians;
+
+    long id;
+    float latitude_degrees;
+    float longitute_degrees;
+    float latitude_radians;
+    float longitude_radians;
 
 
 public:
-    Node(int id, int latitude_degrees, int longitude_degrees, int latitude_radians, int longitude_radians);
+    Node(long id, float latitude_degrees, float longitude_degrees, float latitude_radians, float longitude_radians);
 };
 
 

@@ -63,4 +63,4 @@ add_executable(ParkingSpotsSearcher
         src/utils/MutablePriorityQueue.h
         src/utils/StringSplitter.cpp
         src/utils/StringSplitter.h
-        GraphViewerController.jar)
+        GraphViewerController.jar src/cli/Application.cpp src/cli/Application.h)

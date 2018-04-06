@@ -4,7 +4,7 @@
 
 #include "Node.h"
 
-Node::Node(int id, int latitude_degrees, int longitude_degrees, int latitude_radians, int longitude_radians) {
+Node::Node(long id, float latitude_degrees, float longitude_degrees, float latitude_radians, float longitude_radians) {
     this->id = id;
     this->latitude_degrees = latitude_degrees;
     this->latitude_radians = latitude_radians;

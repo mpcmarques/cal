@@ -4,7 +4,7 @@
 
 #include "Link.h"
 
-Link::Link(int id, int node1_id, int node2_id) {
+Link::Link(long id, long node1_id, long node2_id) {
     this->id = id;
     this->node1_id = node1_id;
     this->node2_id = node2_id;

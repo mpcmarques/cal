@@ -1,0 +1,14 @@
+//
+// Created by mateus on 06/04/18.
+//
+
+#ifndef PARKINGSPOTSSEARCHER_APPLICATION_H
+#define PARKINGSPOTSSEARCHER_APPLICATION_H
+
+
+class Application {
+
+};
+
+
+#endif //PARKINGSPOTSSEARCHER_APPLICATION_H
