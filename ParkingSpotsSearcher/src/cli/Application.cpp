@@ -48,7 +48,7 @@ void showGraphViewer(int opt, int gas) {
 
     gv->defineEdgeColor("blue");
     gv->defineVertexColor("yellow");
-    gv->setBackground("images.jpeg");
+    gv->setBackground("../maps/map.png");
 
     /* load osm */
     vector<Node> nodes = ApiParser::readNodes("../maps/A.txt");
