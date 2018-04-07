@@ -40,27 +40,27 @@ int chooseNearestOrCheapest() {
 
 void showGraphViewer(int opt, int gas) {
     /* show graph */
-    auto *gv = new GraphViewer(1000, 1000, false);
+    auto *gv = new GraphViewer(1000, 1000, true);
     gv->createWindow(1000, 1000);
     gv->defineVertexColor("blue");
     gv->defineEdgeColor("black");
     gv->defineVertexSize(1);
-   // gv->setBackground("../maps/map.png");
+    gv->setBackground("maps/map.png");
 
     /* load osm */
     vector<Node> nodes = ApiParser::readNodes("../maps/A.txt");
     vector<Link> links = ApiParser::readNodeLinks("../maps/C.txt");
 
-    /* show nodes */
+    /* show nodes
     for (Node node: nodes) {
         gv->addNode((int) node.getId(), (int) node.getLatitude_degrees() * 1000000000,
                     (int) node.getLongitute_degrees() * 1000000000);
-    }
+    }*/
 
-    /* show roads */
+    /* show roads
     for(Link link: links){
         gv->addEdge((int)link.getId(), (int)link.getNode1_id(), (int)link.getNode2_id(), EdgeType::DIRECTED);
-    }
+    }*/
 
     gv->rearrange();
 

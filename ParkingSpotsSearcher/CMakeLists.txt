@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 include_directories(cute)
 include_directories(src/algorithms)
 include_directories(src/api-parser)
-include_directories(src/graph-viewer)
+include_directories(graph-viewer)
 include_directories(src/model)
 include_directories(src/utils)
 
@@ -48,11 +48,11 @@ add_executable(ParkingSpotsSearcher
         src/algorithms/Vertex.h
         src/api-parser/ApiParser.cpp
         src/api-parser/ApiParser.h
-        src/graph-viewer/connection.cpp
-        src/graph-viewer/connection.h
-        src/graph-viewer/edgetype.h
-        src/graph-viewer/graphviewer.cpp
-        src/graph-viewer/graphviewer.h
+        graph-viewer/connection.cpp
+        graph-viewer/connection.h
+        graph-viewer/edgetype.h
+        graph-viewer/graphviewer.cpp
+        graph-viewer/graphviewer.h
         src/model/Link.cpp
         src/model/Link.h
         src/model/Node.cpp
