@@ -8,7 +8,7 @@
 
 class LatLongConverter {
 public:
-    static double convert(double coord, double maxCoord, int mapSize);
+    static double convert(double coord, double minCoord, double maxCoord, int mapSize);
 };
 
 

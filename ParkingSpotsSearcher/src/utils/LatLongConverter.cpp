@@ -5,6 +5,6 @@
 #include <cstdlib>
 #include "LatLongConverter.h"
 
-double LatLongConverter::convert(double coord, double maxCoord, int mapSize){
-    return (mapSize * coord) / maxCoord;
+double LatLongConverter::convert(double coord, double minCoord, double maxCoord, int mapSize) {
+    return (mapSize * (coord - minCoord)) / (maxCoord - minCoord);
 }

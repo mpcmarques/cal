@@ -48,21 +48,22 @@ void showGraphViewer(int opt, int gas) {
 
     gv->defineEdgeColor("blue");
     gv->defineVertexColor("yellow");
-    gv->setBackground("../maps/images.jpeg");
+    gv->setBackground("images.jpeg");
 
     /* load osm */
     vector<Node> nodes = ApiParser::readNodes("../maps/A.txt");
     vector<Link> links = ApiParser::readNodeLinks("../maps/C.txt");
 
     /* show nodes */
-
+    double MIN_LATITUDE = 41.1715;
     double MAX_LATITUDE = 41.1801;
     double MAX_LONGITUDE = -8.6030;
+    double MIN_LONGITUDE = -8.5830;
 
     // TODO: You have to see how much the map changes in latitude and longitude and make a simple rule of three (regra de tres)
     for (auto node : nodes) {
-        double x = LatLongConverter::convert(node.getLongitute_degrees(), MAX_LONGITUDE, 800);
-        double y = LatLongConverter::convert(node.getLatitude_degrees(), MAX_LATITUDE, 800);
+        double x = LatLongConverter::convert(node.getLongitute_degrees(), MIN_LONGITUDE, MAX_LONGITUDE, 800);
+        double y = LatLongConverter::convert(node.getLatitude_degrees(),MIN_LATITUDE, MAX_LATITUDE, 800);
         cout << x << " " << y << endl;
         gv->addNode((int) node.getId(), (int) x, (int) y);
     }
