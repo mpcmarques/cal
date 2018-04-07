@@ -8,6 +8,7 @@
 #include <ApiParser.h>
 #include <vector>
 #include <Edge.h>
+#include <LatLongConverter.h>
 
 using namespace std;
 
@@ -80,15 +81,21 @@ void showGraphViewer(int opt, int gas) {
 
     /* show nodes */
 
+    double MAX_LATITUDE = 41.1801;
+    double MAX_LONGITUDE = -8.6030;
+
     // TODO: You have to see how much the map changes in latitude and longitude and make a simple rule of three (regra de tres)
     for (auto node : nodes) {
-        gv->addNode((int)node.getId(), abs((int) node.getLongitute_degrees()) * 100, abs((int) node.getLatitude_degrees())* 100);
+        double x = LatLongConverter::convert(node.getLongitute_degrees(), MAX_LONGITUDE, 800);
+        double y = LatLongConverter::convert(node.getLatitude_degrees(), MAX_LATITUDE, 800);
+        cout << x << " " << y << endl;
+        gv->addNode((int) node.getId(), (int) x, (int) y);
     }
 
-    /* show edges */
+    /* show edges
     for (auto link: links){
         gv->addEdge((int) link.getId(), (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::UNDIRECTED);
-    }
+    }*/
 
     gv->rearrange();
 }
