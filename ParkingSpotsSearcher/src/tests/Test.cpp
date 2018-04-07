@@ -141,7 +141,8 @@ bool runAllTests(int argc, char const *argv[]) {
     return success;
 }
 
+/*
 int main(int argc, char const *argv[]) {
     return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
-
+*/
