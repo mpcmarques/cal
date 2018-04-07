@@ -9,6 +9,7 @@
 #include "../model/Node.h"
 #include "../model/Road.h"
 #include "../model/Link.h"
+#include <vector>
 
 /**
  * Class is responsible for parsing api data.

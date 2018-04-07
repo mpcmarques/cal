@@ -5,6 +5,8 @@
 #include "Application.h"
 #include <iostream>
 #include <graphviewer.h>
+#include <ApiParser.h>
+#include <vector>
 
 using namespace std;
 
@@ -22,7 +24,7 @@ int chooseGasStation() {
     }
 }
 
-int chooseNearestOrCheapest(){
+int chooseNearestOrCheapest() {
     int opt;
     cout << "Do you want the nearest or the cheapest way?" << endl;
     cout << "1 -> Nearest." << endl;
@@ -35,8 +37,25 @@ int chooseNearestOrCheapest(){
     }
 }
 
-void showGraphViewer(int opt, int gas){
-    GraphViewer viewer = GraphViewer(800, 800, false);
+void showGraphViewer(int opt, int gas) {
+    /* show graph */
+    auto *gv = new GraphViewer(1000, 1000, true);
+    gv->createWindow(1000, 1000);
+    gv->defineVertexColor("black");
+    gv->defineEdgeColor("blue");
+
+
+    /* load nodes */
+    vector<Node> nodes = ApiParser::readNodes("../maps/A.txt");
+
+    /* show nodes */
+    for (Node node: nodes) {
+        gv->addNode((int) node.getId(), (int) node.getLatitude_degrees() * 100000,
+                    (int) node.getLongitute_degrees() * 100000);
+    }
+
+    /* link edges */
+
 
 }
 
