@@ -13,66 +13,65 @@
 #include <vector>
 #include <stdlib.h>
 #include <iostream>
+#include <algorithm>
 
-template<class T> class Vertex;
-template<class T> class Dijkstra;
+template<class V, class E> class Vertex;
+template<class V, class E> class Dijkstra;
 
-template<class T> class Graph {
-	std::map<int, Vertex<T> *> vertices; //do not change to unordered_map
+template<class V, class E> class Graph {
+	std::map<int, Vertex<V, E> *> vertices; //do not change to unordered_map
 public:
-	Vertex<T> *getVertex(int id);
+	Vertex<V, E> *getVertex(int id);
 
-	bool addVertex(int id, VertexType type, int info = 0);
+	bool addVertex(int id, VertexType type, V info);
 
-	bool addEdge(int sourceId, int destId, double weight, double cost = 0);
+	bool addEdge(int sourceId, int destId, double weight, E info, double cost = 0);
 
 	bool vertexExists(int id);
 
-	std::vector<Vertex<T> *> getVertexSet() const;
+	std::vector<Vertex<V, E> *> getVertexSet() const;
+	std::vector<Vertex<V, E> *> getAsUndirectedSet() const;
 
-	Graph<T> copyGraphWithOffset(int offset) const;
-	std::vector<Vertex<T> *> copyVertexSet() const;
+	Graph<V, E> copyGraphWithOffset(int offset) const;
+	std::vector<Vertex<V, E> *> copyVertexSet() const;
 
-	std::vector<Vertex<T> *> getTwoLayeredVertexSet() const;
+	std::vector<Vertex<V, E> *> getTwoLayeredVertexSet(int dist, int range) const;
 
-
-	std::vector<Vertex<T> *> getThreeLayeredVertexSet() const;
+	std::vector<Vertex<V, E> *> getThreeLayeredVertexSet(int dist, int range) const;
 };
 
-template<class T>
-Vertex<T> *Graph<T>::getVertex(int id) {
+template<class V, class E>
+Vertex<V,E> *Graph<V,E>::getVertex(int id) {
 	if (!vertexExists(id))
 		return nullptr;
 	return vertices[id];
 }
 
-template<class T>
-bool Graph<T>::addVertex(int id, VertexType type, int info) {
+template<class V, class E>
+bool Graph<V,E>::addVertex(int id, VertexType type, V info) {
 	if (vertexExists(id))
 		return false;
 
-	if (info == 0)
-		info = id;
-	vertices[id] = new Vertex<T> { id, type, info };
+	vertices[id] = new Vertex<V,E> { id, type, info };
 	return true;
 }
 
-template<class T>
-bool Graph<T>::addEdge(int sourceId, int destId, double weight, double cost) {
+template<class V, class E>
+bool Graph<V,E>::addEdge(int sourceId, int destId, double weight, E info, double cost) {
 	if (!vertexExists(sourceId) || !vertexExists(destId))
 		return false;
-	vertices[sourceId]->addEdge(vertices[destId], weight, cost);
+	vertices[sourceId]->addEdge(vertices[destId], weight, info, cost);
 	return true;
 }
 
-template<class T>
-bool Graph<T>::vertexExists(int id) {
+template<class V, class E>
+bool Graph<V,E>::vertexExists(int id) {
 	return vertices.find(id) != vertices.end();
 }
 
-template<class T>
-std::vector<Vertex<T> *> Graph<T>::getVertexSet() const {
-	std::vector<Vertex<T> *> vertexSet;
+template<class V, class E>
+std::vector<Vertex<V,E> *> Graph<V,E>::getVertexSet() const {
+	std::vector<Vertex<V,E> *> vertexSet;
 	for (auto it = vertices.begin(); it != vertices.end(); ++it) {
 		vertexSet.push_back(it->second);
 	}
@@ -80,62 +79,57 @@ std::vector<Vertex<T> *> Graph<T>::getVertexSet() const {
 	return vertexSet;
 }
 
-template<class T>
-std::vector<Vertex<T> *> Graph<T>::getTwoLayeredVertexSet() const {
+template<class V, class E>
+std::vector<Vertex<V, E> *> Graph<V, E>::getTwoLayeredVertexSet(int dist,
+		int range) const {
 	int size = vertices.size();
 
-		std::vector<Vertex<T> *> setA = getVertexSet();
-		std::vector<Vertex<T> *> setB = copyVertexSet();
-
-		std::vector<Vertex<T> *> setC;
-
-		for(int i = 0; i < size; ++i ){
-			setB[i]->highest = true;
-			if(setB[i]->type == VertexType::PARKING_SPOT)
-				setA[i]->addEdge(setB[i], 0, 0);
-			setC.push_back(setA[i]);
-			setC.push_back(setB[i]);
-		}
-
-		return setC;
-}
+	std::vector<Vertex<V, E> *> setA = copyVertexSet();
+	std::vector<Vertex<V, E> *> setB = getAsUndirectedSet();
 
 
+	Dijkstra<V, E> d { getAsUndirectedSet() };
+	std::vector<int> parkingSpotsInRange = d.findInRageWithType(dist, range, VertexType::PARKING_SPOT);
 
-template<class T>
-std::vector<Vertex<T> *> Graph<T>::copyVertexSet() const {
-	Graph newGraph { };
-	for (auto it = vertices.begin(); it != vertices.end(); ++it)
-		newGraph.addVertex(it->second->getId(), it->second->getType(),
-				it->second->info);
 
-	for (auto it = vertices.begin(); it != vertices.end(); ++it) {
-		int newId { it->second->getId() };
-		for (auto edge : it->second->edges)
-			newGraph.addEdge(newId, edge->dest->id, edge->weight,
-					edge->cost);
+	std::vector<Vertex<V, E> *> setC;
+
+	for (int i = 0; i < size; ++i) {
+		setB[i]->highest = true;
+		bool is_in = std::find(parkingSpotsInRange.begin(), parkingSpotsInRange.end(), setB[i]->id) != parkingSpotsInRange.end();
+		if (is_in)
+			setA[i]->addEdge(setB[i], 0, NULL, 0);
+		setC.push_back(setA[i]);
+		setC.push_back(setB[i]);
 	}
-	return newGraph.getVertexSet();
+
+	return setC;
 }
 
 
-
-template<class T>
-std::vector<Vertex<T> *> Graph<T>::getThreeLayeredVertexSet() const {
+template<class V, class E>
+std::vector<Vertex<V, E> *> Graph<V, E>::getThreeLayeredVertexSet(int dist,
+		int range) const {
 	int size = vertices.size();
 
-	std::vector<Vertex<T> *> setA = getVertexSet();
-	std::vector<Vertex<T> *> setB = copyVertexSet();
-	std::vector<Vertex<T> *> setC = copyVertexSet();
+	std::vector<Vertex<V,E> *> setA = getVertexSet();
+	std::vector<Vertex<V,E> *> setB = copyVertexSet();
+	std::vector<Vertex<V,E> *> setC = getAsUndirectedSet();
 
-	std::vector<Vertex<T> *> setD;
 
-	for(int i = 0; i < size; ++i ){
+	Dijkstra<V,E> d { getAsUndirectedSet() };
+	std::vector<int> parkingSpotsInRange = d.findInRageWithType(dist, range, VertexType::PARKING_SPOT);
+
+	std::vector<Vertex<V, E> *> setD;
+
+	for (int i = 0; i < size; ++i) {
 		setC[i]->highest = true;
-		if(setB[i]->type == VertexType::GAS_STATION)
-			setA[i]->addEdge(setB[i], 0, 0);
-		if(setA[i]->type == VertexType::PARKING_SPOT)
-			setB[i]->addEdge(setC[i], 0, 0);
+		if (setB[i]->type == VertexType::GAS_STATION)
+			setA[i]->addEdge(setB[i], 0, NULL, 0);
+
+		bool is_in = std::find(parkingSpotsInRange.begin(), parkingSpotsInRange.end(), setA[i]->id) != parkingSpotsInRange.end();
+		if (is_in)
+			setB[i]->addEdge(setC[i], 0,NULL, 0);
 
 		setD.push_back(setA[i]);
 		setD.push_back(setB[i]);
@@ -143,6 +137,39 @@ std::vector<Vertex<T> *> Graph<T>::getThreeLayeredVertexSet() const {
 	}
 
 	return setD;
+}
+
+
+template<class V, class E>
+std::vector<Vertex<V, E> *> Graph<V, E>::copyVertexSet() const {
+	Graph<V,E> newGraph { };
+	for (auto it = vertices.begin(); it != vertices.end(); ++it)
+		newGraph.addVertex(it->second->getId(), it->second->getType(),
+				it->second->info);
+
+	for (auto it = vertices.begin(); it != vertices.end(); ++it) {
+		int newId { it->second->getId() };
+		for (auto edge : it->second->edges)
+			newGraph.addEdge(newId, edge->dest->id, edge->weight, edge->info, edge->cost);
+	}
+	return newGraph.getVertexSet();
+}
+
+template<class V, class E>
+std::vector<Vertex<V, E> *> Graph<V, E>::getAsUndirectedSet() const {
+	Graph<V,E> newGraph { };
+	for (auto it = vertices.begin(); it != vertices.end(); ++it)
+		newGraph.addVertex(it->second->getId(), it->second->getType(),
+				it->second->info);
+
+	for (auto it = vertices.begin(); it != vertices.end(); ++it) {
+		int newId { it->second->getId() };
+		for (auto edge : it->second->edges) {
+			newGraph.addEdge(newId, edge->dest->id, edge->weight,edge->info, edge->cost);
+			newGraph.addEdge(edge->dest->id, newId, edge->weight,edge->info, edge->cost); //opposite direction
+		}
+	}
+	return newGraph.getVertexSet();
 }
 
 #endif /* SRC_GRAPH_H_ */

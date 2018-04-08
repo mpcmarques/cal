@@ -8,23 +8,24 @@
 #ifndef SRC_EDGE_H_
 #define SRC_EDGE_H_
 
-template <class T> class Vertex;
-template <class T> class Graph;
-template <class T> class Dijkstra;
+template <class V, class E> class Vertex;
+template <class V, class E> class Graph;
+template <class V, class E> class Dijkstra;
 
-template <class T> class Edge {
+template <class V, class E> class Edge {
     double weight;
     double cost;
-    Vertex<T> *dest;
+    E info;
+    Vertex<V, E> *dest;
 public:
-    Edge(Vertex<T> *dest, double weight, double cost) : dest{dest}, weight{weight}, cost{cost} {}
+    Edge(Vertex<V, E> *dest, double weight, E info, double cost) : dest{dest}, weight{weight}, info{info}, cost{cost} {}
 
-    Vertex<T> *getDest() const { return dest; }
+    Vertex<V, E> *getDest() const { return dest; }
 
     //friend class Vertex;
 
-    friend class Graph<T>;
-    friend class Dijkstra<T>;
+    friend class Graph<V, E>;
+    friend class Dijkstra<V, E>;
 };
 
 #endif /* SRC_EDGE_H_ */

@@ -4,11 +4,11 @@
 
 #include <fstream>
 #include <iostream>
-#include <StringSplitter.h>
+#include <utils/StringSplitter.h>
 #include <vector>
-#include <Road.h>
-#include <Link.h>
-#include <Node.h>
+#include <model/Node.h>
+#include <model/Road.h>
+#include <model/Link.h>
 #include "ApiParser.h"
 
 using namespace std;
@@ -19,12 +19,10 @@ vector<Node> ApiParser::readNodes(string nodeFilePath) {
     ifstream nodeFile(nodeFilePath);
 
     if (nodeFile.is_open()) {
-
         string line;
 
         while (getline(nodeFile, line)) {
-            long id;
-            float latitude_in_degrees, longitude_in_degrees, longitude_in_radians, latitude_in_radians;
+            int id, latitude_in_degrees, longitude_in_degrees, longitude_in_radians, latitude_in_radians;
 
             vector<string> split = StringSplitter::split(line, ';');
 
@@ -35,12 +33,11 @@ vector<Node> ApiParser::readNodes(string nodeFilePath) {
                 return nodes;
             }
 
-
-            id = stol(split[0]);
-            latitude_in_degrees = stof(split[1]);
-            longitude_in_degrees = stof(split[2]);
-            longitude_in_radians = stof(split[3]);
-            latitude_in_radians = stof(split[4]);
+            id = stoi(split[0]);
+            latitude_in_degrees = stoi(split[1]);
+            longitude_in_degrees = stoi(split[2]);
+            longitude_in_radians = stoi(split[3]);
+            latitude_in_radians = stoi(split[4]);
 
             //  return the vector<nodes> with the parsed attributes
             Node node = Node(id, latitude_in_degrees, longitude_in_degrees, latitude_in_radians, longitude_in_radians);
@@ -80,13 +77,10 @@ vector<Road> ApiParser::readRoads(const string roadsFilePath) {
 
             road_id = stoi(split[0]);
             road_name = split[1];
-
-            if (split[2] == "true") {
+            if (split[2] == "true")
                 is_two_way = true;
-            }
-            else {
+            else if (split[2] == "false")
                 is_two_way = false;
-            }
 
             // return the vector<edges> with the parsed attributes
             Road road = Road(road_id, road_name, is_two_way);
@@ -111,22 +105,21 @@ vector<Link> ApiParser::readNodeLinks(const string nodesLinksPath) {
     if (nodeFile.is_open()) {
         string line;
 
+        int road_id, node1_id, node2_id;
+
+        vector<string> split = StringSplitter::split(line, ';');
+
         // check line attributes
         while (getline(nodeFile, line)) {
-
-            long road_id, node1_id, node2_id;
-
-            vector<string> split = StringSplitter::split(line, ';');
-
             if (split.size() != 3) {
-                cout << "Node links file parsing error invalid line: \n" << line << endl;
+                cout << "Node links file parsing error: invalid line: \n\t" << line << endl;
                 nodeFile.close();
                 return links;
             }
 
-            road_id = stol(split[0]);
-            node1_id = stol(split[1]);
-            node2_id = stol(split[2]);
+            road_id = stoi(split[0]);
+            node1_id = stoi(split[1]);
+            node2_id = stoi(split[2]);
 
             // return the vector<links> with the parsed attributes
             Link link = Link(road_id, node1_id, node2_id);

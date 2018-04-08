@@ -16,38 +16,38 @@ enum class VertexType {
 	NONE, PARKING_SPOT, GAS_STATION
 };
 
-template <class T> class Graph;
-template <class T> class Dijkstra;
+template <class V, class E> class Graph;
+template <class V, class E> class Dijkstra;
 
-template<class T> class Vertex {
+template<class V, class E> class Vertex {
 	bool highest = false;
-	std::vector<Edge<T> *> edges;
+	std::vector<Edge<V, E> *> edges;
 	int id;
-	T info;
+	V info;
 	VertexType type;
 	int queueIndex = 0;        // required by MutablePriorityQueue
 	double dist = 0;
-	Vertex<T> *path = nullptr;
+	Vertex<V, E> *path = nullptr;
 
 public:
 
-	Vertex<T>(int id, VertexType type, T info) :
+	Vertex<V, E>(int id, VertexType type, V info) :
 			id { id }, type { type }, info { info } {
 	}
 
-	Vertex<T>(Vertex<T> *vertex) :
+	Vertex<V, E>(Vertex<V, E> *vertex) :
 			id { vertex->id }, type { vertex->type }, info { vertex->info } {
 	}
 
-	void addEdge(Vertex<T> *destination, double weight, double cost) {
-		edges.push_back(new Edge<T> { destination, weight, cost });
+	void addEdge(Vertex<V, E> *destination, double weight, E info, double cost) {
+		edges.push_back(new Edge<V, E> { destination, weight, info, cost });
 	}
 
-	bool operator<(Vertex<T> & vertex) const {
+	bool operator<(Vertex<V, E> & vertex) const {
 		return this->dist < vertex.dist;
 	}
 
-	Vertex<T> *getPath() const {
+	Vertex<V, E> *getPath() const {
 		return path;
 	}
 
@@ -55,7 +55,7 @@ public:
 		return id;
 	}
 
-	T getInfo() const {
+	V getInfo() const {
 		return info;
 	}
 
@@ -63,13 +63,13 @@ public:
 		return type;
 	}
 
-	std::vector<Edge<T> *> getEdges() const {
+	std::vector<Edge<V, E> *> getEdges() const {
 		return edges;
 	}
 
-	friend class Dijkstra<T>;
-	friend class Graph<T>;
-	friend class MutablePriorityQueue<Vertex<T>> ;
+	friend class Dijkstra<V, E>;
+	friend class Graph<V, E>;
+	friend class MutablePriorityQueue<Vertex<V, E>> ;
 
 };
 
