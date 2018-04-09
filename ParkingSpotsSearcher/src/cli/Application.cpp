@@ -3,12 +3,14 @@
 //
 
 #include "Application.h"
+#include "../view/MapView.h"
 #include <iostream>
 #include <graphviewer.h>
 #include <ApiParser.h>
 #include <vector>
 #include <Edge.h>
 #include <LatLongConverter.h>
+#include <Map.h>
 
 using namespace std;
 
@@ -22,7 +24,7 @@ int chooseGasStation() {
     if (opt == 1 || opt == 2) return opt;
     else {
         cout << "Invalid option, choose again" << endl;
-        chooseGasStation();
+        return chooseGasStation();
     }
 }
 
@@ -35,62 +37,38 @@ int chooseNearestOrCheapest() {
     if (opt == 1 || opt == 2) return opt;
     else {
         cout << "Invalid option, choose again." << endl;
-        chooseNearestOrCheapest();
+        return chooseNearestOrCheapest();
     }
 }
 
 void showGraphViewer(int opt, int gas) {
 
-    /* show graph */
-    auto *gv = new GraphViewer(800, 800, false);
-
-
-    gv->defineVertexSize(5);
-    gv->setBackground("../maps/map.png");
-    gv->defineEdgeCurved(false);
-    gv->createWindow(800, 800);
-
-    gv->defineEdgeColor(BLACK);
-    gv->defineVertexColor(YELLOW);
-
     /* load osm */
-    map<long, Node> nodes = ApiParser::readNodes("../maps/A.txt");
+    map<int, Node> nodes = ApiParser::readNodes("../maps/A.txt");
     vector<Link> links = ApiParser::readNodeLinks("../maps/C.txt");
     map<int, Road> roads = ApiParser::readRoads("../maps/B.txt");
 
-    /* show nodes */
-    double drift = -0.00258;
-    double MAX_LATITUDE = 41.1805 + 0.0062;
-    double MIN_LATITUDE = 41.1696 + 0.0062;
-    double MIN_LONGITUDE = -8.5832 + drift;
-    double MAX_LONGITUDE = -8.5983 + drift;
-    double mul = 0.8;
+    Map *map = new Map(800, nodes, roads, links);
 
-    for (auto pair: nodes) {
-        Node node = pair.second;
-        double x = LatLongConverter::convert(node.getLongitute_degrees(), MAX_LONGITUDE, MIN_LONGITUDE, 800);
-        double y = LatLongConverter::convert(node.getLatitude_degrees(), MAX_LATITUDE, MIN_LATITUDE, 800);
+    MapView *mapView = new MapView(map);
 
-        gv->addNode((int) node.getId(), (int) x*0.89, (int) y*0.85);
+    /* show map */
+    mapView->initialize();
+
+    /* update cycle based on actions ?
+
+    while(listening){
+        // change stuff in the map
+
+       // update map model
+       mapView->setMap(map)
+
+       // update map view
+       mapView->update();
     }
 
-    /* show edges */
-    for (int i = 0; i < links.size(); i++) {
+    */
 
-        Link link = links[i];
-
-        Road road = roads.at((int) link.getId());
-
-        if (road.isIs_two_way())
-            gv->addEdge(i, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::UNDIRECTED);
-        else
-            gv->addEdge(i, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::DIRECTED);
-
-        gv->setEdgeThickness(i, 1);
-
-    }
-
-    gv->rearrange();
 }
 
 
@@ -108,4 +86,5 @@ int main() {
     cout << "Showing map" << endl;
     showGraphViewer(opt, gas);
 
+    return 0;
 }

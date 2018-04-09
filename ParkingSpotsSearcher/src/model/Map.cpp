@@ -4,13 +4,37 @@
 
 #include "Map.h"
 
-Map::Map(int mapSize, double min_latitude, double max_latitude, double min_longitude, double max_longitude) {
-    this->nodes = std::map<int, Node>();
-    this->roads = std::map<int, Road>();
-    this->links = std::vector<Link>();
+Map::Map(int mapSize, std::map<int, Node> nodes, std::map<int,Road> roads, std::vector<Link> links) {
+    this->nodes = nodes;
+    this->roads = roads;
+    this->links = links;
     this->mapSize = mapSize;
-    this->min_latitude = min_latitude;
-    this->max_latitude = max_latitude;
-    this->min_longitude = min_longitude;
-    this->max_longitude = max_longitude;
+}
+
+int Map::getMapSize() const {
+    return mapSize;
+}
+
+void Map::setNodes(const std::map<int, Node> &nodes) {
+    Map::nodes = nodes;
+}
+
+void Map::setRoads(const std::map<int, Road> &roads) {
+    Map::roads = roads;
+}
+
+void Map::setLinks(const std::vector<Link, std::allocator<Link>> &links) {
+    Map::links = links;
+}
+
+const std::map<int, Road> &Map::getRoads() const {
+    return roads;
+}
+
+const std::vector<Link, std::allocator<Link>> &Map::getLinks() const {
+    return links;
+}
+
+const std::map<int, Node> &Map::getNodes() const {
+    return nodes;
 }

@@ -149,7 +149,7 @@ void test_algorithms() {
 void test_node_parser() {
 
 	// test node parser
-	map<long, Node> nodes = ApiParser::readNodes("../maps/A.txt");
+	map<int, Node> nodes = ApiParser::readNodes("../maps/A.txt");
 	ASSERT(nodes.size() > 0);
 
 }

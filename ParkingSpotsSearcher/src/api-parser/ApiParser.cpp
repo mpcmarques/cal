@@ -14,8 +14,8 @@
 
 using namespace std;
 
-map<long, Node> ApiParser::readNodes(string nodeFilePath) {
-    map<long, Node> nodes;
+map<int, Node> ApiParser::readNodes(string nodeFilePath) {
+    map<int, Node> nodes;
 
     ifstream nodeFile(nodeFilePath);
 
@@ -43,7 +43,7 @@ map<long, Node> ApiParser::readNodes(string nodeFilePath) {
 
             //  return the vector<nodes> with the parsed attributes
             Node node = Node(id, latitude_in_degrees, longitude_in_degrees, latitude_in_radians, longitude_in_radians);
-            nodes.insert(pair<long,Node>(id, node));
+            nodes.insert(pair<int,Node>(id, node));
         }
 
         nodeFile.close();

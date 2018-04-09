@@ -16,20 +16,27 @@
 class Map {
 
 private:
-    double max_latitude;
-    double min_latitude;
-    double min_longitude;
-    double max_longitude;
     int mapSize;
-
     std::map<int, Node> nodes;
     std::map<int, Road> roads;
     std::vector<Link> links;
 
 public:
-    Map(int mapSize, double min_latitude, double max_latitude, double min_longitude, double max_longitude);
+    Map(int mapSize, std::map<int, Node> nodes, std::map<int,Road> roads, std::vector<Link> links);
 
+    void setNodes(const std::map<int, Node> &nodes);
 
+    void setRoads(const std::map<int, Road> &roads);
+
+    void setLinks(const std::vector<Link, std::allocator<Link>> &links);
+
+    const std::map<int, Node> &getNodes() const;
+
+    const std::map<int, Road> &getRoads() const;
+
+    const std::vector<Link, std::allocator<Link>> &getLinks() const;
+
+    int getMapSize() const;
 };
 
 

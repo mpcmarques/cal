@@ -7,18 +7,22 @@
 
 
 #include <graphviewer.h>
+#include "Map.h"
 
 class MapView {
 
 private:
     GraphViewer *gv;
-    int mapSize;
+    Map *map;
 
 public:
-    MapView(int mapSize);
+    MapView(Map *map);
+
     void initialize();
 
-    void showMap(Map map);
+    void close();
+
+    void updateView();
 };
 
 
