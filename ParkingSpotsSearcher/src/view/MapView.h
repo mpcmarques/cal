@@ -15,6 +15,13 @@ private:
     GraphViewer *gv;
     Map *map;
 
+    /* map image position fix */
+    double drift = -0.00258;
+    double MAX_LATITUDE = 41.1805 + 0.0062;
+    double MIN_LATITUDE = 41.1696 + 0.0062;
+    double MIN_LONGITUDE = -8.5832 + drift;
+    double MAX_LONGITUDE = -8.5983 + drift;
+
 public:
     MapView(Map *map);
 
@@ -23,6 +30,8 @@ public:
     void close();
 
     void updateView();
+
+    void add(Node node);
 };
 
 

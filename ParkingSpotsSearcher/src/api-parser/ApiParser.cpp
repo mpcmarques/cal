@@ -41,7 +41,7 @@ map<int, Node> ApiParser::readNodes(string nodeFilePath) {
             latitude_in_radians = stof(split[4]);
 
             //  return the vector<nodes> with the parsed attributes
-            Node node = Node(id, latitude_in_degrees, longitude_in_degrees, latitude_in_radians, longitude_in_radians);
+            Node node = Node(id, latitude_in_degrees, longitude_in_degrees);
             nodes.insert(pair<int,Node>(id, node));
         }
 

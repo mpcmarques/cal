@@ -5,7 +5,6 @@
 #include <LatLongConverter.h>
 #include "MapView.h"
 
-
 void MapView::initialize() {
 
     this->gv = new GraphViewer(map->getMapSize(), map->getMapSize(), false);
@@ -26,23 +25,25 @@ MapView::MapView(Map *map) {
     this->map = map;
 }
 
+void MapView::add(Node node){
+    /* fix window position */
+    double x = LatLongConverter::convert(node.getLongitute(), MAX_LONGITUDE, MIN_LONGITUDE,
+                                         this->map->getMapSize());
+    double y = LatLongConverter::convert(node.getLatitude(), MAX_LATITUDE, MIN_LATITUDE,
+                                         this->map->getMapSize());
+
+    /* add node do graph viewer */
+    gv->addNode((int) node.getId(), (int) (x * 0.89), (int) (y * 0.85));
+}
+
 void MapView::updateView() {
 
     if (gv != nullptr) {
-        /* map image position fix */
-        double drift = -0.00258;
-        double MAX_LATITUDE = 41.1805 + 0.0062;
-        double MIN_LATITUDE = 41.1696 + 0.0062;
-        double MIN_LONGITUDE = -8.5832 + drift;
-        double MAX_LONGITUDE = -8.5983 + drift;
 
         /* show nodes */
         for (auto pair: this->map->getNodes()) {
             Node node = pair.second;
-            double x = LatLongConverter::convert(node.getLongitute_degrees(), MAX_LONGITUDE, MIN_LONGITUDE, 800);
-            double y = LatLongConverter::convert(node.getLatitude_degrees(), MAX_LATITUDE, MIN_LATITUDE, 800);
-
-            gv->addNode((int) node.getId(), (int) (x * 0.89), (int) (y * 0.85));
+            this->add(node);
         }
 
         /* show edges */
@@ -59,6 +60,16 @@ void MapView::updateView() {
 
             gv->setEdgeThickness(i, 1);
 
+        }
+
+        /* show gas stations */
+        for (auto pair: this->map->getGasStations()) {
+            auto gasStation = pair.second;
+            this->add(gasStation);
+
+            gv->setVertexIcon((int) gasStation.getId(), "../images/gas_station.png");
+            gv->setVertexLabel((int) gasStation.getId(), "Gas Station");
+            gv->setVertexSize((int) gasStation.getId(), 30);
         }
 
         this->gv->rearrange();

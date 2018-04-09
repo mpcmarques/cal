@@ -9,6 +9,7 @@
 #include "Node.h"
 #include "Road.h"
 #include "Link.h"
+#include "GasStation.h"
 #include <map>
 #include <vector>
 #include <string>
@@ -19,6 +20,7 @@ private:
     int mapSize;
     std::map<int, Node> nodes;
     std::map<int, Road> roads;
+    std::map<int, GasStation> gasStations;
     std::vector<Link> links;
 
 public:
@@ -30,7 +32,11 @@ public:
 
     void setLinks(const std::vector<Link, std::allocator<Link>> &links);
 
+    void addGasStation(const GasStation station);
+
     const std::map<int, Node> &getNodes() const;
+
+    const std::map<int, GasStation> &getGasStations() const;
 
     const std::map<int, Road> &getRoads() const;
 

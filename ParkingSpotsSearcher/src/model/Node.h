@@ -10,24 +10,17 @@ class Node {
 
 private:
     long id;
-    float latitude_degrees;
-    float longitute_degrees;
-    float latitude_radians;
-    float longitude_radians;
-
+    float latitude;
+    float longitute;
 
 public:
-    Node(long id, float latitude_degrees, float longitude_degrees, float latitude_radians, float longitude_radians);
+    Node(long id, float latitude_degrees, float longitude_degrees);
 
     long getId() const;
 
-    float getLatitude_degrees() const;
+    float getLatitude() const;
 
-    float getLongitute_degrees() const;
-
-    float getLatitude_radians() const;
-
-    float getLongitude_radians() const;
+    float getLongitute() const;
 };
 
 

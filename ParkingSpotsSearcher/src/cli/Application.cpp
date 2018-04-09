@@ -49,6 +49,10 @@ void showGraphViewer(int opt, int gas) {
 
     Map *map = new Map(800, nodes, roads, links);
 
+    /* add gas stations to the map*/
+    map->addGasStation(GasStation(0, 41.17832, (float) -8.58288));
+    map->addGasStation(GasStation(1, 41.17693, (float) -8.59989));
+
     MapView *mapView = new MapView(map);
 
     /* show map */
