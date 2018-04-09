@@ -1,786 +1,253 @@
-12698170;;False
-12698945;Estrada da Beira;False
-12699000;Estrada da Beira;False
-12699875;;False
-19782785;;False
-20331363;;False
-20331953;Estrada da Beira;False
-20332743;Estrada da Beira;False
-20332763;Nova Ponte da Portela;False
-20366344;Estrada da Beira;False
-20936263;Avenida da Boavista;False
-23026381;Caminho do Cabeço;True
-23026387;Alameda Marquesa de Pomares;False
-23026389;Alameda Marquesa de Pomares;False
-23027895;Rua Ruben A.;False
-23027931;Rua Eduardo Correia;False
-23028335;Avenida da Boavista;False
-23029060;;False
-23029101;;False
-23041141;Avenida da Boavista;False
-23089193;Rua Pedro de Alpoím;False
-23102664;;False
-23102666;;False
-23103969;Avenida da Boavista;False
-23135838;;False
-23174705;Rua Luís Reis Santos;False
-23292620;Rua de Vila Franca;False
-23387799;;False
-23391713;;False
-23391775;;False
-23391780;Rua do Bairro Novo;False
-23391787;;False
-23392369;;False
-23392371;;False
-23392460;;False
-23392562;;False
-23392581;;False
-56476132;Rua da Princesa Cindazunda;False
-56476133;;False
-56476134;;False
-56696211;;True
-56696212;;False
-56721567;;False
-56722604;;False
-56722605;;False
-56722606;Rua O Conimbricence;False
-56722607;;False
-56722608;Rua Paul Harris;False
-56722609;;False
-56722611;Rua da Princesa Cindazunda;False
-56722682;;False
-56978397;Rua Abílio Fernandes;True
-57503912;;False
-57503914;Rua da Eira;False
-57985476;Estrada de Sobral Cid;False
-57989157;;False
-57989162;;False
-57989196;;False
-57989215;;False
-58043138;;False
-58043199;;False
-58043393;Estrada da Beira;False
-59524964;;False
-59524965;;False
-59524967;;False
-59524970;;False
-59524972;;False
-59524973;;False
-59524974;;False
-59524975;;False
-59525089;;False
-59525090;;False
-59525091;;False
-59525092;;False
-59525093;;False
-59525094;;False
-59525147;;False
-59525148;;False
-59606762;;False
-59606763;;False
-59606764;;False
-59606765;Rua das Lagoas;True
-59606766;Rua das Lagoas;True
-59606768;;True
-59606769;;True
-59776687;;True
-60116132;Rua José Maria dos Santos;True
-60932667;;True
-60932668;;True
-60932669;Rua Principal;True
-61160816;;True
-61160817;;True
-61160823;;False
-61235332;;False
-61235333;;False
-61235334;;False
-61235335;;False
-61235336;;False
-61235337;;False
-61235342;;False
-61235349;;False
-61235350;;False
-61603835;;False
-61603836;;False
-61603837;Estrada da Beira;False
-61603839;Estrada da Beira;False
-61603841;;False
-61603844;;False
-61603845;;False
-61603846;;False
-61603847;;False
-61603848;;False
-61603849;;False
-61603850;;False
-61603851;;False
-61603852;;False
-77461887;;False
-95437954;;False
-95437956;;False
-95437962;;False
-95437965;;False
-95437979;;False
-95437981;;False
-95437990;;False
-95437996;;False
-95438005;;False
-95438009;;False
-95438012;;False
-95438017;;False
-95438018;;False
-95438020;;False
-95438030;;False
-95438037;;False
-95438039;;False
-95438048;;False
-95438049;;False
-95438056;;False
-95438060;;False
-95438061;;False
-95438070;;False
-95438071;;False
-95438074;;False
-95438075;;False
-95438076;;False
-95438080;Rua Principal;False
-95438090;;False
-95438095;Rua Inês de Castro;True
-95438096;;True
-95438097;;True
-110481804;;True
-110561137;;False
-110561138;;False
-110561145;Rua Pedro de Mariz;False
-115578027;;False
-115578029;;False
-120806344;Rua Pedro de Alpoím;False
-120806345;Rua O Conimbricence;False
-120806346;Rua da Quinta da Portela;True
-120806347;;False
-121166014;;False
-121166022;;False
-121166023;;False
-121166724;;False
-121176951;Rua António Menano;False
-121176955;Rua António Menano;False
-121376850;Rua Luís Reis Santos;False
-121759356;Rua António Menano;False
-122584680;;False
-122584682;;False
-122778957;;False
-122788028;;False
-123142074;;False
-123143597;;False
-123143599;;False
-123243535;;False
-123243536;;False
-123652400;;False
-123652401;;False
-123754894;Rua das Figueiras;False
-123754895;;False
-123754896;Rua da Casa das Velhas;False
-123754898;;False
-123757540;;False
-123757543;;False
-123757545;;False
-123757546;;False
-123757547;Travessa Caminho do Cabeço;False
-123757548;;False
-123757549;;False
-124237163;;False
-124440209;;False
-124926390;;False
-125199752;;False
-125199753;;False
-125199754;;False
-125224812;;False
-125224813;Rua do Hospital;False
-125224815;;False
-125224816;;False
-125225367;;False
-125225368;;False
-125225369;;False
-125225371;;False
-125225792;Quinta da Senhora do Carmo;False
-125233863;Travessa do Carmo;False
-125233864;Rua do Foz do Ceira;False
-125235894;;False
-125235895;Quinta da Conraria;False
-125235897;;False
-125235898;Rua Copeira;False
-125235899;Rua Nova;False
-125522845;;False
-125522848;;False
-125675234;;False
-125675235;;False
-125675236;;False
-125809801;;False
-125813567;;False
-125814999;;False
-126724565;;False
-126724566;;False
-126724567;;False
-126724568;;False
-129700394;;False
-129700395;;False
-129700396;;False
-143294122;Rua Pedro de Alpoím;False
-143294133;Rua Pedro de Alpoím;False
-143754333;;False
-143754334;;False
-143754336;;False
-144158501;;False
-144158508;;False
-153670161;;False
-155622300;Estrada Antiga de Lisboa;True
-158783035;Rua Nova da Machada;True
-158783036;;True
-158783037;;True
-158783041;Bairro Mojafé;True
-158786995;Travessa da Rua da Eira;True
-174739169;Avenida da Boavista;False
-174739170;Avenida da Boavista;False
-174739171;Avenida da Boavista;False
-174739172;Avenida da Boavista;False
-174739173;Avenida da Boavista;False
-174739174;Avenida da Boavista;False
-174739175;Avenida da Boavista;False
-174739177;Avenida da Boavista;False
-174739178;Avenida da Boavista;False
-174739179;Avenida da Boavista;False
-174739180;Avenida da Boavista;False
-174739182;Avenida da Boavista;False
-174739183;Avenida da Boavista;False
-174739184;Avenida da Boavista;False
-174739213;Rua Pedro de Alpoím;False
-174739314;Rua Dom Francisco de Lemos;False
-174739342;;False
-174739349;;False
-174739367;;False
-174858273;;False
-174858275;;False
-174858278;;False
-174858279;;False
-174858282;Estrada da Beira;True
-174858283;Estrada da Beira;False
-174858284;Estrada da Beira;True
-174858285;Estrada da Beira;False
-174858290;;False
-174858291;;False
-174858375;;False
-174858433;;False
-174858438;;False
-174858444;;False
-175108255;Estrada das Carvalhosas;False
-175108256;Caminho do Cabeço;False
-175108257;Caminho do Cabeço;False
-175108321;Rua da Quinta da Portela;False
-175108322;Rua da Quinta da Portela;False
-175108330;Travessa da Rua da Eira;False
-175108476;;False
-175110041;;False
-175110110;;False
-175110130;Rua Maria Vitória Bourbon Bobone;False
-175110164;;False
-175110180;;False
-175110183;;False
-180218140;;False
-180218142;;False
-180218143;;False
-180218146;;False
-180218147;;False
-180218149;;False
-180218150;;False
-180218154;;False
-180218155;;False
-180218157;;False
-180218890;;False
-180218894;;False
-180218895;;False
-180218897;;False
-180218898;;False
-180218899;;False
-180218900;;False
-180229743;;False
-180229744;;False
-180229745;;False
-180229746;;False
-180229747;;False
-180229748;;False
-180229749;;False
-180229750;;False
-180229751;;False
-180229752;;False
-180229753;;False
-180229754;;False
-180229755;;False
-180229756;;False
-180229757;;False
-180231977;;False
-180231980;;False
-180231982;;False
-180231983;;False
-180231985;;False
-180231987;;False
-180231991;;False
-180231992;;False
-180231993;;False
-180231997;;False
-180232000;;False
-180232001;;False
-180232002;;False
-180232004;;False
-182186365;;False
-182186366;;False
-186866640;;False
-186866707;;False
-186866935;;False
-186866956;;False
-186867029;;False
-186868289;Rua Pereiros de Baixo;False
-186868341;;False
-186868472;;False
-186868498;;False
-186868822;Rua Pereiros de Baixo;False
-186869178;Estrada Madalena;False
-186869274;Rua Urgeiriça;False
-186869362;Calçada das Lapas;False
-186869426;;False
-186869461;Travessa Madalena;False
-186869463;Estrada Madalena;False
-186869581;;False
-186869763;Estrada Santa Luzia;False
-186869828;;False
-186869829;;False
-186869830;Rua Fontinhosa;False
-186870125;;False
-186870126;;False
-186870127;Rua Lameira;False
-186870128;;False
-186870129;;False
-186870640;Rua Estrada Principal;False
-186870752;Rua Principal Pereiros;False
-186870812;Rua Bica;False
-186871198;;False
-186871199;;False
-186871309;;False
-186871451;;False
-186871789;;False
-186871790;Rua Pereireiro;False
-186871833;;False
-186872054;;False
-191694931;;False
-191695550;;False
-194548440;Estrada Madalena;False
-194548441;Estrada Madalena;False
-194608078;;False
-194647979;Avenida da Boavista;False
-194647980;Avenida da Boavista;False
-194647981;Avenida da Boavista;False
-194647982;Avenida da Boavista;False
-194647984;Avenida da Boavista;False
-194769092;;False
-194769099;;False
-194806889;Avenida da Boavista;False
-195155558;;False
-195155560;;False
-195155562;;False
-195155565;;False
-195155567;;False
-195155569;;False
-195155571;;False
-195155574;;False
-195155576;Rua dos Comelais;True
-195155579;Rua Comelais;True
-195155585;Rua da Eira Velha;True
-195155587;;True
-195155589;;True
-195156082;;True
-195156083;;True
-195157448;;False
-195157449;;False
-195157451;;False
-195157453;;False
-195157455;;False
-195157457;;False
-195157458;;False
-195157459;;False
-195157460;;False
-195157461;;False
-195157462;;False
-195159395;;False
-195159396;;False
-195159397;;False
-195159398;;False
-195159399;;False
-195159402;;False
-195159403;;False
-195160425;;False
-195160427;;False
-195399335;;False
-195399337;;False
-195399339;;False
-195399341;;False
-195399343;;False
-195399345;;False
-195399347;;False
-195399349;;False
-195399353;;False
-195399355;;False
-195399357;;False
-195399358;;False
-195970534;;False
-195977263;;False
-195978343;;False
-200530156;;False
-200530157;;False
-200530158;;False
-201119723;;False
-201119732;;False
-201119737;;False
-201245065;Rua António dos Santos Antunes;True
-201245521;Rua da Tapada;True
-238258122;;False
-238258123;Estrada da Beira;False
-238258125;Estrada da Beira;False
-238258127;Rua Quinta da Ponte;False
-238258128;Estrada da Beira;False
-238258129;Estrada da Beira;False
-238258130;Estrada da Beira;True
-242389185;;False
-242389189;;False
-242389190;;False
-242389192;;False
-242389197;;False
-250286790;;False
-250289899;;False
-250289900;;False
-250289901;;False
-250289902;;False
-250289903;;False
-250289904;;False
-250289905;;False
-250289906;;False
-250289907;;False
-250289908;;False
-250289909;;False
-250289910;;False
-250289911;;False
-250290242;;False
-250291888;;False
-250291889;;False
-250291890;;False
-250291891;;False
-250291892;;False
-250291893;;False
-250291894;;False
-250291895;;False
-250291896;;False
-250292745;;False
-250292746;;False
-250292747;;False
-258717845;;True
-258717846;;True
-273711727;;False
-273711728;Estrada da Beira;False
-273711731;;False
-277550864;Autoestrada do Pinhal Interior;False
-277554234;;False
-277849643;;False
-277849644;;False
-277849645;;True
-277849647;Autoestrada do Pinhal Interior;False
-277849648;;False
-277849649;;False
-277849650;;False
-277849651;;False
-277849652;;False
-277849654;;False
-278277818;Estrada da Beira;False
-278277821;Nova Ponte da Portela;False
-278277824;Estrada da Beira;False
-278277828;Estrada da Beira;False
-279155560;;False
-279157106;;False
-279157107;;False
-279157108;;False
-279157109;;False
-279157110;;False
-279157111;;False
-279157112;;False
-279157113;;False
-279157114;;False
-279157115;;False
-279157116;;False
-279157117;;False
-279158476;;False
-279158477;;False
-279158479;;False
-279660030;Autoestrada do Pinhal Interior;False
-279660033;Autoestrada do Pinhal Interior;False
-279660034;Autoestrada do Pinhal Interior;False
-279660035;Autoestrada do Pinhal Interior;False
-279660036;Autoestrada do Pinhal Interior;False
-279660037;Autoestrada do Pinhal Interior;False
-279660038;Autoestrada do Pinhal Interior;False
-279660039;Autoestrada do Pinhal Interior;False
-279660040;Autoestrada do Pinhal Interior;False
-279660043;Autoestrada do Pinhal Interior;False
-279660045;Autoestrada do Pinhal Interior;False
-279660046;Autoestrada do Pinhal Interior;False
-280218346;;False
-280218347;;False
-280218663;;False
-280218664;;False
-280218665;;False
-285531495;;False
-285531497;;False
-285531498;Travessa da Estrada Velha;False
-285531499;;False
-285531502;Travessa da Estrada Velha;False
-285531503;Rua da Capela;False
-285531504;;False
-285531505;;False
-285531506;;False
-285531507;Rua do Campo;False
-285540299;;False
-285540300;;False
-285540301;;False
-285540302;;False
-285540303;Rua do Carmo;False
-285542836;;False
-285542837;Rua do Hospital;False
-285545838;Rua da Volta do Salgueiral;False
-285549080;;False
-286361168;;False
-286361224;;False
-286976919;;False
-286976921;;False
-286976922;;False
-286976923;;False
-292245488;;False
-292245495;;False
-292245496;;False
-292245500;;False
-292245504;;False
-292245506;;False
-303476645;;False
-303476646;;False
-303476647;;False
-303476648;;False
-303476649;;False
-303476650;;False
-313252393;;False
-313252394;;False
-313252395;;False
-326169665;;False
-326169666;;False
-326169667;;False
-326169668;;False
-326170548;;False
-326170549;;False
-342652652;;False
-342652653;;False
-342652665;;False
-342652667;;False
-342652671;;False
-342652673;;False
-342652674;;False
-342652675;;False
-342652677;;False
-342652678;;False
-342652679;;False
-379863157;;False
-379863158;;False
-379863159;;False
-379863160;;False
-379863161;;False
-379863162;;False
-379863163;;False
-379863164;;False
-379863165;;False
-379863166;;False
-379863167;;False
-379863168;;False
-379863170;;False
-379863172;;False
-379863173;;False
-379863176;;False
-379863177;;False
-379863178;;False
-379863179;;False
-379863180;;False
-379863181;;False
-379863182;;False
-379863183;;False
-379863184;;False
-379863186;;False
-379863188;;False
-379863190;;False
-379863191;;False
-379863192;;False
-379863193;;False
-379863195;;False
-388123594;;False
-388123595;;False
-388589711;;False
-388589712;;False
-388589713;;False
-388589718;;False
-388589719;;False
-388589720;;False
-388589721;;False
-388589722;;False
-393480185;;False
-393480186;;False
-393480187;;False
-398569818;;False
-398569828;;False
-398569833;;False
-398569836;;False
-400546064;;False
-404320398;;False
-404320399;;False
-404320400;;False
-404320401;;False
-404804295;;False
-404804296;;False
-407461588;;False
-410111078;;False
-410111079;;False
-410111080;;False
-410111082;;False
-423184622;;False
-424760292;;False
-424760293;;False
-438862424;;False
-446799180;;False
-446799181;;False
-446799182;;False
-446799183;;False
-446799184;;False
-447270119;Avenida da Boavista;False
-447270125;Avenida da Boavista;False
-447270130;Avenida da Boavista;False
-447270131;Avenida da Boavista;False
-447270133;Avenida da Boavista;False
-447270134;Avenida da Boavista;False
-448415954;;False
-448415955;;False
-458084390;;False
-463159290;;False
-463159291;;False
-463159292;Estrada da Beira;True
-463166168;;False
-463166177;;False
-463175972;;False
-472730045;;False
-472730047;;False
-472730049;;False
-484976436;Rua São Domingos;True
-498122839;;True
-498122840;;True
-507287179;;True
-507287180;;True
-507287181;;True
-507287182;;True
-507287183;;True
-507287184;;True
-507287185;;True
-507288665;;True
-507288670;;True
-508036653;;False
-508036654;;False
-511092090;;False
-525458597;;False
-525458598;;False
-525458599;;False
-525458600;;False
-525458601;;False
-525458602;;False
-525458603;;False
-525458604;;False
-525459991;;False
-525459993;;False
-525459995;;False
-525459996;;False
-525460001;;False
-534332343;;False
-534332346;;False
-534332353;;False
-534498112;;False
-534498116;;False
-534498117;;False
-534498118;;False
-534498121;;False
-534498122;;False
-534498124;;False
-534498125;;False
-534498127;;False
-534498134;;False
-534498136;;False
-534498138;;False
-534498139;;False
-534498142;;False
-534498144;;False
-534498145;;False
-534498146;;False
-534498147;;False
-534500051;;False
-534500052;;False
-534500053;;False
-534500054;;False
-534500055;;False
-534500056;;False
-534500058;;False
-534502388;;False
-534502390;;False
-536862779;;False
-536862784;;False
-536862790;;False
-536862799;;False
-536862800;;False
-536862803;;False
-536862811;;False
-539304643;Autoestrada do Pinhal Interior;False
-539304645;;False
-539304647;Autoestrada do Pinhal Interior;False
-539304650;;False
-539306955;;False
-539306956;;False
-555850196;Autoestrada do Pinhal Interior;False
-555850197;Autoestrada do Pinhal Interior;False
-555850198;Autoestrada do Pinhal Interior;False
-555850199;Autoestrada do Pinhal Interior;False
-555850200;Autoestrada do Pinhal Interior;False
-555850201;Autoestrada do Pinhal Interior;False
-555850202;Autoestrada do Pinhal Interior;False
-555853330;;False
-555853331;;False
-556345306;;False
-556345307;;False
-556345308;;False
-556345309;;False
-556345310;;False
-556345311;;False
-556345312;;False
-556345313;;False
-556345314;;False
-556345315;;False
-556345317;;False
-556351787;;False
-556351788;;False
-556351789;;False
-556351790;;False
-556351791;;False
-556351792;;False
-556351793;;False
-556578355;Autoestrada do Pinhal Interior;False
-556578356;Autoestrada do Pinhal Interior;False
-556578358;;False
-556578359;;False
-556578360;Autoestrada do Pinhal Interior;False
-558913328;;False
-558913329;;False
-558913330;;False
-566515064;;False
+4259341;;False
+4259343;Autoestrada de Entre-Douro-e-Minho;False
+4259344;;False
+4259345;;False
+4306660;;False
+4306661;;False
+4306662;;False
+27103792;Rua do Salgueiral;False
+27289994;Rua de Santa Justa;False
+27290079;Rua dos Anjos;False
+27290127;Rua de Alcântara;False
+27290137;Rua de Belém;False
+27290191;Rua das Mercês;False
+27290217;Rua da Ajuda;False
+27290392;Rua de Arroios;False
+27290454;Rua de Carnide;False
+27290456;Rua do Professor Bonfim Barreiros;True
+27290902;Rua de Benfica;False
+27290952;Praça de Campo Grande;False
+27290999;Rua de Campolide;False
+27291486;Rua da Cruz;False
+27291520;Rua de Artur de Paiva;False
+27291749;Rua de João Roby;False
+27292604;Rua do Professor Duarte Leite;False
+27292621;;False
+29035153;Estrada Interior da Circunvalação;False
+29036513;Autoestrada de Entre-Douro-e-Minho;False
+30911255;Largo da Cruz;False
+30911275;Rua Luís Woodhouse;False
+30911280;Rua Pedro Teixeira;False
+30912870;Rua de Aval de Baixo;True
+34597087;Rua Honório de Lima;False
+34628257;Rua de Augusto Lessa;False
+34628269;Rua Doutor Joaquim Pires de Lima;False
+34968603;Rua do Relógio;False
+34968743;Rua Vitorino Damásio;False
+35078498;Rua do Doutor Manuel Laranjeira;False
+35078501;Rua do Doutor Manuel Laranjeira;False
+35078502;Rua do Doutor Manuel Laranjeira;False
+35112603;Rua Professor Mendes Correia;False
+35997763;Rua do Bairro da Areosa;False
+35997812;Rua do Mondego;False
+37141967;Rua Dom Frei Vicente da Soledade e Castro;True
+37141968;Rua do Doutor Manuel Pereira da Silva;True
+37141970;Rua do Doutor Eduardo Santos Silva;True
+37141971;Rua da Igreja da Areosa;True
+37141973;;True
+37141975;Travessa da Fonte do Outeiro;True
+37141976;Rua Doutor Júlio de Matos;True
+37141977;Rua António Borges;True
+37141978;Praceta Francisco Borges;True
+37141979;Rua Doutor Júlio de Matos;False
+37141980;Rua Professor António Cruz;False
+37141981;Travessa da Areosa;True
+37141982;;True
+37141983;Rua do Actor Eduardo Brazão;True
+37142500;Autoestrada de Entre-Douro-e-Minho;False
+37142655;Rua Nova do Rio;False
+37221655;Travessa das Enxurreiras;False
+37221656;Rua das Enxurreiras;False
+37338733;;False
+37856482;Rua Nascente da Colónia Doutor Manuel Laranjeira;False
+37856823;;False
+37856824;;False
+37916215;Rua Tenente Mário Grilo;False
+37916216;Travessa do Rio;True
+37916217;Estrada Interior da Circunvalação;False
+37916219;Estrada Exterior da Circunvalação;False
+37937528;Estrada da Circunvalação;False
+38080329;Rua do Porto Feliz;False
+38083514;Rua do Porto Feliz;False
+41380172;;True
+41380173;;True
+62087613;Rua Doutor Júlio de Matos;True
+62087615;Rua Doutor Júlio de Matos;True
+62087616;Travessa da Cruz;True
+62087618;Rua das Barrocas;False
+62087621;Largo da Cruz;False
+62087622;Travessa das Barrocas;False
+63192525;Rua Henrique de Sousa Reis;False
+106334850;Rua Vitorino Damásio;False
+106334851;Rua Henrique de Sousa Reis;False
+106334852;Rua Vitorino Damásio;False
+106334854;Rua da Fonte do Outeiro;False
+106334857;Rua Professor António Cruz;True
+106334860;Rua do Vouga;True
+106334865;Rua Horácio Marçal;True
+118672059;Rua Engenheiro Pedro Inácio Lopes;True
+118672061;Rua Engenheiro Pedro Inácio Lopes;False
+120692683;Avenida de Fernão de Magalhães;True
+125000470;Rua Fernando Namora;False
+125000475;Rua das Enxurreiras;True
+161123863;Avenida de Fernão de Magalhães;False
+161123864;Avenida de Fernão de Magalhães;False
+161123865;Avenida de Fernão de Magalhães;True
+161123899;Rua do Porto Feliz;False
+161123913;Rua dos Anjos;False
+161124274;Travessa do Veloso;False
+172889538;Rua da Areosa;True
+172932225;Travessa do Bairro da Areosa;True
+172935953;;True
+173013103;Rua João Allen;True
+206360115;;True
+206360116;;True
+206843929;Rua do Doutor Manuel Laranjeira;False
+206843931;Rua do Doutor Manuel Laranjeira;False
+208262837;;True
+208263088;;True
+208265320;;True
+208272059;;True
+211339122;Estrada Interior da Circunvalação;False
+211339125;Estrada Exterior da Circunvalação;False
+212708375;Rua de Augusto Lessa;False
+220234009;Estrada Interior da Circunvalação;False
+220234012;Autoestrada de Entre-Douro-e-Minho;False
+228657552;Rua de Costa Cabral;False
+238249556;;False
+238249557;;False
+253026354;Avenida de Fernão de Magalhães;True
+253026357;Rua de Santa Justa;False
+308678930;Estrada Interior da Circunvalação;False
+316459169;Rua Doutor Roberto Frias;False
+345566829;;False
+345566831;;False
+345566832;;False
+345566834;Autoestrada de Entre-Douro-e-Minho;False
+345573793;;False
+345573794;;False
+345573795;Rua das Enxurreiras;False
+345573796;Rua das Enxurreiras;True
+345574068;Rua António Feliciano de Castilho;True
+351255867;;True
+351255876;;True
+351255888;;True
+351255892;;True
+367461722;Autoestrada de Entre-Douro-e-Minho;False
+367461723;Autoestrada de Entre-Douro-e-Minho;False
+367461725;;False
+367461726;Autoestrada de Entre-Douro-e-Minho;False
+367464148;Autoestrada de Entre-Douro-e-Minho;False
+367477465;Autoestrada de Entre-Douro-e-Minho;False
+367477467;Autoestrada de Entre-Douro-e-Minho;False
+367477469;Autoestrada de Entre-Douro-e-Minho;False
+367477470;Autoestrada de Entre-Douro-e-Minho;False
+367477475;Autoestrada de Entre-Douro-e-Minho;False
+367477476;Autoestrada de Entre-Douro-e-Minho;False
+415097761;;False
+429123178;;False
+429123179;;False
+429123180;;False
+429123181;;False
+434878394;Rua Luís Woodhouse;False
+434878397;Rua de Augusto Lessa;False
+441677224;Rua da Encarnação;False
+441677257;Rua António Borges;False
+441677259;Rua António Borges;False
+441677260;Rua João Lúcio de Azevedo;False
+441677265;Praceta Bernarda Ferreira Lacerda;False
+441677266;;False
+441685575;;False
+441685582;;False
+446887315;;False
+446887316;Rua do Bairro da Areosa;False
+446887317;Rua Horácio Marçal;False
+446887318;;False
+446887321;;False
+448195841;;False
+448195886;;False
+448568784;;False
+448568785;;False
+448568786;;False
+448568787;;False
+448568788;;False
+448568789;;False
+448568790;;False
+448568791;;False
+448568792;;False
+448568793;;False
+448568794;;False
+448568795;;False
+448858676;Rua Fernando Namora;False
+449415296;;False
+449415303;;False
+449415304;;False
+449447636;Rua Professor Mendes Correia;False
+449447637;Rua Professor Mendes Correia;False
+450404340;;False
+450475039;Rua Henrique de Sousa Reis;False
+450475041;Rua Henrique de Sousa Reis;False
+450904360;Rua Doutor Júlio de Matos;False
+450904361;;False
+450904362;;False
+450904363;Rua Doutor Júlio de Matos;False
+450904366;Rua da Fonte do Outeiro;False
+450904367;;False
+450906827;;False
+450913084;;False
+450913086;;False
+450913087;;False
+452435700;Rua de Carnide;False
+452435701;Rua de Belém;False
+452752382;;False
+453835128;Rua do Bairro da Areosa;True
+453839344;Rua da Cruz;False
+453839345;Rua de Contumil;False
+453839346;Largo da Cruz;False
+455315129;;False
+455315138;;False
+455315139;;False
+455315140;;False
+455315141;;False
+455315145;Viela de Lamas;False
+456118771;;False
+461133007;;False
+461133008;;False
+461133009;;False
+461135462;;False
+461135463;;False
+461135464;;False
+461135465;;False
+461925686;Rua do Doutor Júlio de Matos;False
+461925687;Rua do Doutor Manuel Pereira da Silva;False
+461925688;Travessa de Lamas;False
+461925689;Rua do Actor Ferreira da Silva;False
+461925690;Travessa de Lamas;False
+461925691;Rua de Santa Justa;True
+477791560;Rua de Costa Cabral;True
+478882415;;False
+478882416;;False
+478882418;;False
+478882419;;False
+478886775;;False
+478886777;;False
+478886778;;False
+480142667;;False
+482331425;Rua do Salgueiral;False
+482331426;Rua do Salgueiral;False
+482332563;Rua de Costa Cabral;True
+536714311;Avenida de Fernão de Magalhães;True
+536714321;Praça de Campo Grande;False
+536714330;Rua de Santa Justa;False
+536714332;Rua do Doutor Lopo de Carvalho;False
+536754238;Rua de Costa Cabral;True
+549454251;Avenida de Fernão de Magalhães;True
+549454253;Avenida de Fernão de Magalhães;True
+549454254;Avenida de Fernão de Magalhães;True
+549454255;Avenida de Fernão de Magalhães;True
+549454256;Praça de Campo Grande;False
+549454258;Avenida de Fernão de Magalhães;True
+549454259;Rua da Ajuda;False
+549454260;Avenida de Fernão de Magalhães;True
+549454263;Avenida de Fernão de Magalhães;False
+549454264;Avenida de Fernão de Magalhães;False
