@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.7)
 project(ParkingSpotsSearcher)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -66,4 +66,4 @@ add_executable(ParkingSpotsSearcher
         src/utils/LatLongConverter.h
         src/utils/MutablePriorityQueue.h
         src/utils/StringSplitter.cpp
-        src/utils/StringSplitter.h)
+        src/utils/StringSplitter.h src/model/Map.cpp src/model/Map.h)

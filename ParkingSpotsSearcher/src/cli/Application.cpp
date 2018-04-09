@@ -72,32 +72,35 @@ void showGraphViewer(int opt, int gas) {
     }
 
     /* show edges */
-    int count = 0;
     for (int i = 0; i < links.size(); i++) {
 
         Link link = links[i];
 
-        gv->addEdge(count, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::DIRECTED);
-        gv->setEdgeLabel(count, "");
-        count++;
+        Road road = roads.at((int) link.getId());
+
+        if (road.isIs_two_way())
+            gv->addEdge(i, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::UNDIRECTED);
+        else
+            gv->addEdge(i, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::DIRECTED);
 
     }
 
     gv->rearrange();
 }
 
+
 int main() {
     int opt, gas;
 
-    /* title*/
+    /* title */
     cout << "Welcome to the Parking Spot Searcher!" << endl;
 
-    /* ask user of options*/
+    /* ask user of options */
     opt = chooseNearestOrCheapest();
     gas = chooseGasStation();
 
-    /* load graph*/
-    cout << "Showing map..." << endl;
+    /* load graph */
+    cout << "Showing map" << endl;
     showGraphViewer(opt, gas);
 
 }
