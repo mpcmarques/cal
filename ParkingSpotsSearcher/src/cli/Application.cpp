@@ -52,28 +52,36 @@ void showGraphViewer(int opt, int gas) {
     gv->defineEdgeColor(BLACK);
     gv->defineVertexColor(YELLOW);
 
-
     /* load osm */
-    vector<Node> nodes = ApiParser::readNodes("../maps/A.txt");
+    map<long, Node> nodes = ApiParser::readNodes("../maps/A.txt");
     vector<Link> links = ApiParser::readNodeLinks("../maps/C.txt");
+    map<int, Road> roads = ApiParser::readRoads("../maps/B.txt");
 
     /* show nodes */
-    double MIN_LATITUDE = 41.1715;
-    double MAX_LATITUDE = 41.1801;
-    double MAX_LONGITUDE = -8.6030;
-    double MIN_LONGITUDE = -8.5830;
-    
-    for (auto node : nodes) {
+    double MIN_LATITUDE = 41.1805;
+    double MAX_LATITUDE = 41.1696;
+    double MIN_LONGITUDE = -8.5832;
+    double MAX_LONGITUDE = -8.5983;
+
+    for (auto pair: nodes) {
+        Node node = pair.second;
         double x = LatLongConverter::convert(node.getLongitute_degrees(), MIN_LONGITUDE, MAX_LONGITUDE, 800);
-        double y = LatLongConverter::convert(node.getLatitude_degrees(),MIN_LATITUDE, MAX_LATITUDE, 800);
+        double y = LatLongConverter::convert(node.getLatitude_degrees(), MIN_LATITUDE, MAX_LATITUDE, 800);
 
         gv->addNode((int) node.getId(), (int) y, (int) x);
     }
 
-    /* show edges
-    for (auto link: links){
-        gv->addEdge((int) link.getId(), (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::UNDIRECTED);
-    }*/
+    /* show edges */
+    int count = 0;
+    for (int i = 0; i < links.size(); i++) {
+
+        Link link = links[i];
+
+        gv->addEdge(count, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::DIRECTED);
+        gv->setEdgeLabel(count, "");
+        count++;
+
+    }
 
     gv->rearrange();
 }

@@ -149,13 +149,13 @@ void test_algorithms() {
 void test_node_parser() {
 
 	// test node parser
-	vector<Node> nodes = ApiParser::readNodes("../maps/A.txt");
+	map<long, Node> nodes = ApiParser::readNodes("../maps/A.txt");
 	ASSERT(nodes.size() > 0);
 
 }
 
 void test_roads_parser() {
-	vector<Road> roads = ApiParser::readRoads("../maps/B.txt");
+	map<int, Road> roads = ApiParser::readRoads("../maps/B.txt");
 	ASSERT(roads.size() > 0);
 }
 

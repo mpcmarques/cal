@@ -6,6 +6,7 @@
 #include <iostream>
 #include "StringSplitter.h"
 #include <vector>
+#include <map>
 #include "Node.h"
 #include "Road.h"
 #include "Link.h"
@@ -13,8 +14,8 @@
 
 using namespace std;
 
-vector<Node> ApiParser::readNodes(string nodeFilePath) {
-    vector<Node> nodes;
+map<long, Node> ApiParser::readNodes(string nodeFilePath) {
+    map<long, Node> nodes;
 
     ifstream nodeFile(nodeFilePath);
 
@@ -42,7 +43,7 @@ vector<Node> ApiParser::readNodes(string nodeFilePath) {
 
             //  return the vector<nodes> with the parsed attributes
             Node node = Node(id, latitude_in_degrees, longitude_in_degrees, latitude_in_radians, longitude_in_radians);
-            nodes.push_back(node);
+            nodes.insert(pair<long,Node>(id, node));
         }
 
         nodeFile.close();
@@ -53,11 +54,11 @@ vector<Node> ApiParser::readNodes(string nodeFilePath) {
     }
 }
 
-vector<Road> ApiParser::readRoads(const string roadsFilePath) {
+map<int, Road> ApiParser::readRoads(const string roadsFilePath) {
 
     ifstream nodeFile(roadsFilePath);
 
-    vector<Road> roads;
+    map<int, Road> roads;
 
     if (nodeFile.is_open()) {
         string line;
@@ -85,7 +86,7 @@ vector<Road> ApiParser::readRoads(const string roadsFilePath) {
 
             // return the vector<edges> with the parsed attributes
             Road road = Road(road_id, road_name, is_two_way);
-            roads.push_back(road);
+            roads.insert(pair<int,Road>(road_id, road));
         }
 
         nodeFile.close();
