@@ -181,8 +181,8 @@ bool runAllTests(int argc, char const *argv[]) {
 	bool success = runner(s, "AllTests");
 	return success;
 }
-
-//int main(int argc, char const *argv[]) {
-//	return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
-//}
+/*
+int main(int argc, char const *argv[]) {
+ return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
+}*/
 

@@ -43,7 +43,6 @@ add_executable(ParkingSpotsSearcher
         src/algorithms/Dijkstra.h
         src/algorithms/Edge.h
         src/algorithms/Graph.h
-        src/algorithms/ParkingSpotSearcher.cpp
         src/algorithms/ParkingSpotSearcher.h
         src/algorithms/Vertex.h
         src/api-parser/ApiParser.cpp

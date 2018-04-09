@@ -46,8 +46,8 @@ void showGraphViewer(int opt, int gas) {
 
     gv->createWindow(800, 800);
 
-    gv->defineEdgeColor("blue");
-    gv->defineVertexColor("yellow");
+    gv->defineEdgeColor(BLACK);
+    gv->defineVertexColor(YELLOW);
     gv->setBackground("../maps/map.png");
 
     /* load osm */
@@ -59,13 +59,13 @@ void showGraphViewer(int opt, int gas) {
     double MAX_LATITUDE = 41.1801;
     double MAX_LONGITUDE = -8.6030;
     double MIN_LONGITUDE = -8.5830;
-
-    // TODO: You have to see how much the map changes in latitude and longitude and make a simple rule of three (regra de tres)
+    
     for (auto node : nodes) {
         double x = LatLongConverter::convert(node.getLongitute_degrees(), MIN_LONGITUDE, MAX_LONGITUDE, 800);
         double y = LatLongConverter::convert(node.getLatitude_degrees(),MIN_LATITUDE, MAX_LATITUDE, 800);
-        cout << x << " " << y << endl;
+
         gv->addNode((int) node.getId(), (int) x, (int) y);
+        gv->setVertexSize((int) node.getId(), 10);
     }
 
     /* show edges
@@ -79,14 +79,14 @@ void showGraphViewer(int opt, int gas) {
 int main() {
     int opt, gas;
 
-    /* title */
+    /* title*/
     cout << "Welcome to the Parking Spot Searcher!" << endl;
 
-    /* ask user of options */
+    /* ask user of options*/
     opt = chooseNearestOrCheapest();
     gas = chooseGasStation();
 
-    /* load graph */
+    /* load graph*/
     cout << "Showing map..." << endl;
     showGraphViewer(opt, gas);
 

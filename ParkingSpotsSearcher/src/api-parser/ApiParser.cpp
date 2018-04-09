@@ -4,11 +4,11 @@
 
 #include <fstream>
 #include <iostream>
-#include <utils/StringSplitter.h>
+#include "StringSplitter.h"
 #include <vector>
-#include <model/Node.h>
-#include <model/Road.h>
-#include <model/Link.h>
+#include "Node.h"
+#include "Road.h"
+#include "Link.h"
 #include "ApiParser.h"
 
 using namespace std;
@@ -22,7 +22,8 @@ vector<Node> ApiParser::readNodes(string nodeFilePath) {
         string line;
 
         while (getline(nodeFile, line)) {
-            int id, latitude_in_degrees, longitude_in_degrees, longitude_in_radians, latitude_in_radians;
+            long id;
+            float latitude_in_degrees, longitude_in_degrees, longitude_in_radians, latitude_in_radians;
 
             vector<string> split = StringSplitter::split(line, ';');
 
@@ -33,11 +34,11 @@ vector<Node> ApiParser::readNodes(string nodeFilePath) {
                 return nodes;
             }
 
-            id = stoi(split[0]);
-            latitude_in_degrees = stoi(split[1]);
-            longitude_in_degrees = stoi(split[2]);
-            longitude_in_radians = stoi(split[3]);
-            latitude_in_radians = stoi(split[4]);
+            id = stol(split[0]);
+            latitude_in_degrees = stof(split[1]);
+            longitude_in_degrees = stof(split[2]);
+            longitude_in_radians = stof(split[3]);
+            latitude_in_radians = stof(split[4]);
 
             //  return the vector<nodes> with the parsed attributes
             Node node = Node(id, latitude_in_degrees, longitude_in_degrees, latitude_in_radians, longitude_in_radians);
@@ -105,21 +106,22 @@ vector<Link> ApiParser::readNodeLinks(const string nodesLinksPath) {
     if (nodeFile.is_open()) {
         string line;
 
-        int road_id, node1_id, node2_id;
-
-        vector<string> split = StringSplitter::split(line, ';');
+        long road_id, node1_id, node2_id;
 
         // check line attributes
         while (getline(nodeFile, line)) {
+
+            vector<string> split = StringSplitter::split(line, ';');
+
             if (split.size() != 3) {
                 cout << "Node links file parsing error: invalid line: \n\t" << line << endl;
                 nodeFile.close();
                 return links;
             }
 
-            road_id = stoi(split[0]);
-            node1_id = stoi(split[1]);
-            node2_id = stoi(split[2]);
+            road_id = stol(split[0]);
+            node1_id = stol(split[1]);
+            node2_id = stol(split[2]);
 
             // return the vector<links> with the parsed attributes
             Link link = Link(road_id, node1_id, node2_id);
