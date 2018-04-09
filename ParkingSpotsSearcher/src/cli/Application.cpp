@@ -42,13 +42,13 @@ int chooseNearestOrCheapest() {
 void showGraphViewer(int opt, int gas) {
 
     /* show graph */
-    auto *gv = new GraphViewer(800, 800, false);
+    auto *gv = new GraphViewer(400, 400, false);
 
-    gv->createWindow(800, 800);
+    gv->createWindow(400, 400);
 
     gv->defineEdgeColor(BLACK);
     gv->defineVertexColor(YELLOW);
-    gv->setBackground("../maps/map.png");
+    gv->setBackground("map.png");
 
     /* load osm */
     vector<Node> nodes = ApiParser::readNodes("../maps/A.txt");

@@ -12,11 +12,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dafce8a-3b1d-40cb-a286-b535b3900433" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GraphViewerController.jar" beforeDir="false" afterPath="$PROJECT_DIR$/GraphViewerController.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api-parser/ApiParser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/api-parser/ApiParser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph-viewer/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/graph-viewer/connection.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph-viewer/connection.h" beforeDir="false" afterPath="$PROJECT_DIR$/graph-viewer/connection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph-viewer/edgetype.h" beforeDir="false" afterPath="$PROJECT_DIR$/graph-viewer/edgetype.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph-viewer/graphviewer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/graph-viewer/graphviewer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph-viewer/graphviewer.h" beforeDir="false" afterPath="$PROJECT_DIR$/graph-viewer/graphviewer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cli/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/cli/Application.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/Test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/Test.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,26 +32,57 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ApiParser.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api-parser/ApiParser.cpp">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="connection.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graph-viewer/connection.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="114" selection-start-line="114" selection-end-line="114" />
+            <state relative-caret-position="-634">
+              <caret line="8" column="16" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="16" />
               <folding>
-                <element signature="e#41#59#0" expanded="true" />
+                <element signature="e#943#1759#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Application.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cli/Application.cpp">
+      <file leaf-file-name="connection.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graph-viewer/connection.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+            <state relative-caret-position="236">
+              <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
               <folding>
-                <element signature="e#41#65#0" expanded="true" />
+                <element signature="e#117#139#0" expanded="true" />
+                <element signature="e#212#233#0" expanded="true" />
+                <element signature="e#455#467#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edgetype.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graph-viewer/edgetype.h">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="graphviewer.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/graph-viewer/graphviewer.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+              <folding>
+                <element signature="e#1075#2149#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="graphviewer.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graph-viewer/graphviewer.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+              <folding>
+                <element signature="e#94#136#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -65,6 +100,10 @@
         <option value="$PROJECT_DIR$/src/api-parser/ApiParser.cpp" />
         <option value="$PROJECT_DIR$/src/tests/Test.cpp" />
         <option value="$PROJECT_DIR$/src/cli/Application.cpp" />
+        <option value="$PROJECT_DIR$/graph-viewer/connection.cpp" />
+        <option value="$PROJECT_DIR$/graph-viewer/connection.h" />
+        <option value="$PROJECT_DIR$/graph-viewer/graphviewer.h" />
+        <option value="$PROJECT_DIR$/graph-viewer/graphviewer.cpp" />
       </list>
     </option>
   </component>
@@ -74,11 +113,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="213" />
-    <option name="y" value="91" />
-    <option name="width" value="1390" />
-    <option name="height" value="1054" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -86,6 +124,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -96,12 +135,23 @@
             <path>
               <item name="ParkingSpotsSearcher" type="b2602c69:ProjectViewProjectNode" />
               <item name="ParkingSpotsSearcher" type="462c0819:PsiDirectoryNode" />
+              <item name="graph-viewer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ParkingSpotsSearcher" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ParkingSpotsSearcher" type="462c0819:PsiDirectoryNode" />
               <item name="maps" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ParkingSpotsSearcher" type="b2602c69:ProjectViewProjectNode" />
               <item name="ParkingSpotsSearcher" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ParkingSpotsSearcher" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ParkingSpotsSearcher" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ParkingSpotsSearcher" type="b2602c69:ProjectViewProjectNode" />
@@ -127,11 +177,16 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ParkingSpotsSearcher" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ParkingSpotsSearcher" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -140,6 +195,9 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -175,34 +233,35 @@
       <option name="presentableId" value="Default" />
       <updated>1523284368300</updated>
       <workItem from="1523284371439" duration="564000" />
+      <workItem from="1523285328894" duration="1122000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="564000" />
+    <option name="totallyTimeSpent" value="1686000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="42" width="2560" height="1448" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="810" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" weight="0.32893652" />
-      <window_info anchor="bottom" id="CMake" weight="0.3294893" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22835945" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32880434" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.3294893" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32880434" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.22826087" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,39 +271,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maps/A.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api-parser/ApiParser.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Node.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/Test.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="186" column="3" selection-start-line="186" selection-start-column="3" selection-end-line="186" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api-parser/ApiParser.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
+        <state relative-caret-position="1710">
           <caret line="114" selection-start-line="114" selection-end-line="114" />
           <folding>
             <element signature="e#41#59#0" expanded="true" />
@@ -258,6 +287,94 @@
           <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
           <folding>
             <element signature="e#41#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api-parser/ApiParser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/Test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="186" column="3" selection-start-line="186" selection-start-column="3" selection-end-line="186" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api-parser/ApiParser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
+          <folding>
+            <element signature="e#41#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cli/Application.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#41#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph-viewer/connection.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-634">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="16" />
+          <folding>
+            <element signature="e#943#1759#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph-viewer/connection.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <folding>
+            <element signature="e#117#139#0" expanded="true" />
+            <element signature="e#212#233#0" expanded="true" />
+            <element signature="e#455#467#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph-viewer/edgetype.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph-viewer/graphviewer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+          <folding>
+            <element signature="e#94#136#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph-viewer/graphviewer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+          <folding>
+            <element signature="e#1075#2149#0" expanded="true" />
           </folding>
         </state>
       </provider>

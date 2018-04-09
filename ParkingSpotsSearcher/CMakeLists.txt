@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
 project(ParkingSpotsSearcher)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 
 include_directories(cute)
+include_directories(graph-viewer)
 include_directories(src/algorithms)
 include_directories(src/api-parser)
-include_directories(graph-viewer)
+include_directories(src/cli)
 include_directories(src/model)
 include_directories(src/utils)
 
@@ -40,6 +41,11 @@ add_executable(ParkingSpotsSearcher
         cute/ide_listener.h
         cute/ostream_listener.h
         cute/xml_listener.h
+        graph-viewer/connection.cpp
+        graph-viewer/connection.h
+        graph-viewer/edgetype.h
+        graph-viewer/graphviewer.cpp
+        graph-viewer/graphviewer.h
         src/algorithms/Dijkstra.h
         src/algorithms/Edge.h
         src/algorithms/Graph.h
@@ -47,11 +53,8 @@ add_executable(ParkingSpotsSearcher
         src/algorithms/Vertex.h
         src/api-parser/ApiParser.cpp
         src/api-parser/ApiParser.h
-        graph-viewer/connection.cpp
-        graph-viewer/connection.h
-        graph-viewer/edgetype.h
-        graph-viewer/graphviewer.cpp
-        graph-viewer/graphviewer.h
+        src/cli/Application.cpp
+        src/cli/Application.h
         src/model/Link.cpp
         src/model/Link.h
         src/model/Node.cpp
@@ -59,7 +62,8 @@ add_executable(ParkingSpotsSearcher
         src/model/Road.cpp
         src/model/Road.h
         src/tests/Test.cpp
+        src/utils/LatLongConverter.cpp
+        src/utils/LatLongConverter.h
         src/utils/MutablePriorityQueue.h
         src/utils/StringSplitter.cpp
-        src/utils/StringSplitter.h
-        GraphViewerController.jar src/cli/Application.cpp src/cli/Application.h src/cli/Application.cpp src/cli/Application.h src/utils/LatLongConverter.cpp src/utils/LatLongConverter.h)
+        src/utils/StringSplitter.h)

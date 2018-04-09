@@ -5,14 +5,13 @@
 #include <cstdlib>
 #include <cstring>
 
-#ifdef linux
+#ifdef __APPLE__
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netdb.h>
 #else
 #include <winsock2.h>
-#define NO_ERROR 0
 #endif
 
 #include <string>
@@ -27,7 +26,7 @@ class Connection {
   bool sendMsg(string msg);
   string readLine();
  private: 
-#ifdef linux
+#ifdef __APPLE__
   int sock;
 #else
   SOCKET sock;
