@@ -1,5 +1,4 @@
 #include "graphviewer.h"
-#include <string>
 #include<sstream>
 
 #ifdef __APPLE__

@@ -54,7 +54,6 @@ add_executable(ParkingSpotsSearcher
         src/api-parser/ApiParser.cpp
         src/api-parser/ApiParser.h
         src/cli/Application.cpp
-        src/cli/Application.h
         src/model/Link.cpp
         src/model/Link.h
         src/model/Node.cpp

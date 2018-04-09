@@ -2,7 +2,6 @@
 // Created by mateus on 06/04/18.
 //
 
-#include "Application.h"
 #include "../view/MapView.h"
 #include <iostream>
 #include <graphviewer.h>
@@ -67,6 +66,9 @@ void showGraphViewer(int opt, int gas) {
        mapView->update();
     }
 
+    mapView->close();
+
+    free(mapView);
     */
 
 }

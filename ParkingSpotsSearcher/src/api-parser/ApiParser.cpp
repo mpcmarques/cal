@@ -5,7 +5,6 @@
 #include <fstream>
 #include <iostream>
 #include "StringSplitter.h"
-#include <vector>
 #include <map>
 #include "Node.h"
 #include "Road.h"
@@ -51,6 +50,8 @@ map<int, Node> ApiParser::readNodes(string nodeFilePath) {
 
     } else {
         cout << "Unable to load nodes file " << nodeFilePath << endl;
+        nodeFile.close();
+        return nodes;
     }
 }
 
@@ -79,10 +80,7 @@ map<int, Road> ApiParser::readRoads(const string roadsFilePath) {
 
             road_id = stoi(split[0]);
             road_name = split[1];
-            if (split[2] == "true")
-                is_two_way = true;
-            else if (split[2] == "false")
-                is_two_way = false;
+            is_two_way = split[2] == "true";
 
             // return the vector<edges> with the parsed attributes
             Road road = Road(road_id, road_name, is_two_way);
@@ -95,6 +93,8 @@ map<int, Road> ApiParser::readRoads(const string roadsFilePath) {
 
     } else {
         cout << "Unable to load roads file " << roadsFilePath << endl;
+        nodeFile.close();
+        return roads;
     }
 }
 
@@ -135,5 +135,7 @@ vector<Link> ApiParser::readNodeLinks(const string nodesLinksPath) {
 
     } else {
         cout << "Unable to load nodes links file " << nodesLinksPath << endl;
+        nodeFile.close();
+        return links;
     }
 }
