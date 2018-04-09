@@ -19,18 +19,18 @@ class ParkingSpotSearcher {
 	Graph<V, E> graph { };
 
 public:
-	bool addVertex(int id, VertexType type, V info);
+	bool addVertex(int id, VertexType type, V info, double cost = 0);
 	bool addEdge(int sourceId, int destId, double weight, E info);
 	std::vector<V> findShortestPath(int sourceId, int destId, int maxDistance,
 			bool visitGasStation = false);
-	std::string printShortestPath(int sourceId, int destId);
-	std::string printShortestPathWithGasStation(int sourceId, int destId);
+	std::vector<V> findCheapestPath(int sourceId, int destId, int maxDistance,
+				bool visitGasStation = false);
 };
 
 
 template<class V, class E>
-bool ParkingSpotSearcher<V,E>::addVertex(int id, VertexType type, V info) {
-	return graph.addVertex(id, type, info);
+bool ParkingSpotSearcher<V,E>::addVertex(int id, VertexType type, V info, double cost) {
+	return graph.addVertex(id, type, info, cost);
 }
 
 template<class V, class E>
@@ -39,23 +39,11 @@ bool ParkingSpotSearcher<V,E>::addEdge(int sourceId, int destId, double weight, 
 }
 
 template<class V, class E>
-std::string ParkingSpotSearcher<V,E>::printShortestPath(int sourceId,
-		int destId) {
-	std::vector<V> path = findShortestPath(sourceId, destId, 100, false);
-
-	std::stringstream ss;
-	for (unsigned int i = 0; i < path.size(); i++)
-		ss << path[i] << " ";
-
-	return ss.str();
-}
-
-template<class V, class E>
 std::vector<V> ParkingSpotSearcher<V,E>::findShortestPath(int sourceId,
 		int destId, int maxDistance, bool visitGasStation) {
 	std::vector<Vertex<V, E>*> set = visitGasStation?graph.getThreeLayeredVertexSet(destId,
-			maxDistance):graph.getTwoLayeredVertexSet(destId,
-			maxDistance);
+			maxDistance, false):graph.getTwoLayeredVertexSet(destId,
+			maxDistance, false);
 
 	Dijkstra<V,E> dijkstra { set };
 	dijkstra.compute(sourceId);
@@ -64,15 +52,16 @@ std::vector<V> ParkingSpotSearcher<V,E>::findShortestPath(int sourceId,
 }
 
 template<class V, class E>
-std::string ParkingSpotSearcher<V,E>::printShortestPathWithGasStation(
-		int sourceId, int destId) {
+std::vector<V> ParkingSpotSearcher<V,E>::findCheapestPath(int sourceId,
+		int destId, int maxDistance, bool visitGasStation) {
+	std::vector<Vertex<V, E>*> set = visitGasStation?graph.getThreeLayeredVertexSet(destId,
+			maxDistance, true):graph.getTwoLayeredVertexSet(destId,
+			maxDistance, true);
 
-	std::vector<V> path = findShortestPath(sourceId, destId, 100, true);
+	Dijkstra<V,E> dijkstra { set };
+	dijkstra.compute(sourceId);
+	return dijkstra.getPath(sourceId, destId);
 
-	std::stringstream ss;
-	for (unsigned int i = 0; i < path.size(); i++)
-		ss << path[i] << " ";
-	return ss.str();
 }
 
 #endif /* SRC_PARKINGSPOTSEARCHER_H_ */

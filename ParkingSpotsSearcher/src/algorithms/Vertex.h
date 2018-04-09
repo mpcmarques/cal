@@ -27,19 +27,20 @@ template<class V, class E> class Vertex {
 	VertexType type;
 	int queueIndex = 0;        // required by MutablePriorityQueue
 	double dist = 0;
+	double cost = 0;
 	Vertex<V, E> *path = nullptr;
 
 public:
 
-	Vertex<V, E>(int id, VertexType type, V info) :
-			id { id }, type { type }, info { info } {
+	Vertex<V, E>(int id, VertexType type, V info, double cost) :
+			id { id }, type { type }, info { info }, cost{cost} {
 	}
 
 	Vertex<V, E>(Vertex<V, E> *vertex) :
 			id { vertex->id }, type { vertex->type }, info { vertex->info } {
 	}
 
-	void addEdge(Vertex<V, E> *destination, double weight, E info, double cost) {
+	void addEdge(Vertex<V, E> *destination, double weight, E info, double cost = 0) {
 		edges.push_back(new Edge<V, E> { destination, weight, info, cost });
 	}
 
