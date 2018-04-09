@@ -66,4 +66,4 @@ add_executable(ParkingSpotsSearcher
         src/utils/LatLongConverter.h
         src/utils/MutablePriorityQueue.h
         src/utils/StringSplitter.cpp
-        src/utils/StringSplitter.h src/model/Map.cpp src/model/Map.h)
+        src/utils/StringSplitter.h src/model/Map.cpp src/model/Map.h src/view/MapView.cpp src/view/MapView.h)

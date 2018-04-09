@@ -47,6 +47,7 @@ void showGraphViewer(int opt, int gas) {
 
     gv->defineVertexSize(5);
     gv->setBackground("../maps/map.png");
+    gv->defineEdgeCurved(false);
     gv->createWindow(800, 800);
 
     gv->defineEdgeColor(BLACK);
@@ -84,6 +85,8 @@ void showGraphViewer(int opt, int gas) {
             gv->addEdge(i, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::UNDIRECTED);
         else
             gv->addEdge(i, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::DIRECTED);
+
+        gv->setEdgeThickness(i, 1);
 
     }
 
