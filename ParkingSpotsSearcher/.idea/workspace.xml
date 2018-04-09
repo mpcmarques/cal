@@ -12,9 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1dafce8a-3b1d-40cb-a286-b535b3900433" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GraphViewerController.jar" beforeDir="false" afterPath="$PROJECT_DIR$/GraphViewerController.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/images.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/images.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/map.png" beforeDir="false" afterPath="$PROJECT_DIR$/map.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api-parser/ApiParser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/api-parser/ApiParser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api-parser/ApiParser.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/api-parser/ApiParser.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cli/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/cli/Application.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/Test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/Test.cpp" afterDir="false" />
     </list>
@@ -29,13 +31,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ApiParser.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api-parser/ApiParser.cpp">
+      <file leaf-file-name="Test.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tests/Test.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="114" selection-start-line="114" selection-end-line="114" />
+            <state relative-caret-position="290">
+              <caret line="151" column="4" selection-start-line="151" selection-start-column="4" selection-end-line="151" selection-end-column="4" />
               <folding>
-                <element signature="e#41#59#0" expanded="true" />
+                <element signature="e#0#17#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -44,8 +46,8 @@
       <file leaf-file-name="Application.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cli/Application.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+            <state relative-caret-position="204">
+              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
               <folding>
                 <element signature="e#41#65#0" expanded="true" />
               </folding>
@@ -64,6 +66,7 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/api-parser/ApiParser.cpp" />
         <option value="$PROJECT_DIR$/src/tests/Test.cpp" />
+        <option value="$PROJECT_DIR$/src/api-parser/ApiParser.h" />
         <option value="$PROJECT_DIR$/src/cli/Application.cpp" />
       </list>
     </option>
@@ -107,19 +110,7 @@
               <item name="ParkingSpotsSearcher" type="b2602c69:ProjectViewProjectNode" />
               <item name="ParkingSpotsSearcher" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="api-parser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParkingSpotsSearcher" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParkingSpotsSearcher" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="cli" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParkingSpotsSearcher" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ParkingSpotsSearcher" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ParkingSpotsSearcher" type="b2602c69:ProjectViewProjectNode" />
@@ -140,6 +131,9 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -174,12 +168,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523284368300</updated>
-      <workItem from="1523284371439" duration="564000" />
+      <workItem from="1523284371439" duration="3267000" />
     </task>
+    <task id="LOCAL-00001" summary="added roads :bug: :sparkles:">
+      <created>1523285379730</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1523285379730</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="564000" />
+    <option name="totallyTimeSpent" value="3267000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="42" width="2560" height="1448" extended-state="6" />
@@ -190,7 +192,7 @@
       <window_info anchor="bottom" id="Messages" weight="0.32893652" />
       <window_info anchor="bottom" id="CMake" weight="0.3294893" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22835945" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.44352844" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" />
@@ -211,51 +213,70 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added roads :bug: :sparkles:" />
+    <option name="LAST_COMMIT_MESSAGE" value="added roads :bug: :sparkles:" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maps/A.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api-parser/ApiParser.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Node.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/Test.cpp">
+    <entry file="file://$PROJECT_DIR$/maps/A.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="186" column="3" selection-start-line="186" selection-start-column="3" selection-end-line="186" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-36139" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/maps/B.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/maps/C.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api-parser/ApiParser.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="114" selection-start-line="114" selection-end-line="114" />
+        <state relative-caret-position="-696">
+          <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
           <folding>
             <element signature="e#41#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/api-parser/ApiParser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding>
+            <element signature="e#124#141#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/Test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="151" column="4" selection-start-line="151" selection-start-column="4" selection-end-line="151" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1276">
+          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/cli/Application.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+        <state relative-caret-position="204">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
           <folding>
             <element signature="e#41#65#0" expanded="true" />
           </folding>
