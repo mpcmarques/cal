@@ -8,6 +8,7 @@
 #include <string>
 
 class Road {
+private:
     std::string name;
     int id;
     bool is_two_way;
@@ -15,6 +16,11 @@ class Road {
 public:
     Road(int id, std::string road_name, bool is_two_way);
 
+    const std::string &getName() const;
+
+    int getId() const;
+
+    bool isIs_two_way() const;
 };
 
 
