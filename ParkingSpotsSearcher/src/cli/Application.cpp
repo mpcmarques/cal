@@ -42,13 +42,16 @@ int chooseNearestOrCheapest() {
 void showGraphViewer(int opt, int gas) {
 
     /* show graph */
-    auto *gv = new GraphViewer(400, 400, false);
+    auto *gv = new GraphViewer(800, 800, false);
 
-    gv->createWindow(400, 400);
+
+    gv->defineVertexSize(5);
+    gv->setBackground("../maps/map.png");
+    gv->createWindow(800, 800);
 
     gv->defineEdgeColor(BLACK);
     gv->defineVertexColor(YELLOW);
-    gv->setBackground("map.png");
+
 
     /* load osm */
     vector<Node> nodes = ApiParser::readNodes("../maps/A.txt");
@@ -64,8 +67,7 @@ void showGraphViewer(int opt, int gas) {
         double x = LatLongConverter::convert(node.getLongitute_degrees(), MIN_LONGITUDE, MAX_LONGITUDE, 800);
         double y = LatLongConverter::convert(node.getLatitude_degrees(),MIN_LATITUDE, MAX_LATITUDE, 800);
 
-        gv->addNode((int) node.getId(), (int) x, (int) y);
-        gv->setVertexSize((int) node.getId(), 10);
+        gv->addNode((int) node.getId(), (int) y, (int) x);
     }
 
     /* show edges
