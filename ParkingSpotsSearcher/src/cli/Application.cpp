@@ -65,8 +65,8 @@ void showGraphViewer(int opt, int gas) {
 
     for (auto pair: nodes) {
         Node node = pair.second;
-        double x = LatLongConverter::convert(node.getLongitute_degrees(), MIN_LONGITUDE, MAX_LONGITUDE, 800);
-        double y = LatLongConverter::convert(node.getLatitude_degrees(), MIN_LATITUDE, MAX_LATITUDE, 800);
+        double x = LatLongConverter::convert(node.getLongitute_degrees(), MAX_LONGITUDE, MIN_LONGITUDE, 800);
+        double y = LatLongConverter::convert(node.getLatitude_degrees(), MAX_LATITUDE, MIN_LATITUDE, 800);
 
         gv->addNode((int) node.getId(), (int) x, (int) y);
     }
