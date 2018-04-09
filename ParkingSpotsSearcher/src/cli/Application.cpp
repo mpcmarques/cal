@@ -58,17 +58,19 @@ void showGraphViewer(int opt, int gas) {
     map<int, Road> roads = ApiParser::readRoads("../maps/B.txt");
 
     /* show nodes */
-    double MAX_LATITUDE = 41.1805;
-    double MIN_LATITUDE = 41.1696;
-    double MIN_LONGITUDE = -8.5832;
-    double MAX_LONGITUDE = -8.5983;
+    double drift = -0.00258;
+    double MAX_LATITUDE = 41.1805 + 0.0062;
+    double MIN_LATITUDE = 41.1696 + 0.0062;
+    double MIN_LONGITUDE = -8.5832 + drift;
+    double MAX_LONGITUDE = -8.5983 + drift;
+    double mul = 0.8;
 
     for (auto pair: nodes) {
         Node node = pair.second;
         double x = LatLongConverter::convert(node.getLongitute_degrees(), MAX_LONGITUDE, MIN_LONGITUDE, 800);
         double y = LatLongConverter::convert(node.getLatitude_degrees(), MAX_LATITUDE, MIN_LATITUDE, 800);
 
-        gv->addNode((int) node.getId(), (int) x, (int) y);
+        gv->addNode((int) node.getId(), (int) x*0.89, (int) y*0.85);
     }
 
     /* show edges */
