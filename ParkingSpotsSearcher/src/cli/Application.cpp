@@ -10,6 +10,7 @@
 #include <Edge.h>
 #include <LatLongConverter.h>
 #include <Map.h>
+#include <ParkingMeter.h>
 
 using namespace std;
 
@@ -54,9 +55,15 @@ void showGraphViewer(int opt, int gas) {
 
     /* add parking spots to the nodes */
     nodes.insert(pair<int, Node *>(2, new ParkingGarage(2, 41.17823, (float) -8.59394)));
-    nodes.insert(pair<int, Node *>(3, new ParkingGarage(3, 41.18016, (float) -8.60343)));
+    nodes.insert(pair<int, Node *>(3, new ParkingGarage(3, 41.1749, (float) -8.5883)));
     nodes.insert(pair<int, Node *>(4, new ParkingGarage(4, 41.17602, (float) -8.59958)));
     nodes.insert(pair<int, Node *>(5, new ParkingGarage(5, 41.1763, (float) -8.59586)));
+
+    /* add parking lanes to the nodes */
+    nodes.insert(pair<int, Node *>(6, new ParkingMeter(6, 41.1763, (float) -8.59586)));
+    nodes.insert(pair<int, Node *>(7, new ParkingMeter(7, 41.17899, (float) -8.6006)));
+    nodes.insert(pair<int, Node *>(8, new ParkingMeter(8, 41.17707, (float) -8.59228)));
+    nodes.insert(pair<int, Node *>(9, new ParkingMeter(9, 41.17655, (float) -8.58992)));
 
     /* create map model */
     Map *map = new Map(800, nodes, roads, links);

@@ -25,7 +25,7 @@ MapView::MapView(Map *map) {
     this->map = map;
 }
 
-void MapView::addNodeIntoView(const Node node) const{
+void MapView::addNodeIntoView(const Node node) const {
     /* fix window position */
     double x = LatLongConverter::convert(node.getLongitute(), MAX_LONGITUDE, MIN_LONGITUDE,
                                          this->map->getMapSize());
@@ -36,9 +36,9 @@ void MapView::addNodeIntoView(const Node node) const{
     gv->addNode((int) node.getId(), (int) (x * 0.89), (int) (y * 0.85));
 }
 
-void MapView::add(Node *node) const{
+void MapView::add(Node *node) const {
 
-    switch(node->getType()){
+    switch (node->getType()) {
         case GAS_STATION:
 
             gv->setVertexIcon((int) node->getId(), "../images/gas_station.png");
@@ -52,6 +52,12 @@ void MapView::add(Node *node) const{
             gv->setVertexSize((int) node->getId(), 30);
 
             break;
+        case PARKING_LANE:
+
+            cout << "parking lane" << endl;
+            gv->setVertexIcon((int) node->getId(), "../images/parking_meter.png");
+            gv->setVertexSize((int) node->getId(), 20);
+
         case STREET:
             break;
         default:

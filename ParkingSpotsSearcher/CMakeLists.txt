@@ -65,4 +65,4 @@ add_executable(ParkingSpotsSearcher
         src/utils/LatLongConverter.h
         src/utils/MutablePriorityQueue.h
         src/utils/StringSplitter.cpp
-        src/utils/StringSplitter.h src/model/Map.cpp src/model/Map.h src/view/MapView.cpp src/view/MapView.h src/model/GasStation.cpp src/model/GasStation.h src/model/ParkingGarage.cpp src/model/ParkingGarage.cpp src/model/ParkingGarage.h src/model/StreetNode.cpp src/model/StreetNode.h)
+        src/utils/StringSplitter.h src/model/Map.cpp src/model/Map.h src/view/MapView.cpp src/view/MapView.h src/model/GasStation.cpp src/model/GasStation.h src/model/ParkingGarage.cpp src/model/ParkingGarage.cpp src/model/ParkingGarage.h src/model/StreetNode.cpp src/model/StreetNode.h src/model/ParkingMeter.cpp src/model/ParkingMeter.h)
