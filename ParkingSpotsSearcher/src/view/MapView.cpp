@@ -25,7 +25,7 @@ MapView::MapView(Map *map) {
     this->map = map;
 }
 
-void MapView::add(Node node){
+void MapView::addNodeIntoView(const Node node) const{
     /* fix window position */
     double x = LatLongConverter::convert(node.getLongitute(), MAX_LONGITUDE, MIN_LONGITUDE,
                                          this->map->getMapSize());
@@ -36,14 +36,40 @@ void MapView::add(Node node){
     gv->addNode((int) node.getId(), (int) (x * 0.89), (int) (y * 0.85));
 }
 
+void MapView::add(Node *node) const{
+
+    cout << node->getType() << endl;
+
+    switch(node->getType()){
+        case GAS_STATION:
+
+            gv->setVertexIcon((int) node->getId(), "../images/gas_station.png");
+            gv->setVertexLabel((int) node->getId(), "Gas Station");
+            gv->setVertexSize((int) node->getId(), 30);
+
+            break;
+        case PARKING_GARAGE:
+            gv->setVertexIcon((int) node->getId(), "../images/parking.png");
+            gv->setVertexLabel((int) node->getId(), "Parking Garage");
+            gv->setVertexSize((int) node->getId(), 30);
+
+            break;
+        case STREET:
+            break;
+        default:
+            break;
+    }
+
+    this->addNodeIntoView(*node);
+}
+
 void MapView::updateView() {
 
     if (gv != nullptr) {
 
         /* show nodes */
-        for (auto pair: this->map->getNodes()) {
-            Node node = pair.second;
-            this->add(node);
+        for (pair<int, Node *> pair: this->map->getNodes()) {
+            this->add(pair.second);
         }
 
         /* show edges */
@@ -58,18 +84,9 @@ void MapView::updateView() {
             else
                 gv->addEdge(i, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::DIRECTED);
 
-            gv->setEdgeThickness(i, 1);
+            //gv->setEdgeThickness(i, 1);
+            gv->setEdgeColor(i, GRAY);
 
-        }
-
-        /* show gas stations */
-        for (auto pair: this->map->getGasStations()) {
-            auto gasStation = pair.second;
-            this->add(gasStation);
-
-            gv->setVertexIcon((int) gasStation.getId(), "../images/gas_station.png");
-            gv->setVertexLabel((int) gasStation.getId(), "Gas Station");
-            gv->setVertexSize((int) gasStation.getId(), 30);
         }
 
         this->gv->rearrange();
@@ -77,6 +94,7 @@ void MapView::updateView() {
 }
 
 void MapView::close() {
+    // TODO: free all nodes memory in map model
     free(this->map);
     this->gv->closeWindow();
     free(this->gv);

@@ -18,25 +18,20 @@ class Map {
 
 private:
     int mapSize;
-    std::map<int, Node> nodes;
+    std::map<int, Node *> nodes;
     std::map<int, Road> roads;
-    std::map<int, GasStation> gasStations;
     std::vector<Link> links;
 
 public:
-    Map(int mapSize, std::map<int, Node> nodes, std::map<int,Road> roads, std::vector<Link> links);
+    Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, std::vector<Link> links);
 
-    void setNodes(const std::map<int, Node> &nodes);
+    void setNodes(const std::map<int, Node *> nodes);
 
     void setRoads(const std::map<int, Road> &roads);
 
     void setLinks(const std::vector<Link, std::allocator<Link>> &links);
 
-    void addGasStation(const GasStation station);
-
-    const std::map<int, Node> &getNodes() const;
-
-    const std::map<int, GasStation> &getGasStations() const;
+    const std::map<int, Node *> &getNodes() const;
 
     const std::map<int, Road> &getRoads() const;
 

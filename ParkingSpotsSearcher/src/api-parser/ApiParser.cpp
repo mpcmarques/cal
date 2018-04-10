@@ -6,6 +6,7 @@
 #include <iostream>
 #include "StringSplitter.h"
 #include <map>
+#include <StreetNode.h>
 #include "Node.h"
 #include "Road.h"
 #include "Link.h"
@@ -13,8 +14,8 @@
 
 using namespace std;
 
-map<int, Node> ApiParser::readNodes(string nodeFilePath) {
-    map<int, Node> nodes;
+map<int, Node *> ApiParser::readNodes(string nodeFilePath) {
+    map<int, Node *> nodes;
 
     ifstream nodeFile(nodeFilePath);
 
@@ -41,8 +42,8 @@ map<int, Node> ApiParser::readNodes(string nodeFilePath) {
             latitude_in_radians = stof(split[4]);
 
             //  return the vector<nodes> with the parsed attributes
-            Node node = Node(id, latitude_in_degrees, longitude_in_degrees);
-            nodes.insert(pair<int,Node>(id, node));
+            StreetNode *node = new StreetNode(id, latitude_in_degrees, longitude_in_degrees);
+            nodes.insert(pair<int, Node *>(id, node));
         }
 
         nodeFile.close();
@@ -84,7 +85,7 @@ map<int, Road> ApiParser::readRoads(const string roadsFilePath) {
 
             // return the vector<edges> with the parsed attributes
             Road road = Road(road_id, road_name, is_two_way);
-            roads.insert(pair<int,Road>(road_id, road));
+            roads.insert(pair<int, Road>(road_id, road));
         }
 
         nodeFile.close();

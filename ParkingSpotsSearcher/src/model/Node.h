@@ -5,6 +5,11 @@
 #ifndef PARKINGSPOTSSEARCHER_NODE_H
 #define PARKINGSPOTSSEARCHER_NODE_H
 
+/* abstract class */
+
+enum NodeType {
+    PARKING_GARAGE, STREET, GAS_STATION, PARKING_LANE
+};
 
 class Node {
 
@@ -21,7 +26,8 @@ public:
     float getLatitude() const;
 
     float getLongitute() const;
-};
 
+    virtual NodeType getType() const = 0;
+};
 
 #endif //PARKINGSPOTSSEARCHER_NODE_H

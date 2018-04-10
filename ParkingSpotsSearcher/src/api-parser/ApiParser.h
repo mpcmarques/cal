@@ -22,7 +22,7 @@ public:
      * Read nodes from a node file(A).
      * @param nodesFilePath File full path.
      */
-    static std::map<int, Node> readNodes(std::string nodesFilePath);
+    static std::map<int, Node *> readNodes(std::string nodesFilePath);
 
     /**
      * Read roads from a roads file (B).

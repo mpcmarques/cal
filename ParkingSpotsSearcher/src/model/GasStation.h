@@ -12,6 +12,7 @@ class GasStation : public Node {
 public:
     GasStation(long id, float latitude_degrees, float longitude_degrees);
 
+    NodeType  getType() const;
 };
 
 

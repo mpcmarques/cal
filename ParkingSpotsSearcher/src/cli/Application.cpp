@@ -43,16 +43,25 @@ int chooseNearestOrCheapest() {
 void showGraphViewer(int opt, int gas) {
 
     /* load osm */
-    map<int, Node> nodes = ApiParser::readNodes("../maps/A.txt");
+    map<int, Node *> nodes = ApiParser::readNodes("../maps/A.txt");
     vector<Link> links = ApiParser::readNodeLinks("../maps/C.txt");
     map<int, Road> roads = ApiParser::readRoads("../maps/B.txt");
 
+    /* add gas stations to the nodes */
+    nodes.insert(pair<int, Node *>(0, new GasStation(0, 41.17832, (float) -8.58288)));
+    nodes.insert(pair<int, Node *>(1, new GasStation(1, 41.17693, (float) -8.59989)));
+
+
+    /* add parking spots to the nodes */
+    nodes.insert(pair<int, Node *>(2, new ParkingGarage(2, 41.17823, (float) -8.59394)));
+    nodes.insert(pair<int, Node *>(3, new ParkingGarage(3, 41.18016, (float) -8.60343)));
+    nodes.insert(pair<int, Node *>(4, new ParkingGarage(4, 41.17602, (float) -8.59958)));
+    nodes.insert(pair<int, Node *>(5, new ParkingGarage(5, 41.1763, (float) -8.59586)));
+
+    /* create map model */
     Map *map = new Map(800, nodes, roads, links);
 
-    /* add gas stations to the map*/
-    map->addGasStation(GasStation(0, 41.17832, (float) -8.58288));
-    map->addGasStation(GasStation(1, 41.17693, (float) -8.59989));
-
+    /* create map view */
     MapView *mapView = new MapView(map);
 
     /* show map */

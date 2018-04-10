@@ -21,3 +21,4 @@ float Node::getLatitude() const {
 float Node::getLongitute() const {
     return longitute;
 }
+

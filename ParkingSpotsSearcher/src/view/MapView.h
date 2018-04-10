@@ -8,6 +8,9 @@
 
 #include <graphviewer.h>
 #include "Map.h"
+#include <ParkingGarage.h>
+#include <StreetNode.h>
+#include <GasStation.h>
 
 class MapView {
 
@@ -22,6 +25,8 @@ private:
     double MIN_LONGITUDE = -8.5832 + drift;
     double MAX_LONGITUDE = -8.5983 + drift;
 
+    void addNodeIntoView(Node node) const;
+
 public:
     MapView(Map *map);
 
@@ -31,7 +36,7 @@ public:
 
     void updateView();
 
-    void add(Node node);
+    void add(Node *node) const;
 };
 
 

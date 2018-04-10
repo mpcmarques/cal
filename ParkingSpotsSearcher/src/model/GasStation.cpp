@@ -7,3 +7,7 @@
 GasStation::GasStation(long id, float latitude_degrees, float longitude_degrees) : Node(id, latitude_degrees, longitude_degrees) {
 
 }
+
+NodeType GasStation::getType() const {
+    return GAS_STATION;
+}
