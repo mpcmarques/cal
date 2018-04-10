@@ -40,7 +40,6 @@ void MapView::add(Node *node) const {
 
     switch (node->getType()) {
         case GAS_STATION:
-
             gv->setVertexIcon((int) node->getId(), "../images/gas_station.png");
             gv->setVertexLabel((int) node->getId(), "Gas Station");
             gv->setVertexSize((int) node->getId(), 30);
@@ -53,8 +52,6 @@ void MapView::add(Node *node) const {
 
             break;
         case PARKING_LANE:
-
-            cout << "parking lane" << endl;
             gv->setVertexIcon((int) node->getId(), "../images/parking_meter.png");
             gv->setVertexSize((int) node->getId(), 20);
 

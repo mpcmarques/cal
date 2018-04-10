@@ -41,7 +41,8 @@ int chooseNearestOrCheapest() {
     }
 }
 
-void showGraphViewer(int opt, int gas) {
+void start() {
+    cout << "Loading data from .txt files... " << endl;
 
     /* load osm */
     map<int, Node *> nodes = ApiParser::readNodes("../maps/A.txt");
@@ -49,17 +50,19 @@ void showGraphViewer(int opt, int gas) {
     map<int, Road> roads = ApiParser::readRoads("../maps/B.txt");
 
     /* add gas stations to the nodes */
+    cout << "Adding gas stations..." << endl;
     nodes.insert(pair<int, Node *>(0, new GasStation(0, 41.17832, (float) -8.58288)));
     nodes.insert(pair<int, Node *>(1, new GasStation(1, 41.17693, (float) -8.59989)));
 
-
     /* add parking spots to the nodes */
+    cout << "Adding parking spots..." << endl;
     nodes.insert(pair<int, Node *>(2, new ParkingGarage(2, 41.17823, (float) -8.59394)));
     nodes.insert(pair<int, Node *>(3, new ParkingGarage(3, 41.1749, (float) -8.5883)));
     nodes.insert(pair<int, Node *>(4, new ParkingGarage(4, 41.17602, (float) -8.59958)));
     nodes.insert(pair<int, Node *>(5, new ParkingGarage(5, 41.1763, (float) -8.59586)));
 
     /* add parking lanes to the nodes */
+    cout << "Adding parking lanes..." << endl;
     nodes.insert(pair<int, Node *>(6, new ParkingMeter(6, 41.1763, (float) -8.59586)));
     nodes.insert(pair<int, Node *>(7, new ParkingMeter(7, 41.17899, (float) -8.6006)));
     nodes.insert(pair<int, Node *>(8, new ParkingMeter(8, 41.17707, (float) -8.59228)));
@@ -72,41 +75,53 @@ void showGraphViewer(int opt, int gas) {
     MapView *mapView = new MapView(map);
 
     /* show map */
+    cout << "Opening Map View..." << endl;
+
     mapView->initialize();
 
-    /* update cycle based on actions ?
+    /* update cycle based on actions */
+    int running = true;
 
-    while(listening){
+    while(running){
+
+        int opt;
+        cout << "\nWhat do you want to do? " << endl;
+        cout << "-> 1 - search a parking spot" << endl;
+        cout << "-> 0 - exit program" << endl;
+        cin >> opt;
+
+        if (opt == 0){
+            running = false;
+        }
+
+        else if (opt == 1){
+            int near_or_cheap, gas;
+            near_or_cheap = chooseNearestOrCheapest();
+            gas = chooseGasStation();
+        }
+
         // change stuff in the map
 
        // update map model
-       mapView->setMap(map)
+       //mapView->setMap(map)
 
        // update map view
-       mapView->update();
+       //mapView->update();
     }
 
     mapView->close();
-
     free(mapView);
-    */
-
+    cout << "Application ended" << endl;
 }
 
 
 int main() {
-    int opt, gas;
 
     /* title */
     cout << "Welcome to the Parking Spot Searcher!" << endl;
 
-    /* ask user of options */
-    opt = chooseNearestOrCheapest();
-    gas = chooseGasStation();
-
-    /* load graph */
-    cout << "Showing map" << endl;
-    showGraphViewer(opt, gas);
+    cout << "Opening graph viewer..." << endl;
+    start();
 
     return 0;
 }
