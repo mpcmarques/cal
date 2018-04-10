@@ -38,8 +38,6 @@ void MapView::addNodeIntoView(const Node node) const{
 
 void MapView::add(Node *node) const{
 
-    cout << node->getType() << endl;
-
     switch(node->getType()){
         case GAS_STATION:
 
