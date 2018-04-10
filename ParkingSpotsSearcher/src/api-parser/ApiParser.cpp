@@ -114,7 +114,7 @@ vector<Link> ApiParser::readNodeLinks(const string nodesLinksPath) {
 
             vector<string> split = StringSplitter::split(line, ';');
 
-            if (split.size() != 3) {
+            if (split.size() != 3 && split.size() != 4) {
                 cout << "Node links file parsing error: invalid line: \n\t" << line << endl;
                 nodeFile.close();
                 return links;
