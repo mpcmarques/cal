@@ -13,6 +13,8 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <ParkingSpotSearcher.h>
+
 
 class Map {
 
@@ -21,7 +23,7 @@ private:
     std::map<int, Node *> nodes;
     std::map<int, Road> roads;
     std::vector<Link> links;
-
+    ParkingSpotSearcher<Node *, int> parkingSpotSearcher;
 public:
     Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, std::vector<Link> links);
 
@@ -30,6 +32,8 @@ public:
     void setRoads(const std::map<int, Road> &roads);
 
     void setLinks(const std::vector<Link, std::allocator<Link>> &links);
+
+    std::vector<Node *> findShortestPath(int sourceId, int destId, int maxDistance, bool visitGasStation);
 
     const std::map<int, Node *> &getNodes() const;
 
