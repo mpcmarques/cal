@@ -39,6 +39,8 @@ make
 ./ParkingSpotsSearcher
 ```
 
+## Project explanation
+
 ### Theme 1: Searching for a parking spot
 
 In a city, there is a lot of parking spaces: Places on road (parking machines) or garages. The parking value changes from place to place.
