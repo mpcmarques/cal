@@ -10,7 +10,7 @@
 
 class University : public Node {
 public:
-    University(long id, float latitude_degrees, float longitude_degrees);
+    University(long id, double latitude_degrees, double longitude_degrees);
     NodeType  getType() const;
 };
 

@@ -8,11 +8,16 @@
 #include "Node.h"
 
 class ParkingGarage : public Node {
+private:
+    int cost;
+
 
 public:
-    ParkingGarage(long id, double latitude_degrees, double longitude_degrees);
+    ParkingGarage(long id, double latitude_degrees, double longitude_degrees, int cost);
 
     NodeType getType() const;
+
+    int getCost() const;
 
 };
 

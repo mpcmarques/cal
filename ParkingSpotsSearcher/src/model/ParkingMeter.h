@@ -9,10 +9,14 @@
 #include "Node.h"
 
 class ParkingMeter : public Node{
+private:
+    int cost;
 public:
-    ParkingMeter(long id, double latitude_degrees, double longitude_degrees);
+    ParkingMeter(long id, double latitude_degrees, double longitude_degrees, int cost);
 
     NodeType  getType() const;
+
+    int getCost() const;
 };
 
 
