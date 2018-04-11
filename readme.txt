@@ -8,7 +8,7 @@ You can compile the code with cmake.
 Go to the ParkingSpotsSearcher folder than run cmake.
 
 $ cd ParkingSpotsSearcher
-$ mmkdir build
+$ mkdir build
 $ cmake build
 
 
