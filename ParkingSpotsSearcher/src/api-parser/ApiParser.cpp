@@ -81,7 +81,7 @@ map<int, Road> ApiParser::readRoads(const string roadsFilePath) {
 
             road_id = stoi(split[0]);
             road_name = split[1];
-            is_two_way = split[2] == "true";
+            is_two_way = split[2] == "True";
 
             // return the vector<edges> with the parsed attributes
             Road road = Road(road_id, road_name, is_two_way);
