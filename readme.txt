@@ -14,7 +14,7 @@ $ cmake build
 
 After compiled just use make than run the executable.
 
-$ cd build # from ParkingSpotsSearcher folder
+$ cd build                // from ParkingSpotsSearcher folder
 $ make
 $ ./ParkingSpotsSearcher
 
