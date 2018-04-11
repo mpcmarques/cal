@@ -8,9 +8,10 @@
 #include <ApiParser.h>
 #include <vector>
 #include <Edge.h>
-#include <LatLongConverter.h>
 #include <Map.h>
 #include <ParkingMeter.h>
+#include <ShoppingMall.h>
+#include <University.h>
 
 using namespace std;
 
@@ -67,6 +68,11 @@ void start() {
     nodes.insert(pair<int, Node *>(7, new ParkingMeter(7, 41.17899, (float) -8.6006)));
     nodes.insert(pair<int, Node *>(8, new ParkingMeter(8, 41.17707, (float) -8.59228)));
     nodes.insert(pair<int, Node *>(9, new ParkingMeter(9, 41.17655, (float) -8.58992)));
+
+    /* add points of interest */
+    cout << "Adding points of interest..." << endl;
+    nodes.insert(pair<int, Node*>(10, new ShoppingMall(10, 41.1777, -8.5913)));
+    nodes.insert(pair<int, Node*>(11, new University(11, 41.1781,  -8.5962)));
 
     /* create map model */
     Map *map = new Map(800, nodes, roads, links);

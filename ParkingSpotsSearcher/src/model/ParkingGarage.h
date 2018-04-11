@@ -10,7 +10,7 @@
 class ParkingGarage : public Node {
 
 public:
-    ParkingGarage(long id, float latitude_degrees, float longitude_degrees);
+    ParkingGarage(long id, double latitude_degrees, double longitude_degrees);
 
     NodeType getType() const;
 

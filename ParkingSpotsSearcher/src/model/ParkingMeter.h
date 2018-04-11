@@ -10,7 +10,7 @@
 
 class ParkingMeter : public Node{
 public:
-    ParkingMeter(long id, float latitude_degrees, float longitude_degrees);
+    ParkingMeter(long id, double latitude_degrees, double longitude_degrees);
 
     NodeType  getType() const;
 };

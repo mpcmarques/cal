@@ -53,8 +53,20 @@ void MapView::add(Node *node){
             break;
         case PARKING_LANE:
             gv->setVertexIcon((int) node->getId(), "../images/parking_meter.png");
-            gv->setVertexSize((int) node->getId(), 20);
+            gv->setVertexSize((int) node->getId(), 30);
+            break;
+        case MALL:
+            gv->setVertexIcon((int) node->getId(), "../images/mall.png");
+            gv->setVertexSize((int) node->getId(), 30);
+            gv->setVertexLabel((int) node->getId(), "Shopping mall");
 
+            break;
+        case UNIVERSITY:
+            gv->setVertexIcon((int) node->getId(), "../images/university.png");
+            gv->setVertexSize((int) node->getId(), 30);
+            gv->setVertexLabel((int) node->getId(), "University");
+
+            break;
         case STREET:
             break;
         default:

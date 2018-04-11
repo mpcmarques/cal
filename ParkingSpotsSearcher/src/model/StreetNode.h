@@ -10,7 +10,7 @@
 
 class StreetNode : public Node {
 public:
-    StreetNode(long id, float latitude_degrees, float longitude_degrees);
+    StreetNode(long id, double latitude_degrees, double longitude_degrees);
 
     NodeType getType() const;
 };

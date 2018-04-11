@@ -8,24 +8,24 @@
 /* abstract class */
 
 enum NodeType {
-    PARKING_GARAGE, STREET, GAS_STATION, PARKING_LANE
+    PARKING_GARAGE, STREET, GAS_STATION, PARKING_LANE, MALL, UNIVERSITY
 };
 
 class Node {
 
 private:
     long id;
-    float latitude;
-    float longitute;
+    double latitude;
+    double longitute;
 
 public:
-    Node(long id, float latitude_degrees, float longitude_degrees);
+    Node(long id, double latitude_degrees, double longitude_degrees);
 
     long getId() const;
 
-    float getLatitude() const;
+    double getLatitude() const;
 
-    float getLongitute() const;
+    double getLongitute() const;
 
     virtual NodeType getType() const = 0;
 };

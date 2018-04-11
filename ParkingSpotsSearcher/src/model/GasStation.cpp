@@ -4,7 +4,7 @@
 
 #include "GasStation.h"
 
-GasStation::GasStation(long id, float latitude_degrees, float longitude_degrees) : Node(id, latitude_degrees, longitude_degrees) {
+GasStation::GasStation(long id, double latitude_degrees, double longitude_degrees) : Node(id, latitude_degrees, longitude_degrees) {
 
 }
 

@@ -4,7 +4,7 @@
 
 #include "ParkingGarage.h"
 
-ParkingGarage::ParkingGarage(long id, float latitude_degrees, float longitude_degrees) : Node(id, latitude_degrees,
+ParkingGarage::ParkingGarage(long id, double latitude_degrees, double longitude_degrees) : Node(id, latitude_degrees,
                                                                                               longitude_degrees) {
 
 }

@@ -4,7 +4,7 @@
 
 #include "ParkingMeter.h"
 
-ParkingMeter::ParkingMeter(long id, float latitude_degrees, float longitude_degrees) : Node(id, latitude_degrees,
+ParkingMeter::ParkingMeter(long id, double latitude_degrees, double longitude_degrees) : Node(id, latitude_degrees,
                                                                                             longitude_degrees) {
 
 }
