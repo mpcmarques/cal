@@ -25,7 +25,7 @@ private:
     double MIN_LONGITUDE = -8.5832 + drift;
     double MAX_LONGITUDE = -8.5983 + drift;
 
-    void addNodeIntoView(Node node) const;
+    void addNodeIntoView(Node &node);
 
 public:
     MapView(Map *map);
@@ -36,7 +36,7 @@ public:
 
     void updateView();
 
-    void add(Node *node) const;
+    void add(Node *node);
 };
 
 

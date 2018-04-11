@@ -25,7 +25,7 @@ MapView::MapView(Map *map) {
     this->map = map;
 }
 
-void MapView::addNodeIntoView(const Node node) const {
+void MapView::addNodeIntoView(Node &node){
     /* fix window position */
     double x = LatLongConverter::convert(node.getLongitute(), MAX_LONGITUDE, MIN_LONGITUDE,
                                          this->map->getMapSize());
@@ -36,7 +36,7 @@ void MapView::addNodeIntoView(const Node node) const {
     gv->addNode((int) node.getId(), (int) (x * 0.89), (int) (y * 0.85));
 }
 
-void MapView::add(Node *node) const {
+void MapView::add(Node *node){
 
     switch (node->getType()) {
         case GAS_STATION:
