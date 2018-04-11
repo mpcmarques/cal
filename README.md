@@ -1,20 +1,45 @@
-# cal
+# CAL Project 1
 
-## Portuguese
+## How to compile and run
 
-### Theme 1: A procura de um lugar para estacionar
+### Option 1: CLion
 
-Numa cidade, existem diversos locais de estacionamento público: lugares em estrada (parquímetro) ou garagens. O valor do estacionamento varia de local para local.
+Open the folder ParkingSpotsSearcher with Clion, than build and run.
 
-Neste trabalho, pretende-se implementar um sistema que auxilie um automobilista na procura de um lugar de estacionamento. Um automobilista pretende ir a um local específico (cinema, escola, shopping,...) e quer estacionar o seu automóvel. Deve ser calculado o itinerário que permita ao automobilista ir do local onde se encontra ao estacionamento (de automóvel) e do estacionamento ao local de destino (a pé).
+### Option 2: CMake
 
-O local de estacionamento proposto pode ser o mais perto do destino ou o mais barato (dentro de uma distância máxima ao destino ou a uma estação de metro), de acordo com a escolha do automobilista. Considere também que o automobilista pode querer abastecer o seu automóvel antes de estacionar, pelo que o trajecto indicado deve considerar este facto.
+#### CMake CLI
 
-Avalie a conectividade do grafo, a fim de evitar que locais de estacionamento se encontrem em zonas inacessíveis a partir do ponto de origem do automobilista.
+![Cmake](/images/cmake.png)
+Insert the ParkingSpotsSearcher folder as source and ParkingSpotsSearcher/build/ as build folder.
+After that go into the ParkingSpotsSearcher/build/ folder, run make, than run the ParkingSpotsSearcher executable.
 
-Considere a possibilidade de utilizar mapas reais, extraídos do OpenStreetMaps (www.openstreetmap.org), localizando, no mapa, endereços e pontos de interesse.
+```bash
+cd ParkingSpotsSearcher/build/
+make
+./parkingSpotsSearcher
+```
 
-## English
+#### CMake command line
+
+You can compile the code with cmake.
+Go to the ParkingSpotsSearcher folder than run cmake.
+
+```bash
+cd ParkingSpotsSearcher
+mmkdir build
+cmake build
+```
+
+After compiled just use make than run the executable.
+
+```bash
+cd build # from ParkingSpotsSearcher folder
+make
+./ParkingSpotsSearcher
+```
+
+## Project explanation
 
 ### Theme 1: Searching for a parking spot
 
@@ -78,3 +103,5 @@ Run Dijkstra to find nodes with max distance and choose the cheapest parking spo
 2. (to consider) Metro stations, buses, fuel cost etc.
 a) Run modified Dijkstra on the highest level graph (look situation A or B) to find all nodes with max distance (include public transport edges with the distance 0) and replace weights by cost of parking spots and public transport. Replace all other edges (in highest level graph) weights by infinite cost(MAX_INT).
 b) Change each distance (lower level graphs) to the fuel price cost.
+
+Each node of graph A with the label p has 0 weight edge to corresponding graph B node.

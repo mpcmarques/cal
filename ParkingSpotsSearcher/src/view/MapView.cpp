@@ -69,6 +69,11 @@ void MapView::add(Node *node){
             break;
         case STREET:
             break;
+        case HOME:
+            gv->setVertexIcon((int) node->getId(), "../images/home.png");
+            gv->setVertexSize((int) node->getId(), 30);
+            gv->setVertexLabel((int) node->getId(), "Home");
+            break;
         default:
             break;
     }

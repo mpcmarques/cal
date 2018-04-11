@@ -12,6 +12,7 @@
 #include <ParkingMeter.h>
 #include <ShoppingMall.h>
 #include <University.h>
+#include <Home.h>
 
 using namespace std;
 
@@ -73,6 +74,7 @@ void start() {
     cout << "Adding points of interest..." << endl;
     nodes.insert(pair<int, Node *>(10, new ShoppingMall(10, 41.1777, -8.5913)));
     nodes.insert(pair<int, Node *>(11, new University(11, 41.1781, -8.5962)));
+    nodes.insert(pair<int, Node*>(12, new Home(12, 41.168, -8.593)));
 
     /* create map model */
     Map *map = new Map(800, nodes, roads, links);
