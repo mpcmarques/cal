@@ -1,9 +1,9 @@
 #include "graphviewer.h"
 #include<sstream>
 
-#ifdef __APPLE__
+
 pid_t GraphViewer::procId = NULL;
-#endif
+
 short GraphViewer::port = 7772;
 
 GraphViewer::GraphViewer(int width, int height, bool dynamic) {
@@ -26,7 +26,7 @@ void GraphViewer::initialize(int width, int height, bool dynamic, int port_n) {
 	command += " --port ";
 	command += port_string;
 
-#ifdef __APPLE__
+
 	if (!(procId = fork())) {
 		system(command.c_str());
 		kill(getppid(), SIGINT);
@@ -41,40 +41,7 @@ void GraphViewer::initialize(int width, int height, bool dynamic, int port_n) {
 		string str(buff);
 		con->sendMsg(str);
 	}
-#else
-	STARTUPINFO si;
-	PROCESS_INFORMATION pi;
-	ZeroMemory( &si, sizeof(si) );
-	si.cb = sizeof(si);
-	ZeroMemory( &pi, sizeof(pi) );
-	LPSTR command_lpstr = const_cast<char *>(command.c_str());
-	if( !CreateProcess( NULL,   // No module name (use command line)
-			command_lpstr,        // Command line
-			NULL,           // Process handle not inheritable
-			NULL,           // Thread handle not inheritable
-			FALSE,          // Set handle inheritance to FALSE
-			0,              // No creation flags
-			NULL,           // Use parent's environment block
-			NULL,           // Use parent's starting directory
-			&si,            // Pointer to STARTUPINFO structure
-			&pi )           // Pointer to PROCESS_INFORMATION structure
-	) {
-		cerr << "CreateProcess failed " << GetLastError() << endl;
-		return;
-	}
 
-	// Close process and thread handles.
-	CloseHandle( pi.hProcess );
-	CloseHandle( pi.hThread );
-
-	Sleep(2000);
-	con = new Connection(port_n);
-
-	char buff[200];
-	sprintf(buff, "newGraph %d %d %s\n", width, height, (dynamic?"true":"false"));
-	string str(buff);
-	con->sendMsg(str);
-#endif
 
 }
 

@@ -50,6 +50,7 @@ add_executable(ParkingSpotsSearcher
         src/algorithms/Edge.h
         src/algorithms/Graph.h
         src/algorithms/ParkingSpotSearcher.h
+        src/algorithms/ParkingSpotSearcherBuilder.h
         src/algorithms/Vertex.h
         src/api-parser/ApiParser.cpp
         src/api-parser/ApiParser.h
