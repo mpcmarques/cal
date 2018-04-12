@@ -43,20 +43,20 @@ void MapView::showNode(const Node *node) {
         case NodeType::GAS_STATION:
             gv->setVertexIcon((int) node->getId(), "../images/gas_station.png");
             gv->setVertexLabel((int) node->getId(), "Gas Station");
-            gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
+            //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             gv->setVertexSize((int) node->getId(), 30);
 
             break;
         case NodeType::PARKING_GARAGE:
             gv->setVertexIcon((int) node->getId(), "../images/parking.png");
             gv->setVertexLabel((int) node->getId(), "Parking Garage");
-            gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
+            //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             gv->setVertexSize((int) node->getId(), 30);
 
             break;
         case NodeType::PARKING_LANE:
             gv->setVertexIcon((int) node->getId(), "../images/parking_meter.png");
-            gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
+            //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             gv->setVertexSize((int) node->getId(), 30);
             break;
         case NodeType::MALL:
@@ -72,7 +72,7 @@ void MapView::showNode(const Node *node) {
 
             break;
         case NodeType::STREET:
-            gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
+            //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             break;
         case NodeType::HOME:
             gv->setVertexIcon((int) node->getId(), "../images/home.png");
@@ -101,7 +101,6 @@ void MapView::showLink(const Link *link) {
             gv->setEdgeColor(this->edges, RED);
             break;
         case LinkType::STREET_LINK:
-            gv->setEdgeThickness(this->edges, 3);
             gv->setEdgeColor(this->edges, GRAY);
             break;
         default:
