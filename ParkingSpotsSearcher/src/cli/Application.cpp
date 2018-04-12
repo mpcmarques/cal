@@ -13,10 +13,11 @@
 #include <node/ShoppingMall.h>
 #include <node/University.h>
 #include <node/Home.h>
+#include "Application.h"
 
 using namespace std;
 
-int chooseGasStation() {
+int Application::chooseGasStation() {
     int opt;
     cout << "Do you need to visit a gas station on your way?" << endl;
     cout << "1 -> Yes." << endl;
@@ -30,7 +31,7 @@ int chooseGasStation() {
     }
 }
 
-int chooseNearestOrCheapest() {
+int Application::chooseNearestOrCheapest() {
     int opt;
     cout << "Do you want the nearest or the cheapest way?" << endl;
     cout << "1 -> Nearest." << endl;
@@ -43,7 +44,7 @@ int chooseNearestOrCheapest() {
     }
 }
 
-int chooseStartingPoint() {
+int Application::chooseStartingPoint() {
     int opt;
     cout << "Where do you want to start?" << endl;
     cout << "1 -> Home." << endl;
@@ -59,7 +60,7 @@ int chooseStartingPoint() {
     }
 }
 
-int chooseEndingPoint() {
+int Application::chooseEndingPoint() {
     int opt;
     cout << "Where do you want to go?" << endl;
     cout << "1 -> Home." << endl;
@@ -75,8 +76,35 @@ int chooseEndingPoint() {
     }
 }
 
+void Application::addGasStations(map<int, Node *> &nodes) {
+    nodes.insert(pair<int, Node *>(0, new GasStation(0, 41.17832, -8.58288)));
+    nodes.insert(pair<int, Node *>(1, new GasStation(1, 41.17693, -8.59989)));
+}
 
-void start() {
+void Application::addParkingSpots(map<int, Node *> &nodes) {
+    nodes.insert(pair<int, Node *>(2, new ParkingGarage(2, 41.17823, -8.59394, 5)));
+    nodes.insert(pair<int, Node *>(3, new ParkingGarage(3, 41.1749, -8.5883, 5)));
+    nodes.insert(pair<int, Node *>(4, new ParkingGarage(4, 41.17602, -8.59958, 5)));
+    nodes.insert(pair<int, Node *>(5, new ParkingGarage(5, 41.1763, -8.59586, 5)));
+}
+
+void Application::addParkingMeters(map<int, Node*> &nodes){
+    nodes.insert(pair<int, Node *>(6, new ParkingMeter(6, 41.1763, -8.59586, 1)));
+    nodes.insert(pair<int, Node *>(7, new ParkingMeter(7, 41.17899, -8.6006, 1)));
+    nodes.insert(pair<int, Node *>(8, new ParkingMeter(8, 41.17707, -8.59228, 1)));
+    nodes.insert(pair<int, Node *>(9, new ParkingMeter(9, 41.17655, -8.58992, 1)));
+}
+
+void Application::addOtherPoints(map<int, Node*> &nodes){
+    nodes.insert(pair<int, Node *>(MALL_NODE_ID, new ShoppingMall(MALL_NODE_ID, 41.1777, -8.5913)));
+    nodes.insert(pair<int, Node *>(UNIVERSITY_NODE_ID, new University(UNIVERSITY_NODE_ID, 41.1781, -8.5962)));
+    nodes.insert(pair<int, Node *>(HOME_NODE_ID, new Home(HOME_NODE_ID, 41.168, -8.593)));
+}
+
+void Application::start() {
+
+    cout << "Welcome to the Parking Spot Searcher!" << endl;
+
     cout << "Loading data from .txt files... " << endl;
 
     /* load osm */
@@ -84,30 +112,19 @@ void start() {
     vector<Link *> links = ApiParser::readNodeLinks("../maps/C.txt");
     map<int, Road> roads = ApiParser::readRoads("../maps/B.txt");
 
+    cout << "Adding nodes of places of interest..." << endl;
+
     /* add gas stations to the nodes */
-    cout << "Adding gas stations..." << endl;
-    nodes.insert(pair<int, Node *>(0, new GasStation(0, 41.17832, -8.58288)));
-    nodes.insert(pair<int, Node *>(1, new GasStation(1, 41.17693, -8.59989)));
+    addGasStations(nodes);
 
     /* add parking spots to the nodes */
-    cout << "Adding parking spots..." << endl;
-    nodes.insert(pair<int, Node *>(2, new ParkingGarage(2, 41.17823, -8.59394, 5)));
-    nodes.insert(pair<int, Node *>(3, new ParkingGarage(3, 41.1749, -8.5883, 5)));
-    nodes.insert(pair<int, Node *>(4, new ParkingGarage(4, 41.17602, -8.59958, 5)));
-    nodes.insert(pair<int, Node *>(5, new ParkingGarage(5, 41.1763, -8.59586, 5)));
+    addParkingSpots(nodes);
 
     /* add parking lanes to the nodes */
-    cout << "Adding parking lanes..." << endl;
-    nodes.insert(pair<int, Node *>(6, new ParkingMeter(6, 41.1763, -8.59586, 1)));
-    nodes.insert(pair<int, Node *>(7, new ParkingMeter(7, 41.17899, -8.6006, 1)));
-    nodes.insert(pair<int, Node *>(8, new ParkingMeter(8, 41.17707, -8.59228, 1)));
-    nodes.insert(pair<int, Node *>(9, new ParkingMeter(9, 41.17655, -8.58992, 1)));
+    addParkingMeters(nodes);
 
     /* add points of interest */
-    cout << "Adding points of interest..." << endl;
-    nodes.insert(pair<int, Node *>(10, new ShoppingMall(10, 41.1777, -8.5913)));
-    nodes.insert(pair<int, Node *>(11, new University(11, 41.1781, -8.5962)));
-    nodes.insert(pair<int, Node *>(12, new Home(12, 41.168, -8.593)));
+    addOtherPoints(nodes);
 
     /* create map model */
     Map *map = new Map(800, nodes, roads, links);
@@ -140,7 +157,7 @@ void start() {
             startingPoint = chooseStartingPoint();
             endingPoint = chooseEndingPoint();
 
-            while(endingPoint == startingPoint){
+            while (endingPoint == startingPoint) {
                 cout << "Same starting and ending point, please choose to go to another location." << endl;
                 endingPoint = chooseEndingPoint();
             }
@@ -148,9 +165,9 @@ void start() {
             near_or_cheap = chooseNearestOrCheapest();
             gas = chooseGasStation();
 
-            // TODO: Parse start and ending point
-            // Node *startingNode = getNodeFromLocation(int opt);
-            // Node *endingNode = getNodeFromLocation(int opt;
+            // Parse start and ending point
+            Node *startingNode = getNodeFromLocation(startingPoint, nodes);
+            Node *endingNode = getNodeFromLocation(endingPoint, nodes);
 
             // TODO: calculate
             // vector<Node *> path = calculatePath(startingNode, endingNode);
@@ -172,14 +189,28 @@ void start() {
     cout << "Application ended" << endl;
 }
 
+Node* Application::getNodeFromLocation(int opt, map<int, Node*> nodes){
+    switch (opt){
+        case 1: // Home
+            return nodes.at(HOME);
+        case 2: // University
+            return nodes.at(UNIVERSITY);
+        case 3: // Shopping Mall
+            return nodes.at(MALL);
+        default:
+            return nullptr;
+    }
+}
+
+Application::Application() {
+
+}
+
 
 int main() {
 
-    /* title */
-    cout << "Welcome to the Parking Spot Searcher!" << endl;
-
-    cout << "Opening graph viewer..." << endl;
-    start();
+    Application app = Application();
+    app.start();
 
     return 0;
 }

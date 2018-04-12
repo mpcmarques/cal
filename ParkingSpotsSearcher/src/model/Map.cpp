@@ -74,6 +74,4 @@ void Map::destroy() {
     for(auto node: this->getNodes()){
         free(node.second);
     }
-
-
 }
