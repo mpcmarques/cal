@@ -131,6 +131,18 @@ void Application::addOtherPoints(Map *map) {
     map->addWalkingPath(HOME_NODE_ID, 2168903808);
 }
 
+int Application::chooseMaxDistance(){
+    int distance;
+    cout << "What is the maximum distance?" << endl;
+    cin >> distance;
+
+    if(distance < 0){
+        cout << "Distance must be greater than zero" << endl;
+        return chooseMaxDistance();
+    } else
+        return distance;
+}
+
 void Application::start() {
 
     cout << "Welcome to the Parking Spot Searcher!" << endl;
@@ -181,7 +193,7 @@ void Application::start() {
         if (opt == 0) {
             running = false;
         } else if (opt == 1) {
-            int near_or_cheap, gas, startingPoint, endingPoint;
+            int near_or_cheap, gas, startingPoint, endingPoint, maxDistance;
 
             /* ask starting and ending point */
             startingPoint = chooseStartingPoint();
@@ -194,13 +206,14 @@ void Application::start() {
 
             near_or_cheap = chooseNearestOrCheapest();
             gas = chooseGasStation();
+            maxDistance = chooseMaxDistance();
 
             // Parse start and ending point
             Node *startingNode = getNodeFromLocation(startingPoint, nodes);
             Node *endingNode = getNodeFromLocation(endingPoint, nodes);
 
             // TODO: calculate path
-            // vector<Node *> path = calculatePath(startingNode, endingNode, near_or_cheap, gas);
+            // vector<Node *> path = calculatePath(startingNode, endingNode, near_or_cheap, gas, maxDistance);
 
             // TODO: show path on screen
         }

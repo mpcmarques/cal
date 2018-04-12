@@ -33,6 +33,8 @@ public:
     Application();
 
     void start();
+
+    int chooseMaxDistance();
 };
 
 #endif //PARKINGSPOTSSEARCHER_APPLICATION_H_H
