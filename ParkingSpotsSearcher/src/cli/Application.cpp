@@ -43,6 +43,39 @@ int chooseNearestOrCheapest() {
     }
 }
 
+int chooseStartingPoint() {
+    int opt;
+    cout << "Where do you want to start?" << endl;
+    cout << "1 -> Home." << endl;
+    cout << "2 -> University." << endl;
+    cout << "3 -> Shopping Mall." << endl;
+    cin >> opt;
+
+    if (opt > 0 && opt < 3) return opt;
+
+    else {
+        cout << "Invalid option, choose again." << endl;
+        return chooseNearestOrCheapest();
+    }
+}
+
+int chooseEndingPoint() {
+    int opt;
+    cout << "Where do you want to go?" << endl;
+    cout << "1 -> Home." << endl;
+    cout << "2 -> University." << endl;
+    cout << "3 -> Shopping Mall." << endl;
+    cin >> opt;
+
+    if (opt > 0 && opt < 3) return opt;
+
+    else {
+        cout << "Invalid option, choose again." << endl;
+        return chooseNearestOrCheapest();
+    }
+}
+
+
 void start() {
     cout << "Loading data from .txt files... " << endl;
 
@@ -94,16 +127,35 @@ void start() {
 
         int opt;
         cout << "\nWhat do you want to do? " << endl;
-        cout << "-> 1 - search a parking spot" << endl;
-        cout << "-> 0 - exit program" << endl;
+        cout << "-> 1 - go to a location" << endl;
+        cout << "-> 0 - exit" << endl;
         cin >> opt;
 
         if (opt == 0) {
             running = false;
         } else if (opt == 1) {
-            int near_or_cheap, gas;
+            int near_or_cheap, gas, startingPoint, endingPoint;
+
+            /* ask starting and ending point */
+            startingPoint = chooseStartingPoint();
+            endingPoint = chooseEndingPoint();
+
+            while(endingPoint == startingPoint){
+                cout << "Same starting and ending point, please choose to go to another location." << endl;
+                endingPoint = chooseEndingPoint();
+            }
+
             near_or_cheap = chooseNearestOrCheapest();
             gas = chooseGasStation();
+
+            // TODO: Parse start and ending point
+            // Node *startingNode = getNodeFromLocation(int opt);
+            // Node *endingNode = getNodeFromLocation(int opt;
+
+            // TODO: calculate
+            // vector<Node *> path = calculatePath(startingNode, endingNode);
+
+            // TODO: show path on screen
         }
 
         // change stuff in the map
