@@ -26,15 +26,15 @@ MapView::MapView(Map *map) {
     this->map = map;
 }
 
-void MapView::addNodeIntoView(Node node) {
+void MapView::addNodeIntoView(const Node *node) {
     /* fix window position */
-    double x = LatLongConverter::convert(node.getLongitute(), MAX_LONGITUDE, MIN_LONGITUDE,
+    double x = LatLongConverter::convert(node->getLongitute(), MAX_LONGITUDE, MIN_LONGITUDE,
                                          this->map->getMapSize());
-    double y = LatLongConverter::convert(node.getLatitude(), MAX_LATITUDE, MIN_LATITUDE,
+    double y = LatLongConverter::convert(node->getLatitude(), MAX_LATITUDE, MIN_LATITUDE,
                                          this->map->getMapSize());
 
     /* add node do graph viewer */
-    gv->addNode((int) node.getId(), (int) (x * 0.89), (int) (y * 0.85));
+    gv->addNode((int) node->getId(), (int) (x * 0.89), (int) (y * 0.85));
 }
 
 void MapView::showNode(const Node *node) {
@@ -83,7 +83,7 @@ void MapView::showNode(const Node *node) {
             break;
     }
 
-    this->addNodeIntoView(*node);
+    this->addNodeIntoView(node);
 }
 
 void MapView::showLink(const Link *link) {

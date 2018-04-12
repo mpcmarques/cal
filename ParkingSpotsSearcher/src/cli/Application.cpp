@@ -109,13 +109,15 @@ void Application::addParkingSpots(Map *map) {
 }
 
 void Application::addParkingMeters(Map *map) {
-    /*
-    nodes.insert(pair<int, Node *>(6, new ParkingMeter(6, 41.1763, -8.59586, 1)));
-    nodes.insert(pair<int, Node *>(7, new ParkingMeter(7, 41.17899, -8.6006, 1)));
-    nodes.insert(pair<int, Node *>(8, new ParkingMeter(8, 41.17707, -8.59228, 1)));
-    nodes.insert(pair<int, Node *>(9, new ParkingMeter(9, 41.17655, -8.58992, 1)));
-    */
+    int meterId = 6, meterId1 = 7, meterId2 = 8, meterId3 = 9;
+    int roadId = 9, roadId2 = 10, roadId3 = 11, roadId4 = 12;
+
+    map->addNode(new ParkingMeter(meterId, 41.17899, -8.6006, 1));
+    map->addNode(new ParkingMeter(meterId1, 41.17707, -8.59228, 1));
+    map->addNode(new ParkingMeter(meterId2, 41.17655, -8.58992, 1));
+
     // TODO: Connect parking meters
+
 }
 
 void Application::addOtherPoints(Map *map) {
@@ -149,7 +151,7 @@ void Application::start() {
     addParkingSpots(map);
 
     /* add parking lanes to the nodes */
-    //addParkingMeters(nodes, links, roads);
+    addParkingMeters(map);
 
     /* add points of interest */
     //addOtherPoints(nodes, links, roads);
