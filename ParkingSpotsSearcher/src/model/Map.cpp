@@ -6,6 +6,7 @@
 #include "node/ParkingGarage.h"
 #include "node/ParkingMeter.h"
 #include <math.h>
+#include <link/StreetLink.h>
 
 
 Map::Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, std::vector<Link *> links) {
@@ -13,7 +14,7 @@ Map::Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, st
     this->roads = roads;
     this->links = links;
     this->mapSize = mapSize;
-
+    /*
     for (auto node : nodes) {
         NodeType type = node.second->getType();
         if (type == NodeType::PARKING_GARAGE || type == NodeType::PARKING_LANE) {
@@ -41,7 +42,7 @@ Map::Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, st
             this->parkingSpotSearcher.addEdge(link->getNode2_id(), link->getNode1_id(), distance, link->getId());
     }
     //std::vector<Node *> path = parkingSpotSearcher.findShortestPath(432578849, 26122724, 20000, false);
-    //std::cout << path.size() << std::endl;
+    //std::cout << path.size() << std::endl;*/
 }
 
 std::vector<Node *> Map::findShortestPath(int sourceId, int destId, int maxDistance, bool visitGasStation) {
@@ -74,4 +75,13 @@ void Map::destroy() {
     for(auto node: this->getNodes()){
         free(node.second);
     }
+}
+
+void Map::addRoad(int roadId, long fromNodeId, long toNodeId) {
+    this->roads.insert(std::pair<int, Road>(roadId, Road(roadId, "", true)));
+    this->links.push_back(new StreetLink(roadId, fromNodeId, toNodeId));
+}
+
+void Map::addNode(Node *node){
+    this->nodes.insert(std::pair<int, Node *>(node->getId(), node));
 }

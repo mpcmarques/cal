@@ -37,7 +37,11 @@ public:
 
     int getMapSize() const;
 
+    void addRoad(int roadId, long fromNodeId, long toNodeId);
+
     void destroy();
+
+    void addNode(Node *node);
 };
 
 

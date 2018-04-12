@@ -19,20 +19,20 @@ private:
 
     int chooseEndingPoint();
 
-    void addGasStations(map<int, Node *> &nodes);
+    void addGasStations(Map *map);
 
-    void addParkingSpots(map<int, Node *> &nodes);
+    void addParkingSpots(Map *map);
 
-    void addParkingMeters(map<int, Node *> &nodes);
+    void addParkingMeters(Map *map);
+
+    Node *getNodeFromLocation(int opt, map<int, Node *> nodes);
+
+    void addOtherPoints(Map *map);
 
 public:
     Application();
 
     void start();
-
-    void addOtherPoints(map<int, Node *> &nodes);
-
-    Node *getNodeFromLocation(int opt, map<int, Node *> nodes);
 };
 
 #endif //PARKINGSPOTSSEARCHER_APPLICATION_H_H

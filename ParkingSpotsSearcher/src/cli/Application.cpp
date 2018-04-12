@@ -13,6 +13,7 @@
 #include <node/ShoppingMall.h>
 #include <node/University.h>
 #include <node/Home.h>
+#include <link/StreetLink.h>
 #include "Application.h"
 
 using namespace std;
@@ -76,29 +77,47 @@ int Application::chooseEndingPoint() {
     }
 }
 
-void Application::addGasStations(map<int, Node *> &nodes) {
-    nodes.insert(pair<int, Node *>(0, new GasStation(0, 41.17832, -8.58288)));
-    nodes.insert(pair<int, Node *>(1, new GasStation(1, 41.17693, -8.59989)));
+void Application::addGasStations(Map *map) {
+    int gas_station_id = 0, gas_station_id2 = 1, roadId = 0, roadId2 = 1, roadId3 = 2, roadId4 = 3;
+
+    // insert nodes 0 and 1
+    map->addNode(new GasStation(gas_station_id, 41.1709, -8.5892));
+    map->addNode(new GasStation(gas_station_id2, 41.17554, -8.5963));
+
+    // add roads
+    map->addRoad(roadId, gas_station_id, 4455723064);
+    map->addRoad(roadId2, gas_station_id, 4455723082);
+    map->addRoad(roadId3, gas_station_id2, 2460915667);
+    map->addRoad(roadId4, gas_station_id2, 4282469014);
 }
 
-void Application::addParkingSpots(map<int, Node *> &nodes) {
-    nodes.insert(pair<int, Node *>(2, new ParkingGarage(2, 41.17823, -8.59394, 5)));
-    nodes.insert(pair<int, Node *>(3, new ParkingGarage(3, 41.1749, -8.5883, 5)));
-    nodes.insert(pair<int, Node *>(4, new ParkingGarage(4, 41.17602, -8.59958, 5)));
-    nodes.insert(pair<int, Node *>(5, new ParkingGarage(5, 41.1763, -8.59586, 5)));
+void Application::addParkingSpots(Map *map) {
+    int garageId = 2, garageId2 = 3, garageId3 = 4, garageId4 = 5;
+
+    map->addNode(new ParkingGarage(garageId, 41.17823, -8.59394, 5));
+    map->addNode(new ParkingGarage(garageId2, 41.1749, -8.5883, 5));
+    map->addNode(new ParkingGarage(garageId3, 41.17602, -8.59958, 5));
+    map->addNode(new ParkingGarage(garageId4, 41.1763, -8.59586, 5));
+
+    // TODO: Add parking garage connections
 }
 
-void Application::addParkingMeters(map<int, Node*> &nodes){
+void Application::addParkingMeters(Map *map) {
+    /*
     nodes.insert(pair<int, Node *>(6, new ParkingMeter(6, 41.1763, -8.59586, 1)));
     nodes.insert(pair<int, Node *>(7, new ParkingMeter(7, 41.17899, -8.6006, 1)));
     nodes.insert(pair<int, Node *>(8, new ParkingMeter(8, 41.17707, -8.59228, 1)));
     nodes.insert(pair<int, Node *>(9, new ParkingMeter(9, 41.17655, -8.58992, 1)));
+    */
+    // TODO: Connect parking meters
 }
 
-void Application::addOtherPoints(map<int, Node*> &nodes){
-    nodes.insert(pair<int, Node *>(MALL_NODE_ID, new ShoppingMall(MALL_NODE_ID, 41.1777, -8.5913)));
-    nodes.insert(pair<int, Node *>(UNIVERSITY_NODE_ID, new University(UNIVERSITY_NODE_ID, 41.1781, -8.5962)));
-    nodes.insert(pair<int, Node *>(HOME_NODE_ID, new Home(HOME_NODE_ID, 41.168, -8.593)));
+void Application::addOtherPoints(Map *map) {
+    map->addNode(new ShoppingMall(MALL_NODE_ID, 41.1777, -8.5913));
+    map->addNode(new University(UNIVERSITY_NODE_ID, 41.1781, -8.5962));
+    map->addNode(new Home(HOME_NODE_ID, 41.168, -8.593));
+
+    // TODO: Connect other points with walking links
 }
 
 void Application::start() {
@@ -114,20 +133,20 @@ void Application::start() {
 
     cout << "Adding nodes of places of interest..." << endl;
 
-    /* add gas stations to the nodes */
-    addGasStations(nodes);
-
-    /* add parking spots to the nodes */
-    addParkingSpots(nodes);
-
-    /* add parking lanes to the nodes */
-    addParkingMeters(nodes);
-
-    /* add points of interest */
-    addOtherPoints(nodes);
-
     /* create map model */
     Map *map = new Map(800, nodes, roads, links);
+
+    /* add gas stations  */
+    addGasStations(map);
+
+    /* add parking spots */
+    addParkingSpots(map);
+
+    /* add parking lanes to the nodes */
+    //addParkingMeters(nodes, links, roads);
+
+    /* add points of interest */
+    //addOtherPoints(nodes, links, roads);
 
     /* create map view */
     MapView *mapView = new MapView(map);
@@ -189,8 +208,8 @@ void Application::start() {
     cout << "Application ended" << endl;
 }
 
-Node* Application::getNodeFromLocation(int opt, map<int, Node*> nodes){
-    switch (opt){
+Node *Application::getNodeFromLocation(int opt, map<int, Node *> nodes) {
+    switch (opt) {
         case 1: // Home
             return nodes.at(HOME);
         case 2: // University
