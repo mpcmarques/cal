@@ -36,6 +36,8 @@ public:
     const std::map<int, Road> &getRoads() const;
 
     int getMapSize() const;
+
+    void destroy();
 };
 
 

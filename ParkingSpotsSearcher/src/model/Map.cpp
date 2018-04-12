@@ -64,3 +64,16 @@ const std::map<int, Node *> &Map::getNodes() const {
 const std::vector<Link *, std::allocator<Link *>> &Map::getLinks() const {
     return links;
 }
+
+void Map::destroy() {
+    // free all links
+    for (auto link : this->getLinks()) {
+        free(link);
+    }
+    // free all nodes
+    for(auto node: this->getNodes()){
+        free(node.second);
+    }
+
+
+}

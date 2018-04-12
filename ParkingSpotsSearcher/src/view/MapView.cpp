@@ -127,8 +127,14 @@ void MapView::updateView() {
 }
 
 void MapView::close() {
-    // TODO: free all nodes memory in map model
-    free(this->map);
+    // close window
     this->gv->closeWindow();
+
+    // destroy map object
+    // TODO: free all nodes and all links in memory at map model
+    this->map->destroy();
+
+    // free objects
+    free(this->map);
     free(this->gv);
 }
