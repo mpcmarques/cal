@@ -23,7 +23,7 @@ private:
     std::map<int, Node *> nodes;
     std::map<int, Road> roads;
     std::vector<Link *> links;
-    ParkingSpotSearcher<Node *, int> parkingSpotSearcher;
+    ParkingSpotSearcher<Node *, int> * parkingSpotSearcher;
 public:
     const std::vector<Link *, std::allocator<Link *>> &getLinks() const;
 

@@ -1,12 +1,10 @@
 ﻿#ifndef _GRAPH_VIEWER_H_
 #define _GRAPH_VIEWER_H_
 
-#ifdef __APPLE__
+
 #include <unistd.h>
-#else
-#include <winsock2.h>
-#include <Windows.h>
-#endif
+
+
 
 #include <stdlib.h>
 #include <signal.h>
@@ -368,9 +366,9 @@ public:
 	 */
 	bool rearrange();
 
-#ifdef __APPLE__
-	static pid_t procId;
-#endif
+
+    static pid_t procId;
+
 
 private:
 	int width, height;

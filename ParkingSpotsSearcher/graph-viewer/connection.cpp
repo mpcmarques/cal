@@ -6,7 +6,7 @@ void myerror(string msg) {
 }
 
 Connection::Connection(short port) {
-#ifdef __APPLE__
+
   struct sockaddr_in echoServAddr; /* Echo server address */
   struct  hostent  *ptrh;
   
@@ -26,31 +26,7 @@ Connection::Connection(short port) {
   /* Establish the connection to the echo server */
   if (connect(sock, (struct sockaddr *) &echoServAddr, sizeof(echoServAddr)) < 0)
     myerror("connect() failed");
-#else
-		WSADATA wsaData;
-    int iResult = WSAStartup(MAKEWORD(2,2), &wsaData);
-    if (iResult != NO_ERROR)
-				printf("Client: Error at WSAStartup().\n");
 
-	// Create a socket.
-    sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (sock == INVALID_SOCKET) {
-        printf("Client: socket() - Error at socket(): %d\n", WSAGetLastError());
-        WSACleanup();
-    }
-
-    // Connect to a server.
-    sockaddr_in clientService;
-    clientService.sin_family = AF_INET;
-    // Just test using the localhost, you can try other IP address
-    clientService.sin_addr.s_addr = inet_addr("127.0.0.1");
-    clientService.sin_port = htons(port);
-
-    if (connect(sock, (SOCKADDR*)&clientService, sizeof(clientService)) == SOCKET_ERROR) {
-        printf("Client: connect() - Failed to connect.\n");
-        WSACleanup();
-    }
-#endif
 }
 
 bool Connection::sendMsg(string msg) {
