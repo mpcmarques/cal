@@ -102,9 +102,10 @@ void Application::addParkingSpots(Map *map) {
 
     // parking garage roads
     map->addRoad(roadId, garageId, 4282469053);
-    map->addRoad(roadId1, garageId1, 4517268345);
-    map->addRoad(roadId1, garageId2, 430012030);
-    map->addRoad(roadId2, garageId2, 432578817);
+    map->addRoad(roadId1, garageId3, 4517268345);
+    map->addRoad(roadId2, garageId2, 430012030);
+    map->addRoad(roadId3, garageId2, 432578817);
+    map->addRoad(roadId4, garageId1, 4478085704);
 }
 
 void Application::addParkingMeters(Map *map) {
