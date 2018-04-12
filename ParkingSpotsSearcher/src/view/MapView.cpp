@@ -131,7 +131,6 @@ void MapView::close() {
     this->gv->closeWindow();
 
     // destroy map object
-    // TODO: free all nodes and all links in memory at map model
     this->map->destroy();
 
     // free objects
