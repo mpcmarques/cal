@@ -5,6 +5,9 @@
 #ifndef PARKINGSPOTSSEARCHER_LINK_H
 #define PARKINGSPOTSSEARCHER_LINK_H
 
+enum LinkType {
+    STREET_LINK, WALK
+};
 
 class Link {
 
@@ -21,6 +24,8 @@ public:
     long getNode1_id() const;
 
     long getNode2_id() const;
+
+    virtual LinkType getType() const = 0;
 };
 
 

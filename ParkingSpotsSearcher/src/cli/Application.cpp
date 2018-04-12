@@ -9,10 +9,10 @@
 #include <vector>
 #include <Edge.h>
 #include <Map.h>
-#include <ParkingMeter.h>
-#include <ShoppingMall.h>
-#include <University.h>
-#include <Home.h>
+#include <node/ParkingMeter.h>
+#include <node/ShoppingMall.h>
+#include <node/University.h>
+#include <node/Home.h>
 
 using namespace std;
 
@@ -48,7 +48,7 @@ void start() {
 
     /* load osm */
     map<int, Node *> nodes = ApiParser::readNodes("../maps/A.txt");
-    vector<Link> links = ApiParser::readNodeLinks("../maps/C.txt");
+    vector<Link *> links = ApiParser::readNodeLinks("../maps/C.txt");
     map<int, Road> roads = ApiParser::readRoads("../maps/B.txt");
 
     /* add gas stations to the nodes */
@@ -74,7 +74,7 @@ void start() {
     cout << "Adding points of interest..." << endl;
     nodes.insert(pair<int, Node *>(10, new ShoppingMall(10, 41.1777, -8.5913)));
     nodes.insert(pair<int, Node *>(11, new University(11, 41.1781, -8.5962)));
-    nodes.insert(pair<int, Node*>(12, new Home(12, 41.168, -8.593)));
+    nodes.insert(pair<int, Node *>(12, new Home(12, 41.168, -8.593)));
 
     /* create map model */
     Map *map = new Map(800, nodes, roads, links);

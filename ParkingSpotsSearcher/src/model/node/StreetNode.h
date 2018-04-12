@@ -6,7 +6,7 @@
 #define PARKINGSPOTSSEARCHER_STREETNODE_H
 
 
-#include "Node.h"
+#include "node/Node.h"
 
 class StreetNode : public Node {
 public:

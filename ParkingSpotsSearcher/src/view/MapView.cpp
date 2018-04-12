@@ -15,6 +15,7 @@ void MapView::initialize() {
     this->gv->defineEdgeCurved(false);
     this->gv->defineEdgeColor(BLACK);
     this->gv->defineVertexColor(YELLOW);
+    this->edges = 0;
 
     gv->createWindow(map->getMapSize(), map->getMapSize());
 
@@ -25,7 +26,7 @@ MapView::MapView(Map *map) {
     this->map = map;
 }
 
-void MapView::addNodeIntoView(Node &node){
+void MapView::addNodeIntoView(Node node){
     /* fix window position */
     double x = LatLongConverter::convert(node.getLongitute(), MAX_LONGITUDE, MIN_LONGITUDE,
                                          this->map->getMapSize());
@@ -36,40 +37,40 @@ void MapView::addNodeIntoView(Node &node){
     gv->addNode((int) node.getId(), (int) (x * 0.89), (int) (y * 0.85));
 }
 
-void MapView::add(Node *node){
+void MapView::showNode(const Node *node){
 
     switch (node->getType()) {
-        case GAS_STATION:
+        case NodeType::GAS_STATION:
             gv->setVertexIcon((int) node->getId(), "../images/gas_station.png");
             gv->setVertexLabel((int) node->getId(), "Gas Station");
             gv->setVertexSize((int) node->getId(), 30);
 
             break;
-        case PARKING_GARAGE:
+        case NodeType::PARKING_GARAGE:
             gv->setVertexIcon((int) node->getId(), "../images/parking.png");
             gv->setVertexLabel((int) node->getId(), "Parking Garage");
             gv->setVertexSize((int) node->getId(), 30);
 
             break;
-        case PARKING_LANE:
+        case NodeType::PARKING_LANE:
             gv->setVertexIcon((int) node->getId(), "../images/parking_meter.png");
             gv->setVertexSize((int) node->getId(), 30);
             break;
-        case MALL:
+        case NodeType::MALL:
             gv->setVertexIcon((int) node->getId(), "../images/mall.png");
             gv->setVertexSize((int) node->getId(), 30);
             gv->setVertexLabel((int) node->getId(), "Shopping mall");
 
             break;
-        case UNIVERSITY:
+        case NodeType::UNIVERSITY:
             gv->setVertexIcon((int) node->getId(), "../images/university.png");
             gv->setVertexSize((int) node->getId(), 30);
             gv->setVertexLabel((int) node->getId(), "University");
 
             break;
-        case STREET:
+        case NodeType::STREET:
             break;
-        case HOME:
+        case NodeType::HOME:
             gv->setVertexIcon((int) node->getId(), "../images/home.png");
             gv->setVertexSize((int) node->getId(), 30);
             gv->setVertexLabel((int) node->getId(), "Home");
@@ -81,30 +82,44 @@ void MapView::add(Node *node){
     this->addNodeIntoView(*node);
 }
 
+void MapView::showLink(const Link *link){
+
+    Road road = this->map->getRoads().at((int) link->getId());
+
+    if (road.isIs_two_way())
+        gv->addEdge(this->edges, (int) link->getNode1_id(), (int) link->getNode2_id(), EdgeType::UNDIRECTED);
+    else
+        gv->addEdge(this->edges, (int) link->getNode1_id(), (int) link->getNode2_id(), EdgeType::DIRECTED);
+
+    switch(link->getType()){
+        case LinkType::WALK:
+            gv->setEdgeDashed(this->edges, true);
+            gv->setEdgeColor(this->edges, RED);
+            break;
+        case LinkType::STREET_LINK:
+            gv->setEdgeThickness(this->edges, 3);
+            gv->setEdgeColor(this->edges, GRAY);
+            break;
+        default:
+            break;
+    }
+
+}
+
 void MapView::updateView() {
 
     if (gv != nullptr) {
 
         /* show nodes */
         for (pair<int, Node *> pair: this->map->getNodes()) {
-            this->add(pair.second);
+            this->showNode(pair.second);
         }
 
         /* show edges */
-        for (int i = 0; i < this->map->getLinks().size(); i++) {
-
-            Link link = this->map->getLinks()[i];
-
-            Road road = this->map->getRoads().at((int) link.getId());
-
-            if (road.isIs_two_way())
-                gv->addEdge(i, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::UNDIRECTED);
-            else
-                gv->addEdge(i, (int) link.getNode1_id(), (int) link.getNode2_id(), EdgeType::DIRECTED);
-
-            //gv->setEdgeThickness(i, 1);
-            gv->setEdgeColor(i, GRAY);
-
+        this->edges = 0;
+        for (auto *link: this->map->getLinks()) {
+            this->showLink(link);
+            this->edges++;
         }
 
         this->gv->rearrange();

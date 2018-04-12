@@ -6,7 +6,7 @@
 #define PARKINGSPOTSSEARCHER_UNIVERSITY_H
 
 
-#include "Node.h"
+#include "node/Node.h"
 
 class University : public Node {
 public:

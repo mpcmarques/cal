@@ -6,9 +6,9 @@
 #define PARKINGSPOTSSEARCHER_APIREADER_H
 
 #include <string>
-#include "Node.h"
+#include "node/Node.h"
 #include "Road.h"
-#include "Link.h"
+#include "link/Link.h"
 #include <map>
 #include <vector>
 
@@ -34,7 +34,7 @@ public:
      * Read the file with links between nodes (C):
      * @param nodesLinksPath File full path.
      */
-    static std::vector<Link> readNodeLinks(std::string nodesLinksPath);
+    static std::vector<Link *> readNodeLinks(std::string nodesLinksPath);
 };
 
 

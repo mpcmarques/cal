@@ -6,10 +6,11 @@
 #include <iostream>
 #include "StringSplitter.h"
 #include <map>
-#include <StreetNode.h>
-#include "Node.h"
+#include <node/StreetNode.h>
+#include <link/StreetLink.h>
+#include "node/Node.h"
 #include "Road.h"
-#include "Link.h"
+#include "link/Link.h"
 #include "ApiParser.h"
 
 using namespace std;
@@ -99,11 +100,11 @@ map<int, Road> ApiParser::readRoads(const string roadsFilePath) {
     }
 }
 
-vector<Link> ApiParser::readNodeLinks(const string nodesLinksPath) {
+vector<Link * > ApiParser::readNodeLinks(const string nodesLinksPath) {
 
     ifstream nodeFile(nodesLinksPath);
 
-    vector<Link> links;
+    vector<Link * > links;
 
     if (nodeFile.is_open()) {
         string line;
@@ -126,7 +127,7 @@ vector<Link> ApiParser::readNodeLinks(const string nodesLinksPath) {
             node2_id = stol(split[2]);
 
             // return the vector<links> with the parsed attributes
-            Link link = Link(road_id, node1_id, node2_id);
+            Link *link = new StreetLink(road_id, node1_id, node2_id);
             links.push_back(link);
         }
 

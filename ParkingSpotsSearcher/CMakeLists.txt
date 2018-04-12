@@ -54,10 +54,10 @@ add_executable(ParkingSpotsSearcher
         src/api-parser/ApiParser.cpp
         src/api-parser/ApiParser.h
         src/cli/Application.cpp
-        src/model/Link.cpp
-        src/model/Link.h
-        src/model/Node.cpp
-        src/model/Node.h
+        src/model/link/Link.cpp
+        src/model/link/Link.h
+        src/model/node/Node.cpp
+        src/model/node/Node.h
         src/model/Road.cpp
         src/model/Road.h
         src/tests/Test.cpp
@@ -65,4 +65,4 @@ add_executable(ParkingSpotsSearcher
         src/utils/LatLongConverter.h
         src/utils/MutablePriorityQueue.h
         src/utils/StringSplitter.cpp
-        src/utils/StringSplitter.h src/model/Map.cpp src/model/Map.h src/view/MapView.cpp src/view/MapView.h src/model/GasStation.cpp src/model/GasStation.h src/model/ParkingGarage.cpp src/model/ParkingGarage.cpp src/model/ParkingGarage.h src/model/StreetNode.cpp src/model/StreetNode.h src/model/ParkingMeter.cpp src/model/ParkingMeter.h src/model/University.cpp src/model/University.h src/model/ShoppingMall.cpp src/model/ShoppingMall.h src/model/Home.cpp src/model/Home.h)
+        src/utils/StringSplitter.h src/model/Map.cpp src/model/Map.h src/view/MapView.cpp src/view/MapView.h src/model/node/GasStation.cpp src/model/node/GasStation.h src/model/node/ParkingGarage.cpp src/model/node/ParkingGarage.cpp src/model/node/ParkingGarage.h src/model/node/StreetNode.cpp src/model/node/StreetNode.h src/model/node/ParkingMeter.cpp src/model/node/ParkingMeter.h src/model/node/University.cpp src/model/node/University.h src/model/node/ShoppingMall.cpp src/model/node/ShoppingMall.h src/model/node/Home.cpp src/model/node/Home.h src/model/link/StreetLink.cpp src/model/link/StreetLink.h src/model/link/WalkingLink.cpp src/model/link/WalkingLink.h)
