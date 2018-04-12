@@ -7,6 +7,7 @@
 #include "node/ParkingMeter.h"
 #include <math.h>
 #include <link/StreetLink.h>
+#include <link/WalkingLink.h>
 
 
 Map::Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, std::vector<Link *> links) {
@@ -77,9 +78,16 @@ void Map::destroy() {
     }
 }
 
-void Map::addRoad(int roadId, long fromNodeId, long toNodeId) {
+void Map::addRoad(long fromNodeId, long toNodeId) {
+    long roadId = this->roads.size();
     this->roads.insert(std::pair<int, Road>(roadId, Road(roadId, "", true)));
     this->links.push_back(new StreetLink(roadId, fromNodeId, toNodeId));
+}
+
+void Map::addWalkingPath(long fromNodeId, long toNodeId){
+    long roadId = this->roads.size();
+    this->roads.insert(std::pair<int, Road>(roadId, Road(roadId, "", true)));
+    this->links.push_back(new WalkingLink(roadId, fromNodeId, toNodeId));
 }
 
 void Map::addNode(Node *node){
