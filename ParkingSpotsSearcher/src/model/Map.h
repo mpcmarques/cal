@@ -6,10 +6,10 @@
 #define PARKINGSPOTSSEARCHER_MAP_H
 
 
-#include "Node.h"
+#include "node/Node.h"
 #include "Road.h"
-#include "Link.h"
-#include "GasStation.h"
+#include "link/Link.h"
+#include "node/GasStation.h"
 #include <map>
 #include <vector>
 #include <string>
@@ -22,16 +22,12 @@ private:
     int mapSize;
     std::map<int, Node *> nodes;
     std::map<int, Road> roads;
-    std::vector<Link> links;
+    std::vector<Link *> links;
     ParkingSpotSearcher<Node *, int> parkingSpotSearcher;
 public:
-    Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, std::vector<Link> links);
+    const std::vector<Link *, std::allocator<Link *>> &getLinks() const;
 
-    void setNodes(const std::map<int, Node *> nodes);
-
-    void setRoads(const std::map<int, Road> &roads);
-
-    void setLinks(const std::vector<Link, std::allocator<Link>> &links);
+    Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, std::vector<Link *> links);
 
     std::vector<Node *> findShortestPath(int sourceId, int destId, int maxDistance, bool visitGasStation);
 
@@ -39,9 +35,13 @@ public:
 
     const std::map<int, Road> &getRoads() const;
 
-    const std::vector<Link, std::allocator<Link>> &getLinks() const;
-
     int getMapSize() const;
+
+    void addRoad(int roadId, long fromNodeId, long toNodeId);
+
+    void destroy();
+
+    void addNode(Node *node);
 };
 
 

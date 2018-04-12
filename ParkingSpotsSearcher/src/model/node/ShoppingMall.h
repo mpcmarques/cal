@@ -5,7 +5,7 @@
 #ifndef PARKINGSPOTSSEARCHER_SHOPPINGMALL_H
 #define PARKINGSPOTSSEARCHER_SHOPPINGMALL_H
 
-#include "Node.h"
+#include "node/Node.h"
 
 class ShoppingMall : public Node{
 

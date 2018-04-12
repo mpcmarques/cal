@@ -17,7 +17,7 @@
 
 #include <unordered_map>
 #include <ApiParser.h>
-#include "../model/Node.h"
+#include "node/Node.h"
 
 //Graph<int, int> CreateTestGraph() {
 //    Graph<int, int> myGraph;
@@ -161,7 +161,7 @@ void test_roads_parser() {
 }
 
 void test_links_parser() {
-    vector<Link> links = ApiParser::readNodeLinks("../maps/C.txt");
+    vector<Link *> links = ApiParser::readNodeLinks("../maps/C.txt");
     ASSERT(links.size() > 0);
 }
 
