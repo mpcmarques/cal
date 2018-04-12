@@ -25,7 +25,7 @@ private:
 
     void addParkingMeters(Map *map);
 
-    Node *getNodeFromLocation(int opt, map<int, Node *> nodes);
+    Node *getNodeFromLocation(int opt, const Map *map);
 
     void addOtherPoints(Map *map);
 

@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "node/ParkingGarage.h"
 #include "node/ParkingMeter.h"
+#include <math.h>
 
 
 

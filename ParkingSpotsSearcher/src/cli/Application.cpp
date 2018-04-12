@@ -53,11 +53,11 @@ int Application::chooseStartingPoint() {
     cout << "3 -> Shopping Mall." << endl;
     cin >> opt;
 
-    if (opt > 0 && opt < 3) return opt;
+    if (opt > 0 && opt < 4) return opt;
 
     else {
         cout << "Invalid option, choose again." << endl;
-        return chooseNearestOrCheapest();
+        return chooseStartingPoint();
     }
 }
 
@@ -69,11 +69,11 @@ int Application::chooseEndingPoint() {
     cout << "3 -> Shopping Mall." << endl;
     cin >> opt;
 
-    if (opt > 0 && opt < 3) return opt;
+    if (opt > 0 && opt < 4) return opt;
 
     else {
         cout << "Invalid option, choose again." << endl;
-        return chooseNearestOrCheapest();
+        return chooseEndingPoint();
     }
 }
 
@@ -204,13 +204,23 @@ void Application::start() {
                 endingPoint = chooseEndingPoint();
             }
 
+            // Parse start and ending point
+            Node *startingNode = getNodeFromLocation(startingPoint, map);
+            Node *endingNode = getNodeFromLocation(endingPoint, map);
+
+            if (startingNode == nullptr) {
+                cout << "Error: starting node is null" << endl;
+                break;
+            }
+            if (endingNode == nullptr){
+                cout << "Error: ending node is null" << endl;
+                break;
+            }
+
+            // other options
             near_or_cheap = chooseNearestOrCheapest();
             gas = chooseGasStation();
             maxDistance = chooseMaxDistance();
-
-            // Parse start and ending point
-            Node *startingNode = getNodeFromLocation(startingPoint, nodes);
-            Node *endingNode = getNodeFromLocation(endingPoint, nodes);
 
             // TODO: calculate path
             vector<Node *> path = calculatePath(map, startingNode, endingNode, near_or_cheap, gas, maxDistance);
@@ -239,14 +249,14 @@ vector<Node *> Application::calculatePath(Map *map, Node * startingNode, Node * 
         return map->findShortestPath(startingNode->getId(), endingNode->getId(), maxDistance, gas == 1);
 }
 
-Node *Application::getNodeFromLocation(int opt, map<int, Node *> nodes) {
+Node *Application::getNodeFromLocation(int opt, const Map *map) {
     switch (opt) {
         case 1: // Home
-            return nodes.at(HOME);
+            return map->getNodes().at(HOME_NODE_ID);
         case 2: // University
-            return nodes.at(UNIVERSITY);
+            return map->getNodes().at(UNIVERSITY_NODE_ID);
         case 3: // Shopping Mall
-            return nodes.at(MALL);
+            return map->getNodes().at(MALL_NODE_ID);
         default:
             return nullptr;
     }
