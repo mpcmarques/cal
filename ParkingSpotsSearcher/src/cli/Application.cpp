@@ -199,8 +199,8 @@ void Application::start() {
             Node *startingNode = getNodeFromLocation(startingPoint, nodes);
             Node *endingNode = getNodeFromLocation(endingPoint, nodes);
 
-            // TODO: calculate
-            // vector<Node *> path = calculatePath(startingNode, endingNode);
+            // TODO: calculate path
+            // vector<Node *> path = calculatePath(startingNode, endingNode, near_or_cheap, gas);
 
             // TODO: show path on screen
         }
