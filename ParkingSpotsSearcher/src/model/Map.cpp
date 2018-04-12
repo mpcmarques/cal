@@ -7,6 +7,7 @@
 #include "node/ParkingMeter.h"
 #include <math.h>
 #include <link/StreetLink.h>
+#include <link/WalkingLink.h>
 
 
 Map::Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, std::vector<Link *> links) {
@@ -35,7 +36,7 @@ Map::Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, st
         Node *n2 = this->nodes.at(link->getNode2_id());
 
         double distance = sqrt(
-                pow(n1->getLatitude() - n2->getLatitude(), 2) + pow(n2->getLongitute() - n2->getLongitute(), 2));
+                pow(n1->getLatitude() - n2->getLatitude(), 2) + pow(n1->getLongitute() - n2->getLongitute(), 2));
 
         this->parkingSpotSearcher.addEdge(link->getNode1_id(), link->getNode2_id(), distance, link->getId());
         if (r.isIs_two_way())
@@ -77,9 +78,16 @@ void Map::destroy() {
     }
 }
 
-void Map::addRoad(int roadId, long fromNodeId, long toNodeId) {
+void Map::addRoad(long fromNodeId, long toNodeId) {
+    long roadId = this->roads.size();
     this->roads.insert(std::pair<int, Road>(roadId, Road(roadId, "", true)));
     this->links.push_back(new StreetLink(roadId, fromNodeId, toNodeId));
+}
+
+void Map::addWalkingPath(long fromNodeId, long toNodeId){
+    long roadId = this->roads.size();
+    this->roads.insert(std::pair<int, Road>(roadId, Road(roadId, "", true)));
+    this->links.push_back(new WalkingLink(roadId, fromNodeId, toNodeId));
 }
 
 void Map::addNode(Node *node){

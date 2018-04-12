@@ -25,7 +25,7 @@ private:
     double MIN_LONGITUDE = -8.5832 + drift;
     double MAX_LONGITUDE = -8.5983 + drift;
 
-    void addNodeIntoView(Node node);
+    void addNodeIntoView(const Node *node);
 
     void showNode(const Node *node);
 

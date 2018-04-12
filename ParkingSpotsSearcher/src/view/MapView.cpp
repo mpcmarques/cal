@@ -26,15 +26,15 @@ MapView::MapView(Map *map) {
     this->map = map;
 }
 
-void MapView::addNodeIntoView(Node node) {
+void MapView::addNodeIntoView(const Node *node) {
     /* fix window position */
-    double x = LatLongConverter::convert(node.getLongitute(), MAX_LONGITUDE, MIN_LONGITUDE,
+    double x = LatLongConverter::convert(node->getLongitute(), MAX_LONGITUDE, MIN_LONGITUDE,
                                          this->map->getMapSize());
-    double y = LatLongConverter::convert(node.getLatitude(), MAX_LATITUDE, MIN_LATITUDE,
+    double y = LatLongConverter::convert(node->getLatitude(), MAX_LATITUDE, MIN_LATITUDE,
                                          this->map->getMapSize());
 
     /* add node do graph viewer */
-    gv->addNode((int) node.getId(), (int) (x * 0.89), (int) (y * 0.85));
+    gv->addNode((int) node->getId(), (int) (x * 0.89), (int) (y * 0.85));
 }
 
 void MapView::showNode(const Node *node) {
@@ -43,20 +43,20 @@ void MapView::showNode(const Node *node) {
         case NodeType::GAS_STATION:
             gv->setVertexIcon((int) node->getId(), "../images/gas_station.png");
             gv->setVertexLabel((int) node->getId(), "Gas Station");
-            gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
+            //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             gv->setVertexSize((int) node->getId(), 30);
 
             break;
         case NodeType::PARKING_GARAGE:
             gv->setVertexIcon((int) node->getId(), "../images/parking.png");
             gv->setVertexLabel((int) node->getId(), "Parking Garage");
-            gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
+            //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             gv->setVertexSize((int) node->getId(), 30);
 
             break;
         case NodeType::PARKING_LANE:
             gv->setVertexIcon((int) node->getId(), "../images/parking_meter.png");
-            gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
+            //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             gv->setVertexSize((int) node->getId(), 30);
             break;
         case NodeType::MALL:
@@ -72,7 +72,7 @@ void MapView::showNode(const Node *node) {
 
             break;
         case NodeType::STREET:
-            gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
+            //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             break;
         case NodeType::HOME:
             gv->setVertexIcon((int) node->getId(), "../images/home.png");
@@ -83,7 +83,7 @@ void MapView::showNode(const Node *node) {
             break;
     }
 
-    this->addNodeIntoView(*node);
+    this->addNodeIntoView(node);
 }
 
 void MapView::showLink(const Link *link) {
@@ -101,7 +101,6 @@ void MapView::showLink(const Link *link) {
             gv->setEdgeColor(this->edges, RED);
             break;
         case LinkType::STREET_LINK:
-            gv->setEdgeThickness(this->edges, 3);
             gv->setEdgeColor(this->edges, GRAY);
             break;
         default:

@@ -78,22 +78,21 @@ int Application::chooseEndingPoint() {
 }
 
 void Application::addGasStations(Map *map) {
-    int gas_station_id = 0, gas_station_id2 = 1, roadId = 0, roadId2 = 1, roadId3 = 2, roadId4 = 3;
+    int gas_station_id = 0, gas_station_id2 = 1;
 
     // insert nodes 0 and 1
     map->addNode(new GasStation(gas_station_id, 41.1709, -8.5892));
     map->addNode(new GasStation(gas_station_id2, 41.17554, -8.5963));
 
     // add roads
-    map->addRoad(roadId, gas_station_id, 4455723064);
-    map->addRoad(roadId2, gas_station_id, 4455723082);
-    map->addRoad(roadId3, gas_station_id2, 2460915667);
-    map->addRoad(roadId4, gas_station_id2, 4282469014);
+    map->addRoad(gas_station_id, 4455723064);
+    map->addRoad(gas_station_id, 4455723082);
+    map->addRoad(gas_station_id2, 2460915667);
+    map->addRoad(gas_station_id2, 4282469014);
 }
 
 void Application::addParkingSpots(Map *map) {
     int garageId = 2, garageId1 = 3, garageId2 = 4, garageId3 = 5;
-    int roadId = 4, roadId1 = 5, roadId2 = 6, roadId3 = 7, roadId4 = 8;
 
     map->addNode(new ParkingGarage(garageId, 41.17823, -8.59394, 5));
     map->addNode(new ParkingGarage(garageId1, 41.1749, -8.5883, 5));
@@ -101,28 +100,35 @@ void Application::addParkingSpots(Map *map) {
     map->addNode(new ParkingGarage(garageId3, 41.1763, -8.59586, 5));
 
     // parking garage roads
-    map->addRoad(roadId, garageId, 4282469053);
-    map->addRoad(roadId1, garageId1, 4517268345);
-    map->addRoad(roadId1, garageId2, 430012030);
-    map->addRoad(roadId2, garageId2, 432578817);
+    map->addRoad(garageId, 4282469053);
+    map->addRoad(garageId3, 4517268345);
+    map->addRoad(garageId2, 430012030);
+    map->addRoad(garageId2, 432578817);
+    map->addRoad(garageId1, 4478085704);
 }
 
 void Application::addParkingMeters(Map *map) {
-    /*
-    nodes.insert(pair<int, Node *>(6, new ParkingMeter(6, 41.1763, -8.59586, 1)));
-    nodes.insert(pair<int, Node *>(7, new ParkingMeter(7, 41.17899, -8.6006, 1)));
-    nodes.insert(pair<int, Node *>(8, new ParkingMeter(8, 41.17707, -8.59228, 1)));
-    nodes.insert(pair<int, Node *>(9, new ParkingMeter(9, 41.17655, -8.58992, 1)));
-    */
-    // TODO: Connect parking meters
+    int meterId = 6, meterId1 = 7, meterId2 = 8;
+
+    map->addNode(new ParkingMeter(meterId, 41.17899, -8.6006, 1));
+    map->addNode(new ParkingMeter(meterId1, 41.17707, -8.59228, 1));
+    map->addNode(new ParkingMeter(meterId2, 41.16938, -8.59301, 1));
+
+    // roads to parking meters
+    map->addRoad(meterId1, 4474021937);
+    map->addRoad(meterId2, 343634632);
+    map->addRoad(meterId, 430006694);
 }
 
 void Application::addOtherPoints(Map *map) {
-    map->addNode(new ShoppingMall(MALL_NODE_ID, 41.1777, -8.5913));
+    map->addNode(new ShoppingMall(MALL_NODE_ID, 41.1754, -8.5874));
     map->addNode(new University(UNIVERSITY_NODE_ID, 41.1781, -8.5962));
-    map->addNode(new Home(HOME_NODE_ID, 41.168, -8.593));
+    map->addNode(new Home(HOME_NODE_ID, 41.17026, -8.59661));
 
-    // TODO: Connect other points with walking links
+    // roads to other points with walking links
+    map->addWalkingPath(MALL_NODE_ID, 4452315785);
+    map->addWalkingPath(UNIVERSITY_NODE_ID, 2185756687);
+    map->addWalkingPath(HOME_NODE_ID, 2168903808);
 }
 
 void Application::start() {
@@ -148,10 +154,10 @@ void Application::start() {
     addParkingSpots(map);
 
     /* add parking lanes to the nodes */
-    //addParkingMeters(nodes, links, roads);
+    addParkingMeters(map);
 
     /* add points of interest */
-    //addOtherPoints(nodes, links, roads);
+    addOtherPoints(map);
 
     /* create map view */
     MapView *mapView = new MapView(map);
@@ -193,8 +199,8 @@ void Application::start() {
             Node *startingNode = getNodeFromLocation(startingPoint, nodes);
             Node *endingNode = getNodeFromLocation(endingPoint, nodes);
 
-            // TODO: calculate
-            // vector<Node *> path = calculatePath(startingNode, endingNode);
+            // TODO: calculate path
+            // vector<Node *> path = calculatePath(startingNode, endingNode, near_or_cheap, gas);
 
             // TODO: show path on screen
         }
