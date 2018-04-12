@@ -92,14 +92,19 @@ void Application::addGasStations(Map *map) {
 }
 
 void Application::addParkingSpots(Map *map) {
-    int garageId = 2, garageId2 = 3, garageId3 = 4, garageId4 = 5;
+    int garageId = 2, garageId1 = 3, garageId2 = 4, garageId3 = 5;
+    int roadId = 4, roadId1 = 5, roadId2 = 6, roadId3 = 7, roadId4 = 8;
 
     map->addNode(new ParkingGarage(garageId, 41.17823, -8.59394, 5));
-    map->addNode(new ParkingGarage(garageId2, 41.1749, -8.5883, 5));
-    map->addNode(new ParkingGarage(garageId3, 41.17602, -8.59958, 5));
-    map->addNode(new ParkingGarage(garageId4, 41.1763, -8.59586, 5));
+    map->addNode(new ParkingGarage(garageId1, 41.1749, -8.5883, 5));
+    map->addNode(new ParkingGarage(garageId2, 41.17602, -8.59958, 5));
+    map->addNode(new ParkingGarage(garageId3, 41.1763, -8.59586, 5));
 
-    // TODO: Add parking garage connections
+    // parking garage roads
+    map->addRoad(roadId, garageId, 4282469053);
+    map->addRoad(roadId1, garageId1, 4517268345);
+    map->addRoad(roadId1, garageId2, 430012030);
+    map->addRoad(roadId2, garageId2, 432578817);
 }
 
 void Application::addParkingMeters(Map *map) {
@@ -221,9 +226,7 @@ Node *Application::getNodeFromLocation(int opt, map<int, Node *> nodes) {
     }
 }
 
-Application::Application() {
-
-}
+Application::Application() {}
 
 
 int main() {
