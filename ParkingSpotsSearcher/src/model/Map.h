@@ -30,6 +30,7 @@ public:
     Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, std::vector<Link *> links);
 
     std::vector<Node *> findShortestPath(int sourceId, int destId, int maxDistance, bool visitGasStation);
+    std::vector<Node *> findCheapestPath(int sourceId, int destId, int maxDistance, bool visitGasStation);
 
     const std::map<int, Node *> &getNodes() const;
 

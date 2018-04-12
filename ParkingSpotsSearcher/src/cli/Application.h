@@ -29,6 +29,9 @@ private:
 
     void addOtherPoints(Map *map);
 
+    vector<Node *> calculatePath(Map *map, Node * startingNode, Node * endingNode, int near_or_cheap, int gas, int maxDistance);
+
+
 public:
     Application();
 

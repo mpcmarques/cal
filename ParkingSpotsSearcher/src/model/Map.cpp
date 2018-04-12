@@ -23,6 +23,10 @@ std::vector<Node *> Map::findShortestPath(int sourceId, int destId, int maxDista
     return this->parkingSpotSearcher->findShortestPath(sourceId, destId, maxDistance, visitGasStation);
 }
 
+std::vector<Node *> Map::findCheapestPath(int sourceId, int destId, int maxDistance, bool visitGasStation) {
+    return this->parkingSpotSearcher->findShortestPath(sourceId, destId, maxDistance, visitGasStation);
+}
+
 int Map::getMapSize() const {
     return mapSize;
 }

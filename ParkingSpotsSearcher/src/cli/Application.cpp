@@ -213,8 +213,8 @@ void Application::start() {
             Node *endingNode = getNodeFromLocation(endingPoint, nodes);
 
             // TODO: calculate path
-            // vector<Node *> path = calculatePath(startingNode, endingNode, near_or_cheap, gas, maxDistance);
-
+            vector<Node *> path = calculatePath(map, startingNode, endingNode, near_or_cheap, gas, maxDistance);
+            cout<<path.size()<<endl; //TODEL
             // TODO: show path on screen
         }
 
@@ -230,6 +230,13 @@ void Application::start() {
     mapView->close();
     free(mapView);
     cout << "Application ended" << endl;
+}
+
+vector<Node *> Application::calculatePath(Map *map, Node * startingNode, Node * endingNode, int near_or_cheap, int gas, int maxDistance){
+    if(near_or_cheap == 1)
+        return map->findCheapestPath(startingNode->getId(), endingNode->getId(), maxDistance, gas == 1);
+    else
+        return map->findShortestPath(startingNode->getId(), endingNode->getId(), maxDistance, gas == 1);
 }
 
 Node *Application::getNodeFromLocation(int opt, map<int, Node *> nodes) {
