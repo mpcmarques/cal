@@ -69,7 +69,7 @@ map<long, Road> ApiParser::readRoads(const string roadsFilePath) {
         while (getline(nodeFile, line)) {
             string road_name;
             long road_id;
-            bool is_two_way;
+            bool is_two_way = false;
 
             vector<string> split = StringSplitter::split(line, ';');
 
@@ -82,7 +82,10 @@ map<long, Road> ApiParser::readRoads(const string roadsFilePath) {
 
             road_id = stoi(split[0]);
             road_name = split[1];
-            is_two_way = split[2] == "True";
+
+            if (split[2] == "True") {
+                is_two_way = true;
+            }
 
             // return the vector<edges> with the parsed attributes
             Road road = Road(road_id, road_name, is_two_way);
@@ -100,11 +103,11 @@ map<long, Road> ApiParser::readRoads(const string roadsFilePath) {
     }
 }
 
-vector<Link * > ApiParser::readNodeLinks(const string nodesLinksPath) {
+vector<Link *> ApiParser::readNodeLinks(const string nodesLinksPath) {
 
     ifstream nodeFile(nodesLinksPath);
 
-    vector<Link * > links;
+    vector<Link *> links;
 
     if (nodeFile.is_open()) {
         string line;

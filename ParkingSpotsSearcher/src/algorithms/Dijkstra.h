@@ -86,12 +86,11 @@ std::vector<long> Dijkstra<V,E>::findInRageWithType(long origin, long range, Ver
         auto v = q.extractMin();
         for (auto e : v->edges) {
             auto oldDist = e->dest->dist;
-            if(v->dist > range)
-            	continue;
+
             if (relax(v, e->dest, e->weight)) {
                 if (oldDist == INF){
                 	q.insert(e->dest);
-                	if(e->dest->type == type)
+                	if(e->dest->type == type && e->dest->dist <= range)
                 		closest.push_back(e->dest->id);
                 }
                 else
