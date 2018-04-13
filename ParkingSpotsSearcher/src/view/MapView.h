@@ -41,6 +41,10 @@ public:
     void close();
 
     void updateView();
+
+    void showPath(std::vector<Node *> vector);
+
+    void selectVertex(int vertexId, int number);
 };
 
 

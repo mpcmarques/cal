@@ -140,3 +140,17 @@ void MapView::close() {
     free(this->map);
     free(this->gv);
 }
+
+void MapView::selectVertex(int vertexId, int number) {
+    gv->setVertexColor(vertexId, BLUE);
+    gv->setVertexSize((vertexId), 15);
+    gv->setVertexLabel(vertexId, to_string(number));
+}
+
+void MapView::showPath(vector<Node *> vector) {
+    int count = 0;
+    for (Node *pathNode: vector) {
+        this->selectVertex((int) pathNode->getId(), ++count);
+    }
+
+}

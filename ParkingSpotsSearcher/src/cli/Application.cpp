@@ -131,12 +131,12 @@ void Application::addOtherPoints(Map *map) {
     map->addWalkingPath(HOME_NODE_ID, 2168903808);
 }
 
-int Application::chooseMaxDistance(){
+int Application::chooseMaxDistance() {
     int distance;
     cout << "What is the maximum distance?" << endl;
     cin >> distance;
 
-    if(distance < 0){
+    if (distance < 0) {
         cout << "Distance must be greater than zero" << endl;
         return chooseMaxDistance();
     } else
@@ -185,7 +185,7 @@ void Application::start() {
     cout << "Opening Map View..." << endl;
 
     mapView->initialize();
-    return;
+
     /* update cycle based on actions */
     int running = true;
 
@@ -200,6 +200,7 @@ void Application::start() {
         if (opt == 0) {
             running = false;
         } else if (opt == 1) {
+
             int near_or_cheap, gas, startingPoint, endingPoint, maxDistance;
 
             /* ask starting and ending point */
@@ -215,25 +216,21 @@ void Application::start() {
             Node *startingNode = getNodeFromLocation(startingPoint, map);
             Node *endingNode = getNodeFromLocation(endingPoint, map);
 
-            if (startingNode == nullptr) {
-                cout << "Error: starting node is null" << endl;
-                break;
-            }
-            if (endingNode == nullptr){
-                cout << "Error: ending node is null" << endl;
-                break;
-            }
-
             // other options
             near_or_cheap = chooseNearestOrCheapest();
             gas = chooseGasStation();
             maxDistance = chooseMaxDistance();
 
-            // TODO: calculate path
+            // calculate path
             vector<Node *> path = calculatePath(map, startingNode, endingNode, near_or_cheap, gas, maxDistance);
 
-            cout<<path.size()<<endl; //TODEL
-            // TODO: show path on screen
+            if (path.size() > 0){
+                // show path on screen
+                mapView->showPath(path);
+                cout << "Path calculated, showing on map..." << endl;
+            }
+
+            cout << "No path was found, please try again with a bigger distance." << endl;
         }
 
         // change stuff in the map
@@ -250,8 +247,9 @@ void Application::start() {
     cout << "Application ended" << endl;
 }
 
-vector<Node *> Application::calculatePath(Map *map, Node * startingNode, Node * endingNode, int near_or_cheap, int gas, int maxDistance){
-    if(near_or_cheap == 1)
+vector<Node *> Application::calculatePath(Map *map, Node *startingNode, Node *endingNode, int near_or_cheap, int gas,
+                                          int maxDistance) {
+    if (near_or_cheap == 1)
         return map->findCheapestPath(startingNode->getId(), endingNode->getId(), maxDistance, gas == 1);
     else
         return map->findShortestPath(startingNode->getId(), endingNode->getId(), maxDistance, gas == 1);
