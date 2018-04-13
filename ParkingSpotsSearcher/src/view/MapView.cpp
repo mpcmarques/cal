@@ -141,16 +141,30 @@ void MapView::close() {
     free(this->gv);
 }
 
-void MapView::selectVertex(int vertexId, int number) {
+void MapView::paintSelectedVertex(int vertexId, int number) {
     gv->setVertexColor(vertexId, BLUE);
     gv->setVertexSize((vertexId), 15);
     gv->setVertexLabel(vertexId, to_string(number));
 }
 
+void MapView::paintWalkVertex(int vertexId, int number){
+    gv->setVertexColor(vertexId, RED);
+    gv->setVertexSize((vertexId), 11);
+    gv->setVertexLabel(vertexId, to_string(number));
+}
+
 void MapView::showPath(vector<Node *> vector) {
     int count = 0;
+    bool parkedCar = false;
+
     for (Node *pathNode: vector) {
-        this->selectVertex((int) pathNode->getId(), ++count);
+        if (pathNode->getType() == NodeType::PARKING_LANE || pathNode->getType() == NodeType::PARKING_LANE)
+            parkedCar = true;
+
+        if (!parkedCar)
+            this->paintSelectedVertex((int) pathNode->getId(), ++count);
+        else
+            this->paintWalkVertex((int) pathNode->getId(), ++count);
     }
 
 }

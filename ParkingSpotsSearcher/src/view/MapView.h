@@ -33,6 +33,10 @@ private:
 
     int edges;
 
+    void paintSelectedVertex(int vertexId, int number);
+
+    void paintWalkVertex(int vertexId, int number);
+
 public:
     MapView(Map *map);
 
@@ -43,8 +47,6 @@ public:
     void updateView();
 
     void showPath(std::vector<Node *> vector);
-
-    void selectVertex(int vertexId, int number);
 };
 
 
