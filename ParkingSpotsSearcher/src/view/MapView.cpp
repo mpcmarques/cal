@@ -18,8 +18,6 @@ void MapView::initialize() {
     this->edges = 0;
 
     gv->createWindow(map->getMapSize(), map->getMapSize());
-
-    this->updateView();
 }
 
 MapView::MapView(Map *map) {
@@ -72,6 +70,8 @@ void MapView::showNode(const Node *node) {
 
             break;
         case NodeType::STREET:
+            gv->setVertexColor((int) node->getId(), YELLOW);
+            gv->setVertexSize((int) node->getId(), 5);
             //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             break;
         case NodeType::HOME:
@@ -99,9 +99,11 @@ void MapView::showLink(const Link *link) {
         case LinkType::WALK:
             gv->setEdgeDashed(this->edges, true);
             gv->setEdgeColor(this->edges, RED);
+            gv->setEdgeThickness(this->edges, 1);
             break;
         case LinkType::STREET_LINK:
             gv->setEdgeColor(this->edges, GRAY);
+            gv->setEdgeThickness(this->edges, 1);
             break;
         default:
             break;
@@ -142,7 +144,6 @@ void MapView::close() {
 }
 
 void MapView::showPath(vector<Node *> nodeVector) {
-    int count = 0;
     bool parkedCar = false;
 
     for (int i = 0; i < nodeVector.size() - 1; i++) {
@@ -161,17 +162,14 @@ void MapView::showPath(vector<Node *> nodeVector) {
 
                 // check connection between nodes
                 if (link->getNode1_id() == pathNode->getId()) {
-                    for (int k = 0; k < nodeVector.size(); k++){
-                        if (nodeVector[k]->getId() == link->getNode2_id()){
+                    for (int k = 0; k < nodeVector.size(); k++) {
+                        if (nodeVector[k]->getId() == link->getNode2_id()) {
                             gv->setEdgeColor(j, BLUE);
                             gv->setEdgeThickness(j, 5);
                         }
                     }
                 }
             }
-
-            gv->rearrange();
-
         } else {
             gv->setVertexColor(pathNode->getId(), RED);
             gv->setVertexSize((pathNode->getId()), 8);
@@ -182,18 +180,18 @@ void MapView::showPath(vector<Node *> nodeVector) {
 
                 // check connection between nodes
                 if (link->getNode1_id() == pathNode->getId()) {
-                    for (int k = 0; k < nodeVector.size(); k++){
-                        if (nodeVector[k]->getId() == link->getNode2_id()){
+                    for (int k = 0; k < nodeVector.size(); k++) {
+                        if (nodeVector[k]->getId() == link->getNode2_id()) {
                             gv->setEdgeColor(j, RED);
                             gv->setEdgeThickness(j, 5);
                         }
                     }
                 }
             }
-
-            gv->rearrange();
         }
 
     }
 
+
+    gv->rearrange();
 }

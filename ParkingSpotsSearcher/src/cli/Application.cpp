@@ -203,6 +203,8 @@ void Application::start() {
 
             int near_or_cheap, gas, startingPoint, endingPoint, maxDistance;
 
+            mapView->updateView();
+
             /* ask starting and ending point */
             startingPoint = chooseStartingPoint();
             endingPoint = chooseEndingPoint();
@@ -232,14 +234,6 @@ void Application::start() {
             else
                 cout << "No path was found, please try again with a bigger distance." << endl;
         }
-
-        // change stuff in the map
-
-        // update map model
-        //mapView->setMap(map)
-
-        // update map view
-        //mapView->update();
     }
 
     mapView->close();
