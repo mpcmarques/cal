@@ -229,8 +229,8 @@ void Application::start() {
                 mapView->showPath(path);
                 cout << "Path calculated, showing on map..." << endl;
             }
-
-            cout << "No path was found, please try again with a bigger distance." << endl;
+            else
+                cout << "No path was found, please try again with a bigger distance." << endl;
         }
 
         // change stuff in the map
