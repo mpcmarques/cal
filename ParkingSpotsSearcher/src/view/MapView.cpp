@@ -72,7 +72,7 @@ void MapView::showNode(const Node *node) {
         case NodeType::STREET:
             gv->setVertexColor((int) node->getId(), YELLOW);
             gv->setVertexSize((int) node->getId(), 5);
-            //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
+            gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             break;
         case NodeType::HOME:
             gv->setVertexIcon((int) node->getId(), "../images/home.png");

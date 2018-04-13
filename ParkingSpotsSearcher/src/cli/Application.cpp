@@ -136,6 +136,7 @@ void Application::addOtherPoints(Map *map) {
     map->addRoad(299574280, 773982494);
     map->addRoad(343634632, 343634636);
     map->addRoad(343646684, 343634635);
+    map->addRoad(319327503, 319327505);
 }
 
 int Application::chooseMaxDistance() {
