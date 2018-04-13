@@ -141,30 +141,65 @@ void MapView::close() {
     free(this->gv);
 }
 
-void MapView::paintSelectedVertex(int vertexId, int number) {
+void MapView::paintSelectedVertex(int vertexId, int nextVertexId, int number) {
     gv->setVertexColor(vertexId, BLUE);
-    gv->setVertexSize((vertexId), 15);
+    gv->setVertexSize((vertexId), 10);
     gv->setVertexLabel(vertexId, to_string(number));
+
+    int count = 0;
+    for (auto link: this->map->getLinks()) {
+
+        if (link->getNode1_id() == vertexId && link->getNode2_id() == nextVertexId
+                ||
+                link->getNode2_id() == vertexId && link->getNode1_id() == nextVertexId) {
+            gv->setEdgeColor(count, BLUE);
+            gv->setEdgeThickness(count, 5);
+        }
+
+        count++;
+    }
+
+    gv->rearrange();
 }
 
-void MapView::paintWalkVertex(int vertexId, int number){
+void MapView::paintWalkVertex(int vertexId, int nextVertexId, int number) {
     gv->setVertexColor(vertexId, RED);
-    gv->setVertexSize((vertexId), 11);
+    gv->setVertexSize((vertexId), 8);
     gv->setVertexLabel(vertexId, to_string(number));
+
+    /*
+    int count = number;
+    for (auto link: this->map->getLinks()) {
+
+        if (link->getNode1_id() == vertexId && link->getNode2_id() == nextVertexId
+            ||
+            link->getNode2_id() == vertexId && link->getNode1_id() == nextVertexId) {
+            gv->setEdgeColor(count, RED);
+            gv->setEdgeThickness(count, 5);
+        }
+
+        count++;
+    }*/
+
+    gv->rearrange();
 }
 
 void MapView::showPath(vector<Node *> vector) {
     int count = 0;
     bool parkedCar = false;
 
-    for (Node *pathNode: vector) {
-        if (pathNode->getType() == NodeType::PARKING_LANE || pathNode->getType() == NodeType::PARKING_LANE)
+    for (int i = 0; i < vector.size() - 1; i++) {
+        Node *pathNode = vector[i];
+        Node *nextNode = vector[i + 1];
+
+        if (pathNode->getType() == NodeType::PARKING_LANE || pathNode->getType() == NodeType::PARKING_GARAGE)
             parkedCar = true;
 
         if (!parkedCar)
-            this->paintSelectedVertex((int) pathNode->getId(), ++count);
+            this->paintSelectedVertex((int) pathNode->getId(), (int)nextNode->getId(), count++);
         else
-            this->paintWalkVertex((int) pathNode->getId(), ++count);
+            this->paintWalkVertex((int) pathNode->getId(), (int) nextNode->getId(), count++);
+
     }
 
 }
