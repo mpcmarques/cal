@@ -141,64 +141,58 @@ void MapView::close() {
     free(this->gv);
 }
 
-void MapView::paintSelectedVertex(int vertexId, int nextVertexId, int number) {
-    gv->setVertexColor(vertexId, BLUE);
-    gv->setVertexSize((vertexId), 10);
-    gv->setVertexLabel(vertexId, to_string(number));
-
-    int count = 0;
-    for (auto link: this->map->getLinks()) {
-
-        if (link->getNode1_id() == vertexId && link->getNode2_id() == nextVertexId
-                ||
-                link->getNode2_id() == vertexId && link->getNode1_id() == nextVertexId) {
-            gv->setEdgeColor(count, BLUE);
-            gv->setEdgeThickness(count, 5);
-        }
-
-        count++;
-    }
-
-    gv->rearrange();
-}
-
-void MapView::paintWalkVertex(int vertexId, int nextVertexId, int number) {
-    gv->setVertexColor(vertexId, RED);
-    gv->setVertexSize((vertexId), 8);
-    gv->setVertexLabel(vertexId, to_string(number));
-
-    /*
-    int count = number;
-    for (auto link: this->map->getLinks()) {
-
-        if (link->getNode1_id() == vertexId && link->getNode2_id() == nextVertexId
-            ||
-            link->getNode2_id() == vertexId && link->getNode1_id() == nextVertexId) {
-            gv->setEdgeColor(count, RED);
-            gv->setEdgeThickness(count, 5);
-        }
-
-        count++;
-    }*/
-
-    gv->rearrange();
-}
-
-void MapView::showPath(vector<Node *> vector) {
+void MapView::showPath(vector<Node *> nodeVector) {
     int count = 0;
     bool parkedCar = false;
 
-    for (int i = 0; i < vector.size() - 1; i++) {
-        Node *pathNode = vector[i];
-        Node *nextNode = vector[i + 1];
+    for (int i = 0; i < nodeVector.size() - 1; i++) {
+        Node *pathNode = nodeVector[i];
 
         if (pathNode->getType() == NodeType::PARKING_LANE || pathNode->getType() == NodeType::PARKING_GARAGE)
             parkedCar = true;
 
-        if (!parkedCar)
-            this->paintSelectedVertex((int) pathNode->getId(), (int)nextNode->getId(), count++);
-        else
-            this->paintWalkVertex((int) pathNode->getId(), (int) nextNode->getId(), count++);
+        if (!parkedCar) {
+            gv->setVertexColor(pathNode->getId(), BLUE);
+            gv->setVertexSize((pathNode->getId()), 10);
+            gv->setVertexLabel(pathNode->getId(), to_string(i));
+
+            for (int j = 0; j < this->map->getLinks().size(); j++) {
+                Link *link = this->map->getLinks()[j];
+
+                // check connection between nodes
+                if (link->getNode1_id() == pathNode->getId()) {
+                    for (int k = 0; k < nodeVector.size(); k++){
+                        if (nodeVector[k]->getId() == link->getNode2_id()){
+                            gv->setEdgeColor(j, BLUE);
+                            gv->setEdgeThickness(j, 5);
+                        }
+                    }
+                }
+            }
+
+            gv->rearrange();
+
+        } else {
+            gv->setVertexColor(pathNode->getId(), RED);
+            gv->setVertexSize((pathNode->getId()), 8);
+            gv->setVertexLabel(pathNode->getId(), to_string(i));
+
+            for (int j = 0; j < this->map->getLinks().size(); j++) {
+                Link *link = this->map->getLinks()[j];
+
+                // check connection between nodes
+                if (link->getNode1_id() == pathNode->getId()) {
+                    for (int k = 0; k < nodeVector.size(); k++){
+                        if (nodeVector[k]->getId() == link->getNode2_id()){
+                            gv->setEdgeColor(j, RED);
+                            gv->setEdgeThickness(j, 5);
+                        }
+                    }
+                }
+            }
+
+            gv->rearrange();
+        }
 
     }
 

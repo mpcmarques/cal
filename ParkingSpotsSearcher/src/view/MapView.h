@@ -33,10 +33,6 @@ private:
 
     int edges;
 
-    void paintSelectedVertex(int vertexId, int nextVertexId, int number);
-
-    void paintWalkVertex(int vertexId, int nextVertexId, int number);
-
 public:
     MapView(Map *map);
 
