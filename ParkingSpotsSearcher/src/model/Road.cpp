@@ -4,7 +4,7 @@
 
 #include "Road.h"
 
-Road::Road(int id, std::string road_name, bool is_two_way) {
+Road::Road(long id, std::string road_name, bool is_two_way) {
     this->id = id;
     this->name = road_name;
     this->is_two_way = is_two_way;
@@ -14,7 +14,7 @@ const std::string &Road::getName() const {
     return name;
 }
 
-int Road::getId() const {
+long Road::getId() const {
     return id;
 }
 

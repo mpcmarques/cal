@@ -22,13 +22,13 @@ public:
      * Read nodes from a node file(A).
      * @param nodesFilePath File full path.
      */
-    static std::map<int, Node *> readNodes(std::string nodesFilePath);
+    static std::map<long, Node *> readNodes(std::string nodesFilePath);
 
     /**
      * Read roads from a roads file (B).
      * @param roadsFilePath File full path.
      */
-    static std::map<int, Road> readRoads(std::string roadsFilePath);
+    static std::map<long, Road> readRoads(std::string roadsFilePath);
 
     /**
      * Read the file with links between nodes (C):

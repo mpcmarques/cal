@@ -11,32 +11,34 @@
 #include <link/WalkingLink.h>
 
 
-Map::Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, std::vector<Link *> links) {
+Map::Map(long mapSize, std::map<long, Node *> nodes, std::map<long, Road> roads, std::vector<Link *> links) {
     this->nodes = nodes;
     this->roads = roads;
     this->links = links;
     this->mapSize = mapSize;
+
+}
+
+std::vector<Node *> Map::findShortestPath(long sourceId, long destId, long maxDistance, bool visitGasStation) {
     this->parkingSpotSearcher = (new ParkingSpotSearcherBuilder(this))->build();
-}
-
-std::vector<Node *> Map::findShortestPath(int sourceId, int destId, int maxDistance, bool visitGasStation) {
     return this->parkingSpotSearcher->findShortestPath(sourceId, destId, maxDistance, visitGasStation);
 }
 
-std::vector<Node *> Map::findCheapestPath(int sourceId, int destId, int maxDistance, bool visitGasStation) {
+std::vector<Node *> Map::findCheapestPath(long sourceId, long destId, long maxDistance, bool visitGasStation) {
+    this->parkingSpotSearcher = (new ParkingSpotSearcherBuilder(this))->build();
     return this->parkingSpotSearcher->findShortestPath(sourceId, destId, maxDistance, visitGasStation);
 }
 
-int Map::getMapSize() const {
+long Map::getMapSize() const {
     return mapSize;
 }
 
 
-const std::map<int, Road> &Map::getRoads() const {
+const std::map<long, Road> &Map::getRoads() const {
     return roads;
 }
 
-const std::map<int, Node *> &Map::getNodes() const {
+const std::map<long, Node *> &Map::getNodes() const {
     return nodes;
 }
 
@@ -57,16 +59,16 @@ void Map::destroy() {
 
 void Map::addRoad(long fromNodeId, long toNodeId) {
     long roadId = this->roads.size();
-    this->roads.insert(std::pair<int, Road>(roadId, Road(roadId, "", true)));
+    this->roads.insert(std::pair<long, Road>(roadId, Road(roadId, "", true)));
     this->links.push_back(new StreetLink(roadId, fromNodeId, toNodeId));
 }
 
 void Map::addWalkingPath(long fromNodeId, long toNodeId){
     long roadId = this->roads.size();
-    this->roads.insert(std::pair<int, Road>(roadId, Road(roadId, "", true)));
+    this->roads.insert(std::pair<long, Road>(roadId, Road(roadId, "", true)));
     this->links.push_back(new WalkingLink(roadId, fromNodeId, toNodeId));
 }
 
 void Map::addNode(Node *node){
-    this->nodes.insert(std::pair<int, Node *>(node->getId(), node));
+    this->nodes.insert(std::pair<long, Node *>(node->getId(), node));
 }

@@ -10,15 +10,15 @@
 class Road {
 private:
     std::string name;
-    int id;
+    long id;
     bool is_two_way;
 
 public:
-    Road(int id, std::string road_name, bool is_two_way);
+    Road(long id, std::string road_name, bool is_two_way);
 
     const std::string &getName() const;
 
-    int getId() const;
+    long getId() const;
 
     bool isIs_two_way() const;
 };

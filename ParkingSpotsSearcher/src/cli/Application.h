@@ -7,9 +7,9 @@
 
 class Application {
 private:
-    const int UNIVERSITY_NODE_ID = 11;
-    const int MALL_NODE_ID = 10;
-    const int HOME_NODE_ID = 12;
+    const long UNIVERSITY_NODE_ID = 11;
+    const long MALL_NODE_ID = 10;
+    const long HOME_NODE_ID = 12;
 
     int chooseGasStation();
 

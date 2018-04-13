@@ -19,28 +19,28 @@ class ParkingSpotSearcher {
 	Graph<V, E> graph { };
 
 public:
-	bool addVertex(int id, VertexType type, V info, double cost = 0);
-	bool addEdge(int sourceId, int destId, double weight, E info);
-	std::vector<V> findShortestPath(int sourceId, int destId, int maxDistance,
+    bool addVertex(long id, VertexType type, V info, double cost = 0);
+    bool addEdge(long sourceId, long destId, double weight, E info);
+    std::vector<V> findShortestPath(long sourceId, long destId, long maxDistance,
 			bool visitGasStation = false);
-	std::vector<V> findCheapestPath(int sourceId, int destId, int maxDistance,
+    std::vector<V> findCheapestPath(long sourceId, long destId, long maxDistance,
 				bool visitGasStation = false);
 };
 
 
 template<class V, class E>
-bool ParkingSpotSearcher<V,E>::addVertex(int id, VertexType type, V info, double cost) {
+bool ParkingSpotSearcher<V,E>::addVertex(long id, VertexType type, V info, double cost) {
 	return graph.addVertex(id, type, info, cost);
 }
 
 template<class V, class E>
-bool ParkingSpotSearcher<V,E>::addEdge(int sourceId, int destId, double weight, E info) {
+bool ParkingSpotSearcher<V,E>::addEdge(long sourceId, long destId, double weight, E info) {
 	return graph.addEdge(sourceId, destId, weight, info);
 }
 
 template<class V, class E>
-std::vector<V> ParkingSpotSearcher<V,E>::findShortestPath(int sourceId,
-		int destId, int maxDistance, bool visitGasStation) {
+std::vector<V> ParkingSpotSearcher<V,E>::findShortestPath(long sourceId,
+        long destId, long maxDistance, bool visitGasStation) {
 	std::vector<Vertex<V, E>*> set = visitGasStation?graph.getThreeLayeredVertexSet(destId,
 			maxDistance, false):graph.getTwoLayeredVertexSet(destId,
 			maxDistance, false);
@@ -52,8 +52,8 @@ std::vector<V> ParkingSpotSearcher<V,E>::findShortestPath(int sourceId,
 }
 
 template<class V, class E>
-std::vector<V> ParkingSpotSearcher<V,E>::findCheapestPath(int sourceId,
-		int destId, int maxDistance, bool visitGasStation) {
+std::vector<V> ParkingSpotSearcher<V,E>::findCheapestPath(long sourceId,
+        long destId, long maxDistance, bool visitGasStation) {
 	std::vector<Vertex<V, E>*> set = visitGasStation?graph.getThreeLayeredVertexSet(destId,
 			maxDistance, true):graph.getTwoLayeredVertexSet(destId,
 			maxDistance, true);

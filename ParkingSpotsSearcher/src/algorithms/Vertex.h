@@ -22,17 +22,17 @@ template <class V, class E> class Dijkstra;
 template<class V, class E> class Vertex {
 	bool highest = false;
 	std::vector<Edge<V, E> *> edges;
-	int id;
+    long id;
 	V info;
 	VertexType type;
-	int queueIndex = 0;        // required by MutablePriorityQueue
+    long queueIndex = 0;        // required by MutablePriorityQueue
 	double dist = 0;
 	double cost = 0;
 	Vertex<V, E> *path = nullptr;
 
 public:
 
-	Vertex<V, E>(int id, VertexType type, V info, double cost) :
+    Vertex<V, E>(long id, VertexType type, V info, double cost) :
 			id { id }, type { type }, info { info }, cost{cost} {
 	}
 
@@ -52,7 +52,7 @@ public:
 		return path;
 	}
 
-	int getId() const {
+    long getId() const {
 		return id;
 	}
 

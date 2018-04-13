@@ -19,24 +19,24 @@
 class Map {
 
 private:
-    int mapSize;
-    std::map<int, Node *> nodes;
-    std::map<int, Road> roads;
+    long mapSize;
+    std::map<long, Node *> nodes;
+    std::map<long, Road> roads;
     std::vector<Link *> links;
-    ParkingSpotSearcher<Node *, int> * parkingSpotSearcher;
+    ParkingSpotSearcher<Node *, long> * parkingSpotSearcher;
 public:
     const std::vector<Link *, std::allocator<Link *>> &getLinks() const;
 
-    Map(int mapSize, std::map<int, Node *> nodes, std::map<int, Road> roads, std::vector<Link *> links);
+    Map(long mapSize, std::map<long, Node *> nodes, std::map<long, Road> roads, std::vector<Link *> links);
 
-    std::vector<Node *> findShortestPath(int sourceId, int destId, int maxDistance, bool visitGasStation);
-    std::vector<Node *> findCheapestPath(int sourceId, int destId, int maxDistance, bool visitGasStation);
+    std::vector<Node *> findShortestPath(long sourceId, long destId, long maxDistance, bool visitGasStation);
+    std::vector<Node *> findCheapestPath(long sourceId, long destId, long maxDistance, bool visitGasStation);
 
-    const std::map<int, Node *> &getNodes() const;
+    const std::map<long, Node *> &getNodes() const;
 
-    const std::map<int, Road> &getRoads() const;
+    const std::map<long, Road> &getRoads() const;
 
-    int getMapSize() const;
+    long getMapSize() const;
 
     void addRoad(long fromNodeId, long toNodeId);
 

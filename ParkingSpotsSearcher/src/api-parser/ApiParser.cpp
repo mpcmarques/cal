@@ -15,8 +15,8 @@
 
 using namespace std;
 
-map<int, Node *> ApiParser::readNodes(string nodeFilePath) {
-    map<int, Node *> nodes;
+map<long, Node *> ApiParser::readNodes(string nodeFilePath) {
+    map<long, Node *> nodes;
 
     ifstream nodeFile(nodeFilePath);
 
@@ -44,7 +44,7 @@ map<int, Node *> ApiParser::readNodes(string nodeFilePath) {
 
             //  return the vector<nodes> with the parsed attributes
             StreetNode *node = new StreetNode(id, latitude_in_degrees, longitude_in_degrees);
-            nodes.insert(pair<int, Node *>(id, node));
+            nodes.insert(pair<long, Node *>(id, node));
         }
 
         nodeFile.close();
@@ -57,18 +57,18 @@ map<int, Node *> ApiParser::readNodes(string nodeFilePath) {
     }
 }
 
-map<int, Road> ApiParser::readRoads(const string roadsFilePath) {
+map<long, Road> ApiParser::readRoads(const string roadsFilePath) {
 
     ifstream nodeFile(roadsFilePath);
 
-    map<int, Road> roads;
+    map<long, Road> roads;
 
     if (nodeFile.is_open()) {
         string line;
 
         while (getline(nodeFile, line)) {
             string road_name;
-            int road_id;
+            long road_id;
             bool is_two_way;
 
             vector<string> split = StringSplitter::split(line, ';');
@@ -86,7 +86,7 @@ map<int, Road> ApiParser::readRoads(const string roadsFilePath) {
 
             // return the vector<edges> with the parsed attributes
             Road road = Road(road_id, road_name, is_two_way);
-            roads.insert(pair<int, Road>(road_id, road));
+            roads.insert(pair<long, Road>(road_id, road));
         }
 
         nodeFile.close();

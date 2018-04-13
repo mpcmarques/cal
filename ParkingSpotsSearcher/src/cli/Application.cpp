@@ -150,9 +150,9 @@ void Application::start() {
     cout << "Loading data from .txt files... " << endl;
 
     /* load osm */
-    map<int, Node *> nodes = ApiParser::readNodes("../maps/A.txt");
+    map<long, Node *> nodes = ApiParser::readNodes("../maps/A.txt");
     vector<Link *> links = ApiParser::readNodeLinks("../maps/C.txt");
-    map<int, Road> roads = ApiParser::readRoads("../maps/B.txt");
+    map<long, Road> roads = ApiParser::readRoads("../maps/B.txt");
 
     cout << "Adding nodes of places of interest..." << endl;
 
@@ -171,6 +171,13 @@ void Application::start() {
     /* add points of interest */
     addOtherPoints(map);
 
+//    vector<Node *> path = map->findShortestPath(11, 10, 100000, false);
+//    cout << path.size() << endl;
+//    for(auto i : path) {
+//        cout<<i->getId()<<endl;
+//        //cout<<it->id
+//    }
+
     /* create map view */
     MapView *mapView = new MapView(map);
 
@@ -178,7 +185,7 @@ void Application::start() {
     cout << "Opening Map View..." << endl;
 
     mapView->initialize();
-
+    return;
     /* update cycle based on actions */
     int running = true;
 
@@ -224,6 +231,7 @@ void Application::start() {
 
             // TODO: calculate path
             vector<Node *> path = calculatePath(map, startingNode, endingNode, near_or_cheap, gas, maxDistance);
+
             cout<<path.size()<<endl; //TODEL
             // TODO: show path on screen
         }
