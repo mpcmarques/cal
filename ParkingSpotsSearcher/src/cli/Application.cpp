@@ -129,6 +129,13 @@ void Application::addOtherPoints(Map *map) {
     map->addWalkingPath(MALL_NODE_ID, 4452315785);
     map->addWalkingPath(UNIVERSITY_NODE_ID, 2185756687);
     map->addWalkingPath(HOME_NODE_ID, 2168903808);
+
+    // add missing graph roads
+    map->addRoad(411504977, 432578781);
+    map->addRoad(432578827, 4517268345);
+    map->addRoad(299574280, 773982494);
+    map->addRoad(343634632, 343634636);
+    map->addRoad(343646684, 343634635);
 }
 
 int Application::chooseMaxDistance() {
