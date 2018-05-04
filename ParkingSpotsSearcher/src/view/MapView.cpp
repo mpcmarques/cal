@@ -3,7 +3,10 @@
 //
 
 #include <LatLongConverter.h>
+#include <unordered_set>
 #include "MapView.h"
+
+std::unordered_set<std::string> nameCache;
 
 void MapView::initialize() {
 
@@ -71,7 +74,7 @@ void MapView::showNode(const Node *node) {
             break;
         case NodeType::STREET:
             gv->setVertexColor((int) node->getId(), YELLOW);
-            gv->setVertexSize((int) node->getId(), 5);
+            gv->setVertexSize((int) node->getId(), 1);
             //gv->setVertexLabel((int) node->getId(), to_string(node->getId()));
             break;
         case NodeType::HOME:
@@ -93,17 +96,23 @@ void MapView::showLink(const Link *link) {
     if (road.isIs_two_way())
         gv->addEdge(this->edges, (int) link->getNode1_id(), (int) link->getNode2_id(), EdgeType::UNDIRECTED);
     else
-        gv->addEdge(this->edges, (int) link->getNode1_id(), (int) link->getNode2_id(), EdgeType::DIRECTED);
+        gv->addEdge(this->edges, (int) link->getNode1_id(), (int) link->getNode2_id(), EdgeType::UNDIRECTED);
 
     switch (link->getType()) {
         case LinkType::WALK:
             gv->setEdgeDashed(this->edges, true);
             gv->setEdgeColor(this->edges, RED);
             gv->setEdgeThickness(this->edges, 1);
+
             break;
         case LinkType::STREET_LINK:
             gv->setEdgeColor(this->edges, GRAY);
             gv->setEdgeThickness(this->edges, 1);
+            if(nameCache.find(road.getName()) == nameCache.end()) {
+                gv->setEdgeLabel(this->edges, road.getName());
+                nameCache.insert(road.getName());
+            }
+
             break;
         default:
             break;
@@ -154,7 +163,7 @@ void MapView::showPath(vector<Node *> nodeVector) {
 
         if (!parkedCar) {
             gv->setVertexColor(pathNode->getId(), BLUE);
-            gv->setVertexSize((pathNode->getId()), 10);
+            gv->setVertexSize((pathNode->getId()), 1);
             gv->setVertexLabel(pathNode->getId(), to_string(i));
 
             for (int j = 0; j < this->map->getLinks().size(); j++) {
@@ -172,7 +181,7 @@ void MapView::showPath(vector<Node *> nodeVector) {
             }
         } else {
             gv->setVertexColor(pathNode->getId(), RED);
-            gv->setVertexSize((pathNode->getId()), 8);
+            gv->setVertexSize((pathNode->getId()), 1);
             gv->setVertexLabel(pathNode->getId(), to_string(i));
 
             for (int j = 0; j < this->map->getLinks().size(); j++) {
