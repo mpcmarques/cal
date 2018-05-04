@@ -2,13 +2,11 @@
 // Created by mateus on 06/04/18.
 //
 
-#include "../view/MapView.h"
 #include <iostream>
 #include <graphviewer.h>
 #include <ApiParser.h>
 #include <vector>
 #include <Edge.h>
-#include <Map.h>
 #include <node/ParkingMeter.h>
 #include <node/ShoppingMall.h>
 #include <node/University.h>
@@ -17,6 +15,36 @@
 #include "Application.h"
 
 using namespace std;
+
+Application::Application() {
+    cout << "Loading data from .txt files... " << endl;
+
+    /* load osm */
+    map<long, Node *> nodes = ApiParser::readNodes("../maps/A.txt");
+    vector<Link *> links = ApiParser::readNodeLinks("../maps/C.txt");
+    map<long, Road> roads = ApiParser::readRoads("../maps/B.txt");
+
+    cout << "Adding nodes of places of interest..." << endl;
+
+    /* create map model */
+    Map *model = new Map(800, nodes, roads, links);
+
+    /* add gas stations  */
+    addGasStations(model);
+
+    /* add parking spots */
+    addParkingSpots(model);
+
+    /* add parking lanes to the nodes */
+    addParkingMeters(model);
+
+    /* add points of interest */
+    addOtherPoints(model);
+
+    /* create map view */
+    this->model = model;
+    this->view = new MapView(this->model);
+}
 
 int Application::chooseGasStation() {
     int opt;
@@ -141,7 +169,7 @@ void Application::addOtherPoints(Map *map) {
 
 int Application::chooseMaxDistance() {
     int distance;
-    cout << "What is the maximum distance?" << endl;
+    cout << "What is the maximum parking distance?" << endl;
     cin >> distance;
 
     if (distance < 0) {
@@ -151,102 +179,76 @@ int Application::chooseMaxDistance() {
         return distance;
 }
 
-void Application::start() {
+void Application::run() {
 
     cout << "Welcome to the Parking Spot Searcher!" << endl;
-
-    cout << "Loading data from .txt files... " << endl;
-
-    /* load osm */
-    map<long, Node *> nodes = ApiParser::readNodes("../maps/A.txt");
-    vector<Link *> links = ApiParser::readNodeLinks("../maps/C.txt");
-    map<long, Road> roads = ApiParser::readRoads("../maps/B.txt");
-
-    cout << "Adding nodes of places of interest..." << endl;
-
-    /* create map model */
-    Map *map = new Map(800, nodes, roads, links);
-
-    /* add gas stations  */
-    addGasStations(map);
-
-    /* add parking spots */
-    addParkingSpots(map);
-
-    /* add parking lanes to the nodes */
-    addParkingMeters(map);
-
-    /* add points of interest */
-    addOtherPoints(map);
-
-//    vector<Node *> path = map->findShortestPath(11, 10, 100000, false);
-//    cout << path.size() << endl;
-//    for(auto i : path) {
-//        cout<<i->getId()<<endl;
-//        //cout<<it->id
-//    }
-
-    /* create map view */
-    MapView *mapView = new MapView(map);
 
     /* show map */
     cout << "Opening Map View..." << endl;
 
-    mapView->initialize();
+    this->view->initialize();
 
     /* update cycle based on actions */
     int running = true;
 
     while (running) {
 
+        this->view->updateView();
+
         int opt;
         cout << "\nWhat do you want to do? " << endl;
-        cout << "-> 1 - go to a location" << endl;
-        cout << "-> 0 - exit" << endl;
+        cout << "-> 1 - search parking by location." << endl;
+        cout << "-> 2 - search parking by street names." << endl;
+        cout << "-> 0 - exit." << endl;
+        // TODO: DISTRICT SEARCH
         cin >> opt;
 
         if (opt == 0) {
             running = false;
         } else if (opt == 1) {
-
-            int near_or_cheap, gas, startingPoint, endingPoint, maxDistance;
-
-            mapView->updateView();
-
-            /* ask starting and ending point */
-            startingPoint = chooseStartingPoint();
-            endingPoint = chooseEndingPoint();
-
-            while (endingPoint == startingPoint) {
-                cout << "Same starting and ending point, please choose to go to another location." << endl;
-                endingPoint = chooseEndingPoint();
-            }
-
-            // Parse start and ending point
-            Node *startingNode = getNodeFromLocation(startingPoint, map);
-            Node *endingNode = getNodeFromLocation(endingPoint, map);
-
-            // other options
-            near_or_cheap = chooseNearestOrCheapest();
-            gas = chooseGasStation();
-            maxDistance = chooseMaxDistance();
-
-            // calculate path
-            vector<Node *> path = calculatePath(map, startingNode, endingNode, near_or_cheap, gas, maxDistance);
-
-            if (path.size() > 0){
-                // show path on screen
-                mapView->showPath(path);
-                cout << "Path calculated, showing on map..." << endl;
-            }
-            else
-                cout << "No path was found, please try again with a bigger distance." << endl;
+            handleLocationSearch();
+        } else if (opt == 2){
+            // TODO: street search logic
         }
     }
 
-    mapView->close();
-    free(mapView);
-    cout << "Application ended" << endl;
+    this->view->close();
+    free(this->view);
+    cout << "Application ended." << endl;
+}
+
+void Application::handleLocationSearch() {
+
+    int near_or_cheap, gas, startingPoint, endingPoint, maxDistance;
+
+    /* ask starting and ending point */
+    startingPoint = chooseStartingPoint();
+    endingPoint = chooseEndingPoint();
+
+    while (endingPoint == startingPoint) {
+        cout << "Same starting and ending point, please choose to go to another location." << endl;
+        endingPoint = chooseEndingPoint();
+    }
+
+    // Parse start and ending point
+    Node *startingNode = getNodeFromLocation(startingPoint, this->model);
+    Node *endingNode = getNodeFromLocation(endingPoint, this->model);
+
+    // other options
+    near_or_cheap = chooseNearestOrCheapest();
+    gas = chooseGasStation();
+    maxDistance = chooseMaxDistance();
+
+    // calculate path
+    vector<Node *> path = calculatePath(this->model, startingNode, endingNode, near_or_cheap, gas, maxDistance);
+
+    if (path.size() > 0) {
+        // show path on screen
+        view->showPath(path);
+        cout << "Path calculated, showing on map..." << endl;
+    } else
+        cout << "No path was found, please try again with a bigger distance." << endl;
+
 }
 
 vector<Node *> Application::calculatePath(Map *map, Node *startingNode, Node *endingNode, int near_or_cheap, int gas,
@@ -270,13 +272,10 @@ Node *Application::getNodeFromLocation(int opt, const Map *map) {
     }
 }
 
-Application::Application() {}
-
-
 int main() {
 
     Application app = Application();
-    app.start();
+    app.run();
 
     return 0;
 }
