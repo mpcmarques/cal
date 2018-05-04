@@ -11,6 +11,7 @@
 #include <node/ParkingGarage.h>
 #include <node/StreetNode.h>
 #include <node/GasStation.h>
+#include <unordered_set>
 
 class MapView {
 
@@ -32,6 +33,8 @@ private:
     void showLink(const Link *link);
 
     int edges;
+
+    std::unordered_set<std::string> nameCache;
 
 public:
     MapView(Map *map);

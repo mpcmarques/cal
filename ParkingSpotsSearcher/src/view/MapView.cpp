@@ -3,10 +3,7 @@
 //
 
 #include <LatLongConverter.h>
-#include <unordered_set>
 #include "MapView.h"
-
-std::unordered_set<std::string> nameCache;
 
 void MapView::initialize() {
 
@@ -129,8 +126,9 @@ void MapView::updateView() {
             this->showNode(pair.second);
         }
 
-        /* show edges */
+        /* show edges and streets */
         this->edges = 0;
+        this->nameCache.erase(this->nameCache.begin(), this->nameCache.end());
         for (auto *link: this->map->getLinks()) {
             this->showLink(link);
             this->edges++;
