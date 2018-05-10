@@ -272,10 +272,10 @@ Node *Application::getNodeFromLocation(int opt, const Map *map) {
     }
 }
 
-int main() {
-
-    Application app = Application();
-    app.run();
-
-    return 0;
-}
+//int main() {
+//
+//    Application app = Application();
+//    app.run();
+//
+//    return 0;
+//}

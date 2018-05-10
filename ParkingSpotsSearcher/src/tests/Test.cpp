@@ -1,23 +1,24 @@
-//#include "cute.h"
-//#include "ide_listener.h"
-//#include "xml_listener.h"
-//#include "cute_runner.h"
+#include "cute.h"
+#include "ide_listener.h"
+#include "xml_listener.h"
+#include "cute_runner.h"
 
-//#include <sstream>
-//#include <random>
-//#include <ctime>
-//#include <chrono>
-//#include <iostream>
-//#include <vector>
+#include <sstream>
+#include <random>
+#include <ctime>
+#include <chrono>
+#include <iostream>
+#include <vector>
 
-//#include <Graph.h>
-//#include <Dijkstra.h>
-//#include <graphviewer.h>
-//#include <ParkingSpotSearcher.h>
+#include <Graph.h>
+#include <Dijkstra.h>
+#include <graphviewer.h>
+#include <ParkingSpotSearcher.h>
 
-//#include <unordered_map>
-//#include <ApiParser.h>
-//#include "node/Node.h"
+#include <unordered_map>
+#include <ApiParser.h>
+#include <KmpMatcher.h>
+#include "node/Node.h"
 
 ////Graph<int, int> CreateTestGraph() {
 ////    Graph<int, int> myGraph;
@@ -165,26 +166,41 @@
 //    ASSERT(links.size() > 0);
 //}
 
-//bool runAllTests(int argc, char const *argv[]) {
-//    cute::suite s{};
 
-//    //s.push_back(CUTE(test_graphTest));
-//    s.push_back(CUTE(test_algorithms));
+void test_string_full_match(){
+    ASSERT(KmpMatcher::matches("teste", "teste"));
+}
 
-//    /* parser tests */
-//    s.push_back(CUTE(test_node_parser));
-//    s.push_back(CUTE(test_roads_parser));
-//    s.push_back(CUTE(test_links_parser));
-//    /* init cute */
-//    cute::xml_file_opener xmlfile(argc, argv);
-//    cute::xml_listener<cute::ide_listener<>> lis(xmlfile.out);
-//    auto runner = cute::makeRunner(lis, argc, argv);
-//    bool success = runner(s, "AllTests");
-//    return success;
-//}
+void test_string_that_contains_match(){
+    ASSERT(KmpMatcher::matches("12345teste", "teste"));
+}
 
-///*
-//int main(int argc, char const *argv[]) {
-// return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
-//}*/
+
+bool runAllTests(int argc, char const *argv[]) {
+    cute::suite s{};
+
+    //s.push_back(CUTE(test_graphTest));
+    //.push_back(CUTE(test_algorithms));
+
+    /* parser tests */
+    //s.push_back(CUTE(test_node_parser));
+   // s.push_back(CUTE(test_roads_parser));
+   // s.push_back(CUTE(test_links_parser));
+
+    // string
+    s.push_back(CUTE(test_string_full_match));
+    s.push_back(CUTE(test_string_that_contains_match));
+
+    /* init cute */
+    cute::xml_file_opener xmlfile(argc, argv);
+    cute::xml_listener<cute::ide_listener<>> lis(xmlfile.out);
+    auto runner = cute::makeRunner(lis, argc, argv);
+    bool success = runner(s, "AllTests");
+    return success;
+}
+
+
+int main(int argc, char const *argv[]) {
+    return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
+}
 
