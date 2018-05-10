@@ -169,10 +169,14 @@
 
 void test_string_full_match(){
     ASSERT(KmpMatcher::matches("teste", "teste"));
+
+    ASSERT_EQUAL(false, KmpMatcher::matches("teste", "1234"));
 }
 
 void test_string_that_contains_match(){
     ASSERT(KmpMatcher::matches("12345teste", "teste"));
+
+    ASSERT_EQUAL(false, KmpMatcher::matches("12345test1", "teste"));
 }
 
 
