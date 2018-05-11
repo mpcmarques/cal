@@ -249,7 +249,16 @@ void Application::handleStreetNameSearch() {
 
     vector<Road> roads = this->model->findStreetName(searchMode, searchText);
 
+    if (roads.size() == 0){
+        cout << "No results found." << endl;
+    } else {
+        cout << "Found " << roads.size() << " results:" << endl;
 
+        int count = 1;
+        for(const auto &road: roads){
+            cout << count++ << " - " << road.getName() << "." << endl;
+        }
+    }
 
 }
 
