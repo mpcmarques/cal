@@ -204,8 +204,8 @@ int Application::chooseTextSearchMode() {
     int opt;
 
     cout << "What kind of search?" << endl;
-    cout << "1 - Exact" << endl;
-    cout << "2 - Approximate" << endl;
+    cout << "1 - Exact." << endl;
+    cout << "2 - Approximate." << endl;
 
     if (!(cin >> opt) || opt < 0 || opt > 2) {
         cout << "Invalid option, please choose again." << endl;
@@ -215,34 +215,82 @@ int Application::chooseTextSearchMode() {
     return opt;
 }
 
-string Application::chooseSearchText() {
-    string text;
 
+Road Application::selectRoadFound(vector<Road> roads) {
+    int count = 1, opt;
+
+    cout << "Which road is the one desired?" << endl;
+
+    for (const auto &road: roads) {
+        cout << count++ << " - " << road.getName() << "." << endl;
+    }
+
+    if (!(cin >> opt) || opt < 0 || opt > roads.size()) {
+        cout << "Invalid road selected, please try again." << endl;
+        return selectRoadFound(roads);
+    }
+
+    return roads[opt -1];
+}
+
+Road Application::searchStreetByName() {
+
+    // ask search text
+    string text;
     cin.ignore();
-    cout << "Please type your search:" << endl;
     getline(cin, text);
 
-    return text;
+    // ask search mode
+    int searchMode = chooseTextSearchMode();
+
+    // search
+    vector<Road> roads = this->model->findStreetName(searchMode, text);
+
+    // handle results
+    if (roads.empty()) {
+        cout << "No results found, please try again." << endl;
+        return searchStreetByName();
+    } else {
+        // ask user to select one road in the results
+        return selectRoadFound(roads);
+    }
 }
 
 void Application::handleStreetNameSearch() {
+    int near_or_cheap, gas, maxDistance;
 
-    int searchMode = chooseTextSearchMode();
-    string searchText = chooseSearchText();
+    /* ask starting and ending point */
+    cout << "Where do you want to start?" << endl;
+    Road startingRoad = searchStreetByName();
+    cout << "Where do you want to go?" << endl;
+    Road endingRoad = searchStreetByName();
 
-    vector<Road> roads = this->model->findStreetName(searchMode, searchText);
-
-    if (roads.empty()) {
-        cout << "No results found." << endl;
-    } else {
-        cout << "Found " << roads.size() << " results:" << endl;
-
-        int count = 1;
-        for (const auto &road: roads) {
-            cout << count++ << " - " << road.getName() << "." << endl;
-        }
+    // start and ending point cant be the same
+    while (startingRoad.getName() == endingRoad.getName()) {
+        cout << "Same starting and ending road, please choose to go to another location." << endl;
+        endingRoad = searchStreetByName();
     }
 
+    // other options
+    near_or_cheap = chooseNearestOrCheapest();
+    gas = chooseGasStation();
+    maxDistance = chooseMaxDistance();
+
+    //  parse start and ending node
+    const Node *startingNode = this->model->getNodeByRoad(startingRoad);
+    const Node *endingNode = this->model->getNodeByRoad(endingRoad);
+
+    // calculate path
+    vector<Node *> path = calculatePath(this->model, startingNode, endingNode, near_or_cheap, gas, maxDistance);
+
+    //  show path
+    if (!path.empty()) {
+        // show path on screen
+        view->showPath(path);
+        cout << "Path calculated, showing on map..." << endl;
+    } else {
+        cout << "No path was found, please try again with a bigger walking distance." << endl;
+    }
 }
 
 void Application::handleLocationSearch() {
@@ -250,7 +298,7 @@ void Application::handleLocationSearch() {
 
     /* ask starting and ending point */
     cout << "Where do you want to start?" << endl;
-    startingPoint = chooseStartingPoint();
+    startingPoint = choosePreselectedPoint();
     cout << "Where do you want to go?" << endl;
     endingPoint = choosePreselectedPoint();
 
@@ -272,16 +320,17 @@ void Application::handleLocationSearch() {
     // calculate path
     vector<Node *> path = calculatePath(this->model, startingNode, endingNode, near_or_cheap, gas, maxDistance);
 
+    // show path
     if (!path.empty()) {
         // show path on screen
         view->showPath(path);
         cout << "Path calculated, showing on map..." << endl;
     } else {
-        cout << "No path was found, please try again with a bigger distance." << endl;
+        cout << "No path was found, please try again with a bigger walking distance." << endl;
     }
 }
 
-vector<Node *> Application::calculatePath(Map *map, Node *startingNode, Node *endingNode, int near_or_cheap, int gas,
+vector<Node *> Application::calculatePath(Map *map, const Node *startingNode, const Node *endingNode, int near_or_cheap, int gas,
                                           int maxDistance) {
     if (near_or_cheap == 1)
         return map->findCheapestPath(startingNode->getId(), endingNode->getId(), maxDistance, gas == 1);

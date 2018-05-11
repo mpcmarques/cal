@@ -30,6 +30,7 @@ public:
     Map(long mapSize, std::map<long, Node *> nodes, std::map<long, Road> roads, std::vector<Link *> links);
 
     std::vector<Node *> findShortestPath(long sourceId, long destId, long maxDistance, bool visitGasStation);
+
     std::vector<Node *> findCheapestPath(long sourceId, long destId, long maxDistance, bool visitGasStation);
 
     const std::map<long, Node *> &getNodes() const;
@@ -47,6 +48,8 @@ public:
     void addWalkingPath(long fromNodeId, long toNodeId);
 
     std::vector<Road> findStreetName(int mode, const std::string &text);
+
+    const Node* getNodeByRoad(const Road &road);
 };
 
 

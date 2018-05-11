@@ -71,6 +71,14 @@ void Map::addNode(Node *node) {
     this->nodes.insert(std::pair<long, Node *>(node->getId(), node));
 }
 
+const Node* Map::getNodeByRoad(const Road &road){
+    Link* link = this->links[road.getId()];
+
+    Node *node = this->nodes[link->getNode1_id()];
+
+    return node;
+}
+
 std::vector<Road> Map::findStreetName(const int mode, const std::string &text) {
     std::vector<Road> roads;
 
