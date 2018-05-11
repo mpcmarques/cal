@@ -24,7 +24,7 @@ private:
 
     int chooseStartingPoint();
 
-    int chooseEndingPoint();
+    int choosePreselectedPoint();
 
     void addGasStations(Map *map);
 

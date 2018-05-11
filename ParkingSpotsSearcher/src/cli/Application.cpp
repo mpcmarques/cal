@@ -73,22 +73,6 @@ int Application::chooseNearestOrCheapest() {
     }
 }
 
-int Application::chooseStartingPoint() {
-    int opt;
-    cout << "Where do you want to start?" << endl;
-    cout << "1 -> Home." << endl;
-    cout << "2 -> University." << endl;
-    cout << "3 -> Shopping Mall." << endl;
-    cin >> opt;
-
-    if (opt > 0 && opt < 4) return opt;
-
-    else {
-        cout << "Invalid option, choose again." << endl;
-        return chooseStartingPoint();
-    }
-}
-
 int Application::chooseMaxDistance() {
     int distance;
     cout << "What is the maximum parking distance?" << endl;
@@ -101,9 +85,8 @@ int Application::chooseMaxDistance() {
         return distance;
 }
 
-int Application::chooseEndingPoint() {
+int Application::choosePreselectedPoint() {
     int opt;
-    cout << "Where do you want to go?" << endl;
     cout << "1 -> Home." << endl;
     cout << "2 -> University." << endl;
     cout << "3 -> Shopping Mall." << endl;
@@ -113,7 +96,7 @@ int Application::chooseEndingPoint() {
 
     else {
         cout << "Invalid option, choose again." << endl;
-        return chooseEndingPoint();
+        return choosePreselectedPoint();
     }
 }
 
@@ -249,13 +232,13 @@ void Application::handleStreetNameSearch() {
 
     vector<Road> roads = this->model->findStreetName(searchMode, searchText);
 
-    if (roads.size() == 0){
+    if (roads.empty()) {
         cout << "No results found." << endl;
     } else {
         cout << "Found " << roads.size() << " results:" << endl;
 
         int count = 1;
-        for(const auto &road: roads){
+        for (const auto &road: roads) {
             cout << count++ << " - " << road.getName() << "." << endl;
         }
     }
@@ -263,16 +246,18 @@ void Application::handleStreetNameSearch() {
 }
 
 void Application::handleLocationSearch() {
-
     int near_or_cheap, gas, startingPoint, endingPoint, maxDistance;
 
     /* ask starting and ending point */
+    cout << "Where do you want to start?" << endl;
     startingPoint = chooseStartingPoint();
-    endingPoint = chooseEndingPoint();
+    cout << "Where do you want to go?" << endl;
+    endingPoint = choosePreselectedPoint();
 
+    // start and ending point cant be the same
     while (endingPoint == startingPoint) {
         cout << "Same starting and ending point, please choose to go to another location." << endl;
-        endingPoint = chooseEndingPoint();
+        endingPoint = choosePreselectedPoint();
     }
 
     // Parse start and ending point
@@ -287,13 +272,13 @@ void Application::handleLocationSearch() {
     // calculate path
     vector<Node *> path = calculatePath(this->model, startingNode, endingNode, near_or_cheap, gas, maxDistance);
 
-    if (path.size() > 0) {
+    if (!path.empty()) {
         // show path on screen
         view->showPath(path);
         cout << "Path calculated, showing on map..." << endl;
-    } else
+    } else {
         cout << "No path was found, please try again with a bigger distance." << endl;
-
+    }
 }
 
 vector<Node *> Application::calculatePath(Map *map, Node *startingNode, Node *endingNode, int near_or_cheap, int gas,
