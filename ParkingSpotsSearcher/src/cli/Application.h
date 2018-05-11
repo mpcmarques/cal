@@ -41,6 +41,12 @@ private:
 
     void handleLocationSearch();
 
+    int chooseTextSearchMode();
+
+    void handleStreetNameSearch();
+
+    string chooseSearchText();
+
 public:
     Application();
 

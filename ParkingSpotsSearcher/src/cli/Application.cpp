@@ -89,6 +89,18 @@ int Application::chooseStartingPoint() {
     }
 }
 
+int Application::chooseMaxDistance() {
+    int distance;
+    cout << "What is the maximum parking distance?" << endl;
+    cin >> distance;
+
+    if (!(cin >> distance) || distance < 0) {
+        cout << "Distance must be greater than zero" << endl;
+        return chooseMaxDistance();
+    } else
+        return distance;
+}
+
 int Application::chooseEndingPoint() {
     int opt;
     cout << "Where do you want to go?" << endl;
@@ -167,18 +179,6 @@ void Application::addOtherPoints(Map *map) {
     map->addRoad(319327503, 319327505);
 }
 
-int Application::chooseMaxDistance() {
-    int distance;
-    cout << "What is the maximum parking distance?" << endl;
-    cin >> distance;
-
-    if (distance < 0) {
-        cout << "Distance must be greater than zero" << endl;
-        return chooseMaxDistance();
-    } else
-        return distance;
-}
-
 void Application::run() {
 
     cout << "Welcome to the Parking Spot Searcher!" << endl;
@@ -207,14 +207,53 @@ void Application::run() {
             running = false;
         } else if (opt == 1) {
             handleLocationSearch();
-        } else if (opt == 2){
-            // TODO: street search logic
+        } else if (opt == 2) {
+            handleStreetNameSearch();
         }
     }
 
     this->view->close();
     free(this->view);
     cout << "Application ended." << endl;
+}
+
+int Application::chooseTextSearchMode() {
+    int opt;
+
+    cout << "What kind of search?" << endl;
+    cout << "1 - Exact" << endl;
+    cout << "2 - Approximate" << endl;
+
+    if (!(cin >> opt) || opt < 0 || opt > 2) {
+        cout << "Invalid option, please choose again." << endl;
+        return chooseTextSearchMode();
+    }
+
+    return opt;
+}
+
+string Application::chooseSearchText() {
+    string text;
+
+    cout << "Please type your search:" << endl;
+    getline(cin, text);
+
+    return text;
+}
+
+void Application::handleStreetNameSearch() {
+
+    int searchMode = chooseTextSearchMode();
+    string searchText = chooseSearchText();
+
+    if (searchMode == 1) { // exact search
+        // TODO: this->model->findStreetName(searchMode, searchText);
+
+
+
+    } else if (searchMode == 2) { // approximate search
+        // TODO: approximate search
+    }
 }
 
 void Application::handleLocationSearch() {

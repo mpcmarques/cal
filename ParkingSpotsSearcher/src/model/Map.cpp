@@ -72,3 +72,9 @@ void Map::addWalkingPath(long fromNodeId, long toNodeId){
 void Map::addNode(Node *node){
     this->nodes.insert(std::pair<long, Node *>(node->getId(), node));
 }
+
+void Map::findStreetName(std::string text){
+
+
+
+}
