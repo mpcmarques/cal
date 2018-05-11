@@ -177,6 +177,8 @@ void test_string_that_contains_match(){
     ASSERT(KmpMatcher::matches("12345teste", "teste"));
 
     ASSERT_EQUAL(false, KmpMatcher::matches("12345test1", "teste"));
+
+    ASSERT_EQUAL(false, KmpMatcher::matches("Rua da Igreja da Areosa", "Ajuda"));
 }
 
 
@@ -204,7 +206,7 @@ bool runAllTests(int argc, char const *argv[]) {
 }
 
 
-int main(int argc, char const *argv[]) {
-    return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
-}
+//int main(int argc, char const *argv[]) {
+//    return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
+//}
 

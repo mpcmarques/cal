@@ -45,6 +45,8 @@ public:
     void addNode(Node *node);
 
     void addWalkingPath(long fromNodeId, long toNodeId);
+
+    std::vector<Road> findStreetName(int mode, const std::string &text);
 };
 
 

@@ -28,6 +28,10 @@ bool KmpMatcher::matches(std::string t, std::string p){
 
     int q = 0; // number of characters matched
 
+    if (t == "Rua da Igreja da Areosa"){
+        q = 0;
+    }
+
     for(int i = 1; i <= t.size(); i++){ // scan the text from left to right
 
         while (q > 0 && p[q+1] != t[i]){

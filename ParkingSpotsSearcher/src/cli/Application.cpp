@@ -235,6 +235,7 @@ int Application::chooseTextSearchMode() {
 string Application::chooseSearchText() {
     string text;
 
+    cin.ignore();
     cout << "Please type your search:" << endl;
     getline(cin, text);
 
@@ -246,14 +247,10 @@ void Application::handleStreetNameSearch() {
     int searchMode = chooseTextSearchMode();
     string searchText = chooseSearchText();
 
-    if (searchMode == 1) { // exact search
-        // TODO: this->model->findStreetName(searchMode, searchText);
+    vector<Road> roads = this->model->findStreetName(searchMode, searchText);
 
 
 
-    } else if (searchMode == 2) { // approximate search
-        // TODO: approximate search
-    }
 }
 
 void Application::handleLocationSearch() {
@@ -311,10 +308,10 @@ Node *Application::getNodeFromLocation(int opt, const Map *map) {
     }
 }
 
-//int main() {
-//
-//    Application app = Application();
-//    app.run();
-//
-//    return 0;
-//}
+int main() {
+
+    Application app = Application();
+    app.run();
+
+    return 0;
+}

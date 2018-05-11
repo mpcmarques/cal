@@ -4,11 +4,9 @@
 
 #include "Map.h"
 #include "ParkingSpotSearcherBuilder.h"
-#include "node/ParkingGarage.h"
-#include "node/ParkingMeter.h"
-#include <math.h>
 #include <link/StreetLink.h>
 #include <link/WalkingLink.h>
+#include <KmpMatcher.h>
 
 
 Map::Map(long mapSize, std::map<long, Node *> nodes, std::map<long, Road> roads, std::vector<Link *> links) {
@@ -52,7 +50,7 @@ void Map::destroy() {
         free(link);
     }
     // free all nodes
-    for(auto node: this->getNodes()){
+    for (auto node: this->getNodes()) {
         free(node.second);
     }
 }
@@ -63,18 +61,29 @@ void Map::addRoad(long fromNodeId, long toNodeId) {
     this->links.push_back(new StreetLink(roadId, fromNodeId, toNodeId));
 }
 
-void Map::addWalkingPath(long fromNodeId, long toNodeId){
+void Map::addWalkingPath(long fromNodeId, long toNodeId) {
     long roadId = this->roads.size();
     this->roads.insert(std::pair<long, Road>(roadId, Road(roadId, "", true)));
     this->links.push_back(new WalkingLink(roadId, fromNodeId, toNodeId));
 }
 
-void Map::addNode(Node *node){
+void Map::addNode(Node *node) {
     this->nodes.insert(std::pair<long, Node *>(node->getId(), node));
 }
 
-void Map::findStreetName(std::string text){
+std::vector<Road> Map::findStreetName(const int mode, const std::string &text) {
+    std::vector<Road> roads;
 
+    for (auto pair: this->getRoads()) {
+        // kmp-matcher -> exact
+        if (mode == 1 && KmpMatcher::matches(pair.second.getName(), text)) {
+            roads.push_back(pair.second);
+        } else if (mode == 2)
+            // approximate
+        {
 
+        }
+    }
 
+    return roads;
 }
