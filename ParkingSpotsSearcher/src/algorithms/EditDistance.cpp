@@ -12,6 +12,7 @@ int min3(int a, int b, int c) {
     return min(mina, c);
 }
 
+// with optimizations
 int EditDistance::calculate(std::string p, std::string t) {
     int i, j;
 
@@ -23,20 +24,20 @@ int EditDistance::calculate(std::string p, std::string t) {
 
     for( i = 0; i < p.size(); i++){
         int old = d[0]; // guard d[i-1, 0]
-        d[0] = i; // inicializa d[i,0]
+        d[0] = i; // init d[i,0]
 
         for(j = 1; j < t.size(); j++){
 
-            int newvalue;
+            int newValue;
 
             if (p[i] == t[j]){
-                newvalue = old;
+                newValue = old;
             } else {
-                newvalue = 1 + min3(old, d[j], d[j-1]);
+                newValue = 1 + min3(old, d[j], d[j-1]);
             }
 
             old = d[j];
-            d[j] = newvalue;
+            d[j] = newValue;
         }
     }
 
