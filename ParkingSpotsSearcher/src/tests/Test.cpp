@@ -18,6 +18,7 @@
 #include <unordered_map>
 #include <ApiParser.h>
 #include <KmpMatcher.h>
+#include <EditDistance.h>
 #include "node/Node.h"
 
 ////Graph<int, int> CreateTestGraph() {
@@ -181,6 +182,14 @@ void test_string_that_contains_match(){
     ASSERT_EQUAL(false, KmpMatcher::matches("Rua da Igreja da Areosa", "Ajuda"));
 }
 
+void test_string_distance(){
+    ASSERT(EditDistance::editDistance("teste", "teste") == 0);
+
+    ASSERT(EditDistance::editDistance("teste", "test1") == 1);
+
+    ASSERT(EditDistance::editDistance("tebta", "teste") == 2);
+}
+
 
 bool runAllTests(int argc, char const *argv[]) {
     cute::suite s{};
@@ -196,6 +205,7 @@ bool runAllTests(int argc, char const *argv[]) {
     // string
     s.push_back(CUTE(test_string_full_match));
     s.push_back(CUTE(test_string_that_contains_match));
+    s.push_back(CUTE(test_string_distance));
 
     /* init cute */
     cute::xml_file_opener xmlfile(argc, argv);
@@ -206,7 +216,7 @@ bool runAllTests(int argc, char const *argv[]) {
 }
 
 
-//int main(int argc, char const *argv[]) {
-//    return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
-//}
+int main(int argc, char const *argv[]) {
+    return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
+}
 
