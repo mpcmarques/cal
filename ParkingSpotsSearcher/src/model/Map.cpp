@@ -90,7 +90,7 @@ std::vector<Road> Map::findStreetName(const int mode, const std::string &text) {
         } else if (
                 mode == 2
                 && // TODO: edit distance should be dynamic?
-                EditDistance::calculate(pair.second.getName(), text) == 3) {
+                EditDistance::calculate(pair.second.getName(), text) < 3) {
             // approximate
             roads.push_back(pair.second);
         }
