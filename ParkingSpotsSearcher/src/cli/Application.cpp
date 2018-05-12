@@ -280,7 +280,7 @@ void Application::handleStreetNameSearch() {
     const Node *startingNode = this->model->getNodeByRoad(startingRoad);
     const Node *endingNode = this->model->getNodeByRoad(endingRoad);
 
-    // calculate path
+    // TODO: calculate path between two streets
     vector<Node *> path = calculatePath(this->model, startingNode, endingNode, near_or_cheap, gas, maxDistance);
 
     //  show path

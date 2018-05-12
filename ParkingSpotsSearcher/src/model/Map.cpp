@@ -7,6 +7,7 @@
 #include <link/StreetLink.h>
 #include <link/WalkingLink.h>
 #include <KmpMatcher.h>
+#include <EditDistance.h>
 
 
 Map::Map(long mapSize, std::map<long, Node *> nodes, std::map<long, Road> roads, std::vector<Link *> links) {
@@ -86,10 +87,12 @@ std::vector<Road> Map::findStreetName(const int mode, const std::string &text) {
         // kmp-matcher -> exact
         if (mode == 1 && KmpMatcher::matches(pair.second.getName(), text)) {
             roads.push_back(pair.second);
-        } else if (mode == 2)
+        } else if (
+                mode == 2
+                && // TODO: edit distance should be dynamic?
+                EditDistance::calculate(pair.second.getName(), text) == 3) {
             // approximate
-        {
-
+            roads.push_back(pair.second);
         }
     }
 
