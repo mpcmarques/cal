@@ -22,18 +22,18 @@ int EditDistance::calculate(std::string p, std::string t) {
         d[j] = j;
     }
 
-    for( i = 0; i < p.size(); i++){
+    for (i = 0; i < p.size(); i++) {
         int old = d[0]; // guard d[i-1, 0]
         d[0] = i; // init d[i,0]
 
-        for(j = 1; j < t.size(); j++){
+        for (j = 1; j < t.size(); j++) {
 
             int newValue;
 
-            if (p[i] == t[j]){
+            if (p[i] == t[j]) {
                 newValue = old;
             } else {
-                newValue = 1 + min3(old, d[j], d[j-1]);
+                newValue = 1 + min3(old, d[j], d[j - 1]);
             }
 
             old = d[j];
@@ -42,7 +42,7 @@ int EditDistance::calculate(std::string p, std::string t) {
     }
 
     // finalizacao
-    return d[t.size()-1];
+    return d[t.size() - 1];
 }
 
 int EditDistance::editDistance(string p, string t) {
