@@ -12,13 +12,44 @@ int min3(int a, int b, int c) {
     return min(mina, c);
 }
 
+int EditDistance::calculate(std::string p, std::string t) {
+    int i, j;
+
+    vector<int> d(t.length());
+
+    for (j = 0; j < t.size(); j++) {
+        d[j] = j;
+    }
+
+    for( i = 0; i < p.size(); i++){
+        int old = d[0]; // guard d[i-1, 0]
+        d[0] = i; // inicializa d[i,0]
+
+        for(j = 1; j < t.size(); j++){
+
+            int newvalue;
+
+            if (p[i] == t[j]){
+                newvalue = old;
+            } else {
+                newvalue = 1 + min3(old, d[j], d[j-1]);
+            }
+
+            old = d[j];
+            d[j] = newvalue;
+        }
+    }
+
+    // finalizacao
+    return d[t.size()-1];
+}
+
 int EditDistance::editDistance(string p, string t) {
     int i, j;
-    vector<vector<int>> d(p.size());
+    vector<vector<int>> d(p.size(), vector<int>(t.size()));
 
     // init
     for (i = 0; i < p.size(); i++) {
-        d[i].resize(t.size());
         d[i][0] = i;
     }
     for (j = 0; j < t.size(); j++)
@@ -35,6 +66,6 @@ int EditDistance::editDistance(string p, string t) {
         }
     }
 
-    return d[p.size()-1][t.size()-1];
+    return d[p.size() - 1][t.size() - 1];
 
 }

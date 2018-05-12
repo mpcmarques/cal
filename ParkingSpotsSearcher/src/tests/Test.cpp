@@ -183,11 +183,16 @@ void test_string_that_contains_match(){
 }
 
 void test_string_distance(){
+
+    // edit distance simple
     ASSERT(EditDistance::editDistance("teste", "teste") == 0);
-
     ASSERT(EditDistance::editDistance("teste", "test1") == 1);
-
     ASSERT(EditDistance::editDistance("tebta", "teste") == 2);
+
+    // with space optimization
+    ASSERT(EditDistance::calculate("teste", "teste") == 0);
+    ASSERT(EditDistance::calculate("test1", "teste") == 1);
+    ASSERT(EditDistance::calculate("t3st1", "teste") == 2);
 }
 
 
