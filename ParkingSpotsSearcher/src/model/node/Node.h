@@ -5,6 +5,8 @@
 #ifndef PARKINGSPOTSSEARCHER_NODE_H
 #define PARKINGSPOTSSEARCHER_NODE_H
 
+#include <string>
+
 /* abstract class */
 
 enum NodeType {
@@ -17,7 +19,9 @@ private:
     long id;
     double latitude;
     double longitute;
+    std::string district;
 
+    std::string parseDistrict(double latitude, double longitude);
 public:
     Node(long id, double latitude_degrees, double longitude_degrees);
 
