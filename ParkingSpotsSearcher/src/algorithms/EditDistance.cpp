@@ -8,6 +8,7 @@
 #include <sstream>
 #include <iterator>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -26,12 +27,14 @@ int EditDistance::calculate(std::string p, std::string t) {
 
     std::vector<std::string> results(std::istream_iterator<std::string> {iss}, std::istream_iterator<std::string>());
 
-    for (auto string: results) {
+    for (std::string str: results) {
         // convert strings to uppercase
         std::transform(p.begin(), p.end(), p.begin(), ::toupper);
-        std::transform(string.begin(), string.end(), string.begin(), ::toupper);
+        std::transform(str.begin(), str.end(), str.begin(), ::toupper);
 
-        int value = editDistanceOptimized(p, string);
+
+        int value = editDistanceOptimized(p, str);
+
         if (value < minDistance)
             minDistance = value;
     }

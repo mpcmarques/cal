@@ -100,6 +100,7 @@ std::vector<Link *> Map::getLinksByRoad(const Road &road) {
 
 std::vector<Road> Map::findStreetName(const int mode, const std::string &text) {
     std::vector<Road> roads;
+    int x;
 
     for (auto pair: this->getRoads()) {
         // search mode
@@ -111,9 +112,9 @@ std::vector<Road> Map::findStreetName(const int mode, const std::string &text) {
                     roads.push_back(pair.second);
                 break;
             case 2: // approximate - TODO: edit distance should be dynamic?
-                if (EditDistance::calculate(pair.second.getName(), text) < 3)
+                if (EditDistance::calculate(text, pair.second.getName()) < 3) {
                     roads.push_back(pair.second);
-                else if (EditDistance::calculate(getNodeByRoad(pair.second)->getDistrict(), text) < 3)
+                } else if (EditDistance::calculate(text, getNodeByRoad(pair.second)->getDistrict()) < 3)
                     roads.push_back(pair.second);
                 break;
             default:

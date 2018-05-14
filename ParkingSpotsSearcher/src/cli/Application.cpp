@@ -12,6 +12,7 @@
 #include <node/University.h>
 #include <node/Home.h>
 #include <link/StreetLink.h>
+#include <iomanip>
 #include "Application.h"
 
 using namespace std;
@@ -181,7 +182,7 @@ void Application::run() {
         int opt;
         cout << "\nWhat do you want to do? " << endl;
         cout << "-> 1 - search parking by location." << endl;
-        cout << "-> 2 - search parking by street names." << endl;
+        cout << "-> 2 - search parking by street or district name." << endl;
         cout << "-> 0 - exit." << endl;
         // TODO: DISTRICT SEARCH
         cin >> opt;
@@ -219,29 +220,33 @@ int Application::chooseTextSearchMode() {
 Road Application::selectRoadFound(vector<Road> roads) {
     int count = 1, opt;
 
-    cout << "Which road is the one desired?" << endl;
+    cout << "Showing results (Number/Road/District):" << endl;
 
     for (const auto &road: roads) {
-        cout << count++ << " - " << road.getName() << "." << endl;
+        cout << count++ << " - " << setw(40) << left << road.getName() << ".\t"
+             << this->model->getNodeByRoad(road)->getDistrict()
+             << endl;
     }
 
-    if (!(cin >> opt) || opt < 0 || opt > roads.size()) {
+    cout << "What is the number of the desired road?" << endl;
+    if (!(cin >> opt) || opt < 1 || opt > roads.size()) {
         cout << "Invalid road selected, please try again." << endl;
         return selectRoadFound(roads);
     }
 
-    return roads[opt -1];
+    return roads[opt - 1];
 }
 
 Road Application::searchStreetByName() {
 
+    // ask search mode
+    int searchMode = chooseTextSearchMode();
+
     // ask search text
+    cout << "Type search:" << endl;
     string text;
     cin.ignore();
     getline(cin, text);
-
-    // ask search mode
-    int searchMode = chooseTextSearchMode();
 
     // search
     vector<Road> roads = this->model->findStreetName(searchMode, text);
@@ -260,9 +265,9 @@ void Application::handleStreetNameSearch() {
     int near_or_cheap, gas, maxDistance;
 
     /* ask starting and ending point */
-    cout << "Where do you want to start?" << endl;
+    cout << "Start location:" << endl;
     Road startingRoad = searchStreetByName();
-    cout << "Where do you want to go?" << endl;
+    cout << "End location:" << endl;
     Road endingRoad = searchStreetByName();
 
     // start and ending point cant be the same
@@ -330,8 +335,9 @@ void Application::handleLocationSearch() {
     }
 }
 
-vector<Node *> Application::calculatePath(Map *map, const Node *startingNode, const Node *endingNode, int near_or_cheap, int gas,
-                                          int maxDistance) {
+vector<Node *>
+Application::calculatePath(Map *map, const Node *startingNode, const Node *endingNode, int near_or_cheap, int gas,
+                           int maxDistance) {
     if (near_or_cheap == 1)
         return map->findCheapestPath(startingNode->getId(), endingNode->getId(), maxDistance, gas == 1);
     else

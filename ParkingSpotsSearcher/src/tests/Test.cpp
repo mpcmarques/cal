@@ -196,6 +196,8 @@ void test_string_distance(){
     ASSERT_EQUAL(1, EditDistance::calculate("test1", "teste"));
 
     ASSERT_EQUAL(1, EditDistance::calculate("Marcal", "rua horácio mar1al"));
+
+    ASSERT_EQUAL(0, EditDistance::calculate("cabral", "Rua de Costa Cabral"));
 }
 
 
