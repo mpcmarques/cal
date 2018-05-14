@@ -24,6 +24,8 @@ private:
     std::map<long, Road> roads;
     std::vector<Link *> links;
     ParkingSpotSearcher<Node *, long> * parkingSpotSearcher;
+
+    std::vector<Link*> getLinksByRoad(const Road &road);
 public:
     const std::vector<Link *, std::allocator<Link *>> &getLinks() const;
 
