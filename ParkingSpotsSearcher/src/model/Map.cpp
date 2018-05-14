@@ -72,9 +72,9 @@ void Map::addNode(Node *node) {
     this->nodes.insert(std::pair<long, Node *>(node->getId(), node));
 }
 
-const Node* Map::getNodeByRoad(const Road &road){
+const Node *Map::getNodeByRoad(const Road &road) {
 
-    std::vector<Link*> links = getLinksByRoad(road);
+    std::vector<Link *> links = getLinksByRoad(road);
 
     Link *link = links.front();
 
@@ -83,11 +83,11 @@ const Node* Map::getNodeByRoad(const Road &road){
     return node;
 }
 
-std::vector<Link*> Map::getLinksByRoad(const Road &road){
-    std::vector<Link*> links;
+std::vector<Link *> Map::getLinksByRoad(const Road &road) {
+    std::vector<Link *> links;
 
-    for (auto link: this->links){
-        if (link->getId() == road.getId()){
+    for (auto link: this->links) {
+        if (link->getId() == road.getId()) {
             links.push_back(link);
         }
     }
@@ -96,13 +96,12 @@ std::vector<Link*> Map::getLinksByRoad(const Road &road){
 }
 
 
-
 std::vector<Road> Map::findStreetName(const int mode, const std::string &text) {
     std::vector<Road> roads;
 
     for (auto pair: this->getRoads()) {
         // search mode
-        switch (mode){
+        switch (mode) {
             case 1: // kmp-matcher - exact search
                 if (KmpMatcher::matches(pair.second.getName(), text))
                     roads.push_back(pair.second);
@@ -112,7 +111,7 @@ std::vector<Road> Map::findStreetName(const int mode, const std::string &text) {
             case 2: // approximate - TODO: edit distance should be dynamic?
                 if (EditDistance::calculate(pair.second.getName(), text) < 3)
                     roads.push_back(pair.second);
-                else if (KmpMatcher::matches(getNodeByRoad(pair.second)->getDistrict(), text))
+                else if (EditDistance::calculate(getNodeByRoad(pair.second)->getDistrict(), text) < 3)
                     roads.push_back(pair.second);
                 break;
             default:
