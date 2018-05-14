@@ -13,11 +13,13 @@ Node::Node(long id, double latitude_degrees, double longitude_degrees) {
 
 std::string Node::parseDistrict(double latitude, double longitude) {
     if (latitude < 41.17505 && longitude < -8.59065) {
-
+        return "south west";
     } else if (latitude < 41.17505 && longitude > -8.59065) {
-
+        return "south east";
     } else if (latitude > 41.17505 && longitude < -8.59065) {
-
+        return "north west";
+    } else {
+        return "north east";
     }
 }
 
@@ -31,5 +33,9 @@ double Node::getLatitude() const {
 
 double Node::getLongitute() const {
     return longitute;
+}
+
+std::string Node::getDistrict() const {
+    return district;
 }
 

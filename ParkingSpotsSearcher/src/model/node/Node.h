@@ -27,6 +27,8 @@ public:
 
     long getId() const;
 
+    std::string getDistrict() const;
+
     double getLatitude() const;
 
     double getLongitute() const;
