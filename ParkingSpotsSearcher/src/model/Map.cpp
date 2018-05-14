@@ -9,11 +9,13 @@
 #include <KmpMatcher.h>
 #include <EditDistance.h>
 
+#include <utility>
+
 
 Map::Map(long mapSize, std::map<long, Node *> nodes, std::map<long, Road> roads, std::vector<Link *> links) {
-    this->nodes = nodes;
-    this->roads = roads;
-    this->links = links;
+    this->nodes = std::move(nodes);
+    this->roads = std::move(roads);
+    this->links = std::move(links);
     this->mapSize = mapSize;
 
 }

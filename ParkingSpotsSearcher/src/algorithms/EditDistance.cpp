@@ -4,6 +4,10 @@
 
 #include "EditDistance.h"
 #include <vector>
+#include <cstring>
+#include <sstream>
+#include <iterator>
+#include <algorithm>
 
 using namespace std;
 
@@ -13,7 +17,29 @@ int min3(int a, int b, int c) {
 }
 
 // with optimizations
+
+
 int EditDistance::calculate(std::string p, std::string t) {
+    int minDistance = 10000;
+
+    std::istringstream iss(t);
+
+    std::vector<std::string> results(std::istream_iterator<std::string> {iss}, std::istream_iterator<std::string>());
+
+    for (auto string: results) {
+        // convert strings to uppercase
+        std::transform(p.begin(), p.end(), p.begin(), ::toupper);
+        std::transform(string.begin(), string.end(), string.begin(), ::toupper);
+
+        int value = editDistanceOptimized(p, string);
+        if (value < minDistance)
+            minDistance = value;
+    }
+
+    return minDistance;
+}
+
+int EditDistance::editDistanceOptimized(std::string p, std::string t) {
     int i, j;
 
     vector<int> d(t.length());

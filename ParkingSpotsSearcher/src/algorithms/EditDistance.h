@@ -11,6 +11,7 @@ class EditDistance {
 public:
     static int editDistance(std::string p, std::string t);
     static int calculate(std::string p, std::string t);
+    static int editDistanceOptimized(std::string p, std::string t);
 };
 
 

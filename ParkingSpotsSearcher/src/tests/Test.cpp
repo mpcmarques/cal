@@ -172,6 +172,8 @@ void test_string_full_match(){
     ASSERT(KmpMatcher::matches("teste", "teste"));
 
     ASSERT_EQUAL(false, KmpMatcher::matches("teste", "1234"));
+
+    ASSERT(KmpMatcher::matches("teste", "TESTE"));
 }
 
 void test_string_that_contains_match(){
@@ -189,10 +191,11 @@ void test_string_distance(){
     ASSERT(EditDistance::editDistance("teste", "test1") == 1);
     ASSERT(EditDistance::editDistance("tebta", "teste") == 2);
 
-    // with space optimization
     ASSERT(EditDistance::calculate("teste", "teste") == 0);
-    ASSERT(EditDistance::calculate("test1", "teste") == 1);
-    ASSERT(EditDistance::calculate("t3st1", "teste") == 2);
+
+    ASSERT_EQUAL(1, EditDistance::calculate("test1", "teste"));
+
+    ASSERT_EQUAL(1, EditDistance::calculate("Marcal", "rua horácio mar1al"));
 }
 
 

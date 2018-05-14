@@ -2,6 +2,7 @@
 // Created by mateus on 10-05-2018.
 //
 
+#include <algorithm>
 #include "KmpMatcher.h"
 
 std::vector<int> KmpMatcher::computePrefixFunction(std::string p) {
@@ -28,6 +29,10 @@ std::vector<int> KmpMatcher::computePrefixFunction(std::string p) {
 
 bool KmpMatcher::matches(std::string t, std::string p) {
     KmpMatcher matcher;
+
+    // convert strings to uppercase
+    std::transform(p.begin(), p.end(), p.begin(), ::toupper);
+    std::transform(t.begin(), t.end(), t.begin(), ::toupper);
 
     int q = 0; // number of characters matched
 
