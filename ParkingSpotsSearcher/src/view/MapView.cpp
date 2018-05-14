@@ -70,11 +70,11 @@ void MapView::showNode(const Node *node) {
 
             break;
         case NodeType::STREET:
-            if(node->getLatitude()<41.17505 && node->getLongitute()<-8.59065)
+            if(node->getDistrict() == "south west")
                 gv->setVertexColor((int) node->getId(), GREEN);
-            else if(node->getLatitude()<41.17505 && node->getLongitute()>-8.59065)
+            else if(node->getDistrict() == "south east")
                 gv->setVertexColor((int) node->getId(), BLUE);
-            else if(node->getLatitude()>41.17505 && node->getLongitute()<-8.59065)
+            else if(node->getDistrict() == "north west")
                 gv->setVertexColor((int) node->getId(), RED);
             else
                 gv->setVertexColor((int) node->getId(), YELLOW);
