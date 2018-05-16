@@ -38,7 +38,7 @@ bool KmpMatcher::matches(std::string t, std::string p) {
 
     for (int i = 1; i <= t.size(); i++) { // scan the text from left to right
 
-        while (q > 0 && p[q] != t[i]) {
+        while (q > 0 && q+1 < p.size() && p[q+1] != t[i]) {
             q = matcher.computePrefixFunction(p)[q]; // next character does not match
         }
 
