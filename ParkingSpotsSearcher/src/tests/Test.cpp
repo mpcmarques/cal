@@ -179,6 +179,8 @@ void test_string_full_match(){
 void test_string_that_contains_match(){
     ASSERT(KmpMatcher::matches("12345teste", "teste"));
 
+    ASSERT(KmpMatcher::matches("via norte", "via"));
+
     ASSERT_EQUAL(false, KmpMatcher::matches("12345test1", "teste"));
 
     ASSERT_EQUAL(false, KmpMatcher::matches("Rua da Igreja da Areosa", "Ajuda"));
