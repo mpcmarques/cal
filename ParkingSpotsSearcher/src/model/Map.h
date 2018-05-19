@@ -23,9 +23,12 @@ private:
     std::map<long, Node *> nodes;
     std::map<long, Road> roads;
     std::vector<Link *> links;
-    ParkingSpotSearcher<Node *, long> * parkingSpotSearcher;
+    ParkingSpotSearcher<Node *, long> *parkingSpotSearcher;
 
-    std::vector<Link*> getLinksByRoad(const Road &road);
+    std::vector<Link *> getLinksByRoad(const Road &road);
+
+    bool isRoadUnique(const Road &road, std::vector<Road> roads);
+
 public:
     const std::vector<Link *, std::allocator<Link *>> &getLinks() const;
 
@@ -51,7 +54,7 @@ public:
 
     std::vector<Road> findStreetName(int mode, const std::string &text);
 
-    const Node* getNodeByRoad(const Road &road);
+    const Node *getNodeByRoad(const Road &road);
 };
 
 

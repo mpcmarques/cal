@@ -97,24 +97,36 @@ std::vector<Link *> Map::getLinksByRoad(const Road &road) {
     return links;
 }
 
+bool Map::isRoadUnique(const Road &road, std::vector<Road> roads) {
+
+    for (const auto &roadAdded: roads) {
+        if (road.getName() == roadAdded.getName() &&
+            getNodeByRoad(road)->getDistrict() == getNodeByRoad(roadAdded)->getDistrict())
+            return false;
+
+    }
+    return true;
+}
 
 std::vector<Road> Map::findStreetName(const int mode, const std::string &text) {
+
     std::vector<Road> roads;
-    int x;
 
     for (auto pair: this->getRoads()) {
         // search mode
         switch (mode) {
             case 1: // kmp-matcher - exact search
-                if (KmpMatcher::matches(pair.second.getName(), text))
+                if (KmpMatcher::matches(pair.second.getName(), text) && isRoadUnique(pair.second, roads))
                     roads.push_back(pair.second);
-                else if (KmpMatcher::matches(getNodeByRoad(pair.second)->getDistrict(), text))
+                else if (KmpMatcher::matches(getNodeByRoad(pair.second)->getDistrict(), text) &&
+                         isRoadUnique(pair.second, roads))
                     roads.push_back(pair.second);
                 break;
             case 2: // approximate - TODO: edit distance should be dynamic?
-                if (EditDistance::calculate(text, pair.second.getName()) < 3) {
+                if (EditDistance::calculate(text, pair.second.getName()) < 3 && isRoadUnique(pair.second, roads)) {
                     roads.push_back(pair.second);
-                } else if (EditDistance::calculate(text, getNodeByRoad(pair.second)->getDistrict()) < 3)
+                } else if (EditDistance::calculate(text, getNodeByRoad(pair.second)->getDistrict()) < 3 &&
+                           isRoadUnique(pair.second, roads))
                     roads.push_back(pair.second);
                 break;
             default:
