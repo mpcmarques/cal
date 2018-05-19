@@ -77,7 +77,6 @@ int Application::chooseNearestOrCheapest() {
 int Application::chooseMaxDistance() {
     int distance;
     cout << "What is the maximum parking distance?" << endl;
-    cin >> distance;
 
     if (!(cin >> distance) || distance < 0) {
         cout << "Distance must be greater than zero" << endl;
@@ -172,20 +171,20 @@ void Application::run() {
     cout << "Opening Map View..." << endl;
 
     this->view->initialize();
-
+    this->view->updateView();
     /* update cycle based on actions */
     int running = true;
 
     while (running) {
 
-        this->view->updateView();
+
 
         cout << "\nWhat do you want to do?" << endl;
         cout << "1 - Search path." << endl;
         cout << "0 - Exit." << endl;
         int opt;
         cin >> opt;
-
+        this->view->updateView();1
         if (opt == 0)
             running = false;
         else
