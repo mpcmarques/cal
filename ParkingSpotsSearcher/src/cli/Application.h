@@ -41,11 +41,11 @@ private:
     vector<Node *>
     calculatePath(Map *map, const Node *startingNode, const Node *endingNode, int near_or_cheap, int gas, int maxDistance);
 
-    void handleLocationSearch();
-
     int chooseTextSearchMode();
 
-    void handleStreetNameSearch();
+    void loop();
+
+    const Node* chooseNode();
 
 public:
     Application();

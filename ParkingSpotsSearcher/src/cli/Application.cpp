@@ -88,6 +88,7 @@ int Application::chooseMaxDistance() {
 
 int Application::choosePreselectedPoint() {
     int opt;
+    cout << "Choose point of interest:" << endl;
     cout << "1 -> Home." << endl;
     cout << "2 -> University." << endl;
     cout << "3 -> Shopping Mall." << endl;
@@ -179,21 +180,16 @@ void Application::run() {
 
         this->view->updateView();
 
+        cout << "\nWhat do you want to do?" << endl;
+        cout << "1 - Search path." << endl;
+        cout << "0 - Exit." << endl;
         int opt;
-        cout << "\nWhat do you want to do? " << endl;
-        cout << "-> 1 - search parking by location." << endl;
-        cout << "-> 2 - search parking by street or district name." << endl;
-        cout << "-> 0 - exit." << endl;
-        // TODO: DISTRICT SEARCH
         cin >> opt;
 
-        if (opt == 0) {
+        if (opt == 0)
             running = false;
-        } else if (opt == 1) {
-            handleLocationSearch();
-        } else if (opt == 2) {
-            handleStreetNameSearch();
-        }
+        else
+            this->loop();
     }
 
     this->view->close();
@@ -261,66 +257,42 @@ Road Application::searchStreetByName() {
     }
 }
 
-void Application::handleStreetNameSearch() {
-    int near_or_cheap, gas, maxDistance;
+const Node *Application::chooseNode() {
+    int opt;
+    cout << "1 - Point of interest." << endl;
+    cout << "2 - Street or district." << endl;
 
-    /* ask starting and ending point */
-    cout << "Start location:" << endl;
-    Road startingRoad = searchStreetByName();
-    cout << "End location:" << endl;
-    Road endingRoad = searchStreetByName();
+    cin >> opt;
 
-    // start and ending point cant be the same
-    while (startingRoad.getName() == endingRoad.getName()) {
-        cout << "Same starting and ending road, please choose to go to another location." << endl;
-        endingRoad = searchStreetByName();
-    }
-
-    // other options
-    near_or_cheap = chooseNearestOrCheapest();
-    gas = chooseGasStation();
-    maxDistance = chooseMaxDistance();
-
-    //  parse start and ending node
-    const Node *startingNode = this->model->getNodeByRoad(startingRoad);
-    const Node *endingNode = this->model->getNodeByRoad(endingRoad);
-
-    // TODO: calculate path between two streets
-    vector<Node *> path = calculatePath(this->model, startingNode, endingNode, near_or_cheap, gas, maxDistance);
-
-    //  show path
-    if (!path.empty()) {
-        // show path on screen
-        view->showPath(path);
-        cout << "Path calculated, showing on map..." << endl;
+    if (opt == 1) {
+        int startingPoint = choosePreselectedPoint();
+        return getNodeFromLocation(startingPoint, this->model);
+    } else if (opt == 2) {
+        Road startingRoad = searchStreetByName();
+        return this->model->getNodeByRoad(startingRoad);
     } else {
-        cout << "No path was found, please try again with a bigger walking distance." << endl;
+        cout << "Invalid option." << endl;
+        return chooseNode();
     }
 }
 
-void Application::handleLocationSearch() {
-    int near_or_cheap, gas, startingPoint, endingPoint, maxDistance;
+void Application::loop() {
+    int near_or_cheap, gas, maxDistance;
+
 
     /* ask starting and ending point */
     cout << "Where do you want to start?" << endl;
-    startingPoint = choosePreselectedPoint();
+    const Node *startingNode = chooseNode();
+
     cout << "Where do you want to go?" << endl;
-    endingPoint = choosePreselectedPoint();
+    const Node *endingNode = chooseNode();
 
-    // start and ending point cant be the same
-    while (endingPoint == startingPoint) {
-        cout << "Same starting and ending point, please choose to go to another location." << endl;
-        endingPoint = choosePreselectedPoint();
-    }
-
-    // Parse start and ending point
-    Node *startingNode = getNodeFromLocation(startingPoint, this->model);
-    Node *endingNode = getNodeFromLocation(endingPoint, this->model);
 
     // other options
     near_or_cheap = chooseNearestOrCheapest();
     gas = chooseGasStation();
     maxDistance = chooseMaxDistance();
+
 
     // calculate path
     vector<Node *> path = calculatePath(this->model, startingNode, endingNode, near_or_cheap, gas, maxDistance);
@@ -356,11 +328,11 @@ Node *Application::getNodeFromLocation(int opt, const Map *map) {
             return nullptr;
     }
 }
-
-int main() {
-
-    Application app = Application();
-    app.run();
-
-    return 0;
-}
+//
+//int main() {
+//
+//    Application app = Application();
+//    app.run();
+//
+//    return 0;
+//}
