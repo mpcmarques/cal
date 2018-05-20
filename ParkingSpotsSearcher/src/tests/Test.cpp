@@ -174,6 +174,8 @@ void test_string_full_match(){
     ASSERT_EQUAL(false, KmpMatcher::matches("teste", "1234"));
 
     ASSERT(KmpMatcher::matches("teste", "TESTE"));
+
+    ASSERT(!KmpMatcher::matches("north", "south"));
 }
 
 void test_string_that_contains_match(){
