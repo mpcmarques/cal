@@ -218,9 +218,9 @@ Road Application::selectRoadFound(vector<Road> roads) {
     cout << "Showing results (Number/Road/District):" << endl;
 
     for (const auto &road: roads) {
-        cout << count++ << " - " << setw(40) << left << road.getName() << ".\t"
-             << this->model->getNodeByRoad(road)->getDistrict()
-             << endl;
+        cout << setw(4) << left << setfill(' ') << count++ << " - ";
+        cout << setw(100) << left << setfill(' ') << road.getName();
+        cout << " - " << this->model->getNodeByRoad(road)->getDistrict() << endl;
     }
 
     cout << "What is the number of the desired road?" << endl;
