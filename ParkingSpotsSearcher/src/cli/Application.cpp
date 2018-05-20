@@ -177,13 +177,13 @@ void Application::run() {
 
     while (running) {
 
-        this->view->updateView();
-
         cout << "\nWhat do you want to do?" << endl;
         cout << "1 - Search path." << endl;
         cout << "0 - Exit." << endl;
         int opt;
         cin >> opt;
+
+        this->view->updateView();
 
         if (opt != 1)
             running = false;
