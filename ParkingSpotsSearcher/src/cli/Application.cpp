@@ -80,6 +80,7 @@ int Application::chooseMaxDistance() {
 
     if (!(cin >> distance) || distance < 0) {
         cout << "Distance must be greater than zero" << endl;
+        cin.clear();
         return chooseMaxDistance();
     } else
         return distance;
